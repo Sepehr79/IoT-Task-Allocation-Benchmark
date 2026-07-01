@@ -3,7 +3,9 @@ NUM_SLOTS   = 100
 NUM_EDGES   = 8
 NUM_USERS   = 15 
 
-SLOT_LENGHT = 0.55
+SLOT_LENGHT = 0.1
+
+USER_CONTEXT_SIZE = 500 # KB
 
 
 # Task entity
@@ -44,7 +46,20 @@ class User:
 
 # Generate random task
 def generate_task(time_slot, userIndex):
-    return Task(5, 9, time_slot, userIndex)
+    # Required CPU cycles (Mega cycles)
+    d = int(max(100, random.gauss(600, 150)))
+    # Required Input data size (KB)
+    b = int(max(10, random.gauss(500, 200)))
+    return Task(d, b, time_slot, userIndex)
+
+# Generate homogeneous edges
+EDGE_CPUS = [ 4000 ] # MCycle/s
+EDGE_RATES = [ 100 ] # Mb/s
+
+def generate_edge():
+    cpu = random.choice(EDGE_CPUS)
+    data_rate = random.choice(EDGE_RATES)
+    return Edge(cpu, data_rate)
 
 def get_received_tasks(tasks, current_slot):
     return [task for task in tasks if task.R == current_slot]
@@ -55,8 +70,8 @@ import random
 import math
 import numpy
 
-users = [User(10) for i in range(NUM_USERS)]
-edges = [Edge(5, 2) for i in range(NUM_EDGES)]
+users = [User(USER_CONTEXT_SIZE) for i in range(NUM_USERS)]
+edges = [generate_edge() for i in range(NUM_EDGES)]
 tasks = []
 
 for slot in range(NUM_SLOTS):

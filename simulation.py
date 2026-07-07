@@ -7,6 +7,9 @@ SLOT_LENGHT = 0.1 # Seconds
 
 USER_CONTEXT_SIZE = 500 # KB
 
+EDGE_CPUS = [ 4000 ] # MCycle/s
+EDGE_RATES = [ 12500 ] # 12500 KB/s = 100 Mb/s
+
 
 # Task entity
 class Task:
@@ -46,9 +49,6 @@ def generate_task(time_slot, userIndex):
     return Task(d, b, time_slot, userIndex)
 
 # Generate homogeneous edges
-EDGE_CPUS = [ 4000 ] # MCycle/s
-EDGE_RATES = [ 12500 ] # 12500 KB/s = 100 Mb/s
-
 def generate_edge():
     cpu = random.choice(EDGE_CPUS)
     data_rate = random.choice(EDGE_RATES)

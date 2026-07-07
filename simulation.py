@@ -1,9 +1,9 @@
 # Enviroment variables
-NUM_SLOTS   = 100
+NUM_SLOTS   = 1000
 NUM_EDGES   = 8
 NUM_USERS   = 15 
 
-SLOT_LENGHT = 0.1
+SLOT_LENGHT = 0.1 # Seconds
 
 USER_CONTEXT_SIZE = 500 # KB
 
@@ -19,13 +19,6 @@ class Task:
         self.E = -1 # The time slot that this task is fully executed by a server
         self.A = [0 for i in range(NUM_EDGES)] # Selection vector 
         self.selected_edge_index = -1
-
-    def select(self, num_edge):
-        """Selects only one of the edge servers"""
-        for i in range(len(self.A)):
-            self.A[i] = 0
-        self.A[num_edge - 1] = 1
-        self.selected_edge_index = num_edge - 1
 
 
 # Edge entity
@@ -54,16 +47,21 @@ def generate_task(time_slot, userIndex):
 
 # Generate homogeneous edges
 EDGE_CPUS = [ 4000 ] # MCycle/s
-EDGE_RATES = [ 100 ] # Mb/s
+EDGE_RATES = [ 12500 ] # 12500 KB/s = 100 Mb/s
 
 def generate_edge():
     cpu = random.choice(EDGE_CPUS)
     data_rate = random.choice(EDGE_RATES)
     return Edge(cpu, data_rate)
 
-def get_received_tasks(tasks, current_slot):
-    return [task for task in tasks if task.R == current_slot]
 
+def schedule(task, edges, users, slot):
+    """Selects only one of the edge servers"""
+    selected_edge = random.randint(0, NUM_EDGES-1)
+    for i in range(len(task.A)):
+        task.A[i] = 0
+    task.A[selected_edge] = 1
+    task.selected_edge_index = selected_edge
 
 ## Simulation Algorithm
 import random
@@ -74,46 +72,49 @@ users = [User(USER_CONTEXT_SIZE) for i in range(NUM_USERS)]
 edges = [generate_edge() for i in range(NUM_EDGES)]
 tasks = []
 
+computation_capacity_per_slot = sum([edge.F for edge in edges]) * SLOT_LENGHT 
+
 for slot in range(NUM_SLOTS):
     
-    # All users may generate new task
-    for userIndex in range(len(users)):
-        if(random.randint(0, 100) < 80):
-            task = generate_task(slot, userIndex)
-            task.S = slot
-            tasks.append(task)
+    # All users may generate new task until required processing capacity is less than 0.8 processing capacity of the all nodes
+    input_capacity = 0
+    while input_capacity < 0.8 * computation_capacity_per_slot:
+        random_user = random.randint(0, NUM_USERS-1)
+        task = generate_task(slot, random_user)
+        task.S = slot
+        tasks.append(task)
+        input_capacity += task.D
 
     # Scheduler make decisions for all new tasks
     for task in tasks:
         if task.S == slot:
-            selected_edge = random.randint(0, NUM_EDGES-1)
-            task.select(selected_edge)
+            schedule(task, edges, users, slot)
             selected_transmision_rate = numpy.dot(task.A, [edge.R for edge in edges])
             task.R = task.S + math.ceil(task.B / (selected_transmision_rate * SLOT_LENGHT))  
             current_user = users[task.userIndex]
-            if (selected_edge != current_user.last_selected_edge):
+            if (task.selected_edge_index != current_user.last_selected_edge):
                 task.R += math.ceil(current_user.C / (selected_transmision_rate * SLOT_LENGHT))
-            current_user.last_selected_edge = selected_edge
+            current_user.last_selected_edge = task.selected_edge_index
 
     # Get and process received tasks
-    received_tasks = get_received_tasks(tasks, slot)
     queue_before = [edge.prev_queue for edge in edges]
     current_slot_queue = {}
     
     # Compute the time slot which the received tasks will be fully executed
-    for task in received_tasks:
-        selected_computation_capacity = numpy.dot(task.A, [edge.F for edge in edges])
-        selected_edge_queue = numpy.dot(task.A, queue_before)
-        waiting_cycles = current_slot_queue.get(task.selected_edge_index, 0)
-        task.E = (
-                   task.R +
-                   math.ceil(task.D / (selected_computation_capacity * SLOT_LENGHT)) + 
-                   math.ceil((waiting_cycles + selected_edge_queue) / (selected_computation_capacity * SLOT_LENGHT)) 
-            )
-        if task.selected_edge_index in current_slot_queue:
-            current_slot_queue[task.selected_edge_index] += task.D
-        else:
-            current_slot_queue[task.selected_edge_index] = task.D
+    for task in tasks:
+        if task.R == slot:
+            selected_computation_capacity = numpy.dot(task.A, [edge.F for edge in edges])
+            selected_edge_queue = numpy.dot(task.A, queue_before)
+            waiting_cycles = current_slot_queue.get(task.selected_edge_index, 0)
+            task.E = (
+                    task.R +
+                    math.ceil(task.D / (selected_computation_capacity * SLOT_LENGHT)) + 
+                    math.ceil((waiting_cycles + selected_edge_queue) / (selected_computation_capacity * SLOT_LENGHT)) 
+                )
+            if task.selected_edge_index in current_slot_queue:
+                current_slot_queue[task.selected_edge_index] += task.D
+            else:
+                current_slot_queue[task.selected_edge_index] = task.D
         
     
     # Update the edges' queues

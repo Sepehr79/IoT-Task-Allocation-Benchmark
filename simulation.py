@@ -87,7 +87,8 @@ for slot in range(NUM_SLOTS):
     for task in tasks:
         if task.S == slot:
             schedule(task, edges, users, slot)
-            selected_transmision_rate = numpy.dot(task.A, users[task.selected_edge_index].connections)
+            selected_transmision_rate = users[task.userIndex].connections[task.selected_edge_index]
+
             task.R = task.S + math.ceil(task.B / (selected_transmision_rate * SLOT_LENGHT))  
             current_user = users[task.userIndex]
             if (task.selected_edge_index != current_user.last_selected_edge):
@@ -101,8 +102,8 @@ for slot in range(NUM_SLOTS):
     # Compute the time slot which the received tasks will be fully executed
     for task in tasks:
         if task.R == slot:
-            selected_computation_capacity = numpy.dot(task.A, [edge.F for edge in edges])
-            selected_edge_queue = numpy.dot(task.A, queue_before)
+            selected_computation_capacity = edges[task.selected_edge_index].F
+            selected_edge_queue = queue_before[task.selected_edge_index]
             waiting_cycles = current_slot_queue.get(task.selected_edge_index, 0)
             task.E = (
                     task.R +

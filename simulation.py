@@ -1,14 +1,15 @@
 # Enviroment variables
-NUM_SLOTS   = 1000
+NUM_SLOTS   = 200
 NUM_EDGES   = 8
 NUM_USERS   = 15 
 
-SLOT_LENGHT = 0.1 # Seconds
+SLOT_LENGHT = 2 # Seconds
+USER_TASK_GENERATION_PROBABILITY = 0.5
 
 USER_CONTEXT_SIZE = 500 # KB
 
-EDGE_CPUS = [ 4000 ] # MCycle/s
-EDGE_RATES = [ 12500 ] # 12500 KB/s = 100 Mb/s
+EDGE_CPUS = [ 4*10**9 ] # 4GHz
+TRANSMISON_RATES = [5000 for _ in range(NUM_EDGES)]  # 5000 KB/s = 5 MB/s starting transmission rates between all users and edges
 
 
 # Task entity
@@ -26,9 +27,8 @@ class Task:
 
 # Edge entity
 class Edge:
-    def __init__(self, f, r):
+    def __init__(self, f):
         self.F = f # Computation capacity based on cycle per seconds
-        self.R = r # Data transmision capacity
         self.prev_queue = 0
         self.service_rate = self.F * SLOT_LENGHT
 
@@ -38,21 +38,20 @@ class User:
     def __init__(self, c):
         self.C = c # Context size of the user
         self.last_selected_edge = -1
+        self.connections = TRANSMISON_RATES.copy()
 
 
 # Generate random task
 def generate_task(time_slot, userIndex):
-    # Required CPU cycles (Mega cycles)
-    d = int(max(100, random.gauss(600, 150)))
+    d = int(random.randint(600*10**6, 1200*10**6))
     # Required Input data size (KB)
-    b = int(max(10, random.gauss(500, 200)))
+    b = int(random.randint(500, 3000))
     return Task(d, b, time_slot, userIndex)
 
 # Generate homogeneous edges
 def generate_edge():
     cpu = random.choice(EDGE_CPUS)
-    data_rate = random.choice(EDGE_RATES)
-    return Edge(cpu, data_rate)
+    return Edge(cpu)
 
 
 def schedule(task, edges, users, slot):
@@ -75,21 +74,20 @@ tasks = []
 computation_capacity_per_slot = sum([edge.F for edge in edges]) * SLOT_LENGHT 
 
 for slot in range(NUM_SLOTS):
-    
-    # All users may generate new task until required processing capacity is less than 0.8 processing capacity of the all nodes
-    input_capacity = 0
-    while input_capacity < 0.8 * computation_capacity_per_slot:
-        random_user = random.randint(0, NUM_USERS-1)
-        task = generate_task(slot, random_user)
-        task.S = slot
-        tasks.append(task)
-        input_capacity += task.D
+
+    # Task generation   
+    for user_index in range(NUM_USERS):
+        if random.random() < USER_TASK_GENERATION_PROBABILITY:
+            task = generate_task(slot, user_index)
+            task.S = slot
+            tasks.append(task)
+
 
     # Scheduler make decisions for all new tasks
     for task in tasks:
         if task.S == slot:
             schedule(task, edges, users, slot)
-            selected_transmision_rate = numpy.dot(task.A, [edge.R for edge in edges])
+            selected_transmision_rate = numpy.dot(task.A, users[task.selected_edge_index].connections)
             task.R = task.S + math.ceil(task.B / (selected_transmision_rate * SLOT_LENGHT))  
             current_user = users[task.userIndex]
             if (task.selected_edge_index != current_user.last_selected_edge):

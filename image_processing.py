@@ -20,25 +20,20 @@ import time
 import os
 
 freq = psutil.cpu_freq()
-process = psutil.Process(os.getpid())
+print("Frequency Status")
 print(f"Current: {freq.current:.2f} MHz")
-print(f"Minimum: {freq.min:.2f} MHz")
-print(f"Maximum: {freq.max:.2f} MHz")
 print("#########################################################")
 
 
 def measure_performance(function, description, N = 10000):
-    process.cpu_percent(None)
-    start_wall = time.perf_counter()
+    start_wall = time.process_time()
     for _ in range(N):
         function()
-    wall = time.perf_counter() - start_wall
-    usage = process.cpu_percent(None)
-    mean_time = wall/N
-    required_capacity = freq.current*1e6*mean_time*(usage/100)
-    print(f"Task     : {description}")
-    print(f"CPU Time : {mean_time:.6f} s")
-    print(f"Usage    : {usage:.2f} %")     
+    elapsed = time.process_time() - start_wall
+    mean_time = elapsed/N
+    required_capacity = freq.current*1e6*mean_time
+    print(f"Task: {description}")
+    print(f"Elapsed Time: {mean_time:.6f} s")
     print(f"Estimated Required Processing Capacity: {required_capacity:.0f}")
     print("#########################################################")
 

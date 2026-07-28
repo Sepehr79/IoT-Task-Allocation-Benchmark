@@ -28,8 +28,9 @@ def measure_performance(function, description, N = 10000):
         function()
     wall = time.perf_counter() - start_wall
     cpu = time.process_time() - start_cpu
+    mean_time = cpu/N
     usage = cpu/wall
-    required_capacity = 2*10**9*cpu/wall*cpu/N
+    required_capacity = 2*10**9*usage*mean_time
     print(f"Task     : {description}")
     print(f"CPU Time : {cpu/N:.6f} s")
     print(f"Usage    : {100 * usage:.2f} %")     

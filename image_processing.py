@@ -15,30 +15,29 @@ X_train, X_test, y_train, y_test = train_test_split(
 clf.fit(X_train, y_train)
 
 
-from contextlib import contextmanager
-from timeit import default_timer
 import psutil
 import time
 import os
 
 process = psutil.Process(os.getpid()) 
 
-N = 10000
-
-@contextmanager
-def elapsed_timer():
+def measure_performance(function, description, N = 10000):
+    print(f"Task: {description}")
+    function()
     start_wall = time.perf_counter()
     start_cpu = time.process_time()
-    yield
+    for _ in range(N):
+        function()
     wall = time.perf_counter() - start_wall
     cpu = time.process_time() - start_cpu
     print(f"CPU time : {cpu/N:.6f} s")
-    print(f"Usage    : {100 * cpu/wall:.2f} %")
+    print(f"Usage    : {100 * cpu/wall:.2f} %")     
+
 
 sample = X_test[0].reshape(1,-1)
-with elapsed_timer():
-    for _ in range(N):
-        predicted = clf.predict(sample) 
+predict = clf.predict
+measure_performance(lambda: predict(sample), "Prediction of number")
+
 
 
 

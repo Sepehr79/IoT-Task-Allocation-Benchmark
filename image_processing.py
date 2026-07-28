@@ -20,22 +20,25 @@ import time
 import os
 
 freq = psutil.cpu_freq()
-process = psutil.Process(os.getpid()) 
+process = psutil.Process(os.getpid())
+print(f"Current: {freq.current:.2f} MHz")
+print(f"Minimum: {freq.min:.2f} MHz")
+print(f"Maximum: {freq.max:.2f} MHz")
+print("#########################################################")
+
 
 def measure_performance(function, description, N = 10000):
+    process.cpu_percent(None)
     start_wall = time.perf_counter()
-    start_cpu = time.process_time()
     for _ in range(N):
         function()
     wall = time.perf_counter() - start_wall
-    cpu = time.process_time() - start_cpu
-    mean_time = cpu/N
-    usage = cpu/wall
+    usage = process.cpu_percent(None)
+    mean_time = wall*(usage/100)/N
     required_capacity = freq.current*1e6*mean_time
     print(f"Task     : {description}")
-    print(f"CPU Frequency: {freq.current:.2f} MHz")
-    print(f"CPU Time : {cpu/N:.6f} s")
-    print(f"Usage    : {100 * usage:.2f} %")     
+    print(f"CPU Time : {mean_time:.6f} s")
+    print(f"Usage    : {usage:.2f} %")     
     print(f"Estimated Required Processing Capacity: {required_capacity:.0f}")
     print("#########################################################")
 
@@ -49,12 +52,12 @@ from tensorflow.keras.applications import MobileNetV2
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
 import numpy as np
 
-model = MobileNetV2(weights=None)
+mobileNet = MobileNetV2(weights=None)
 
 image = np.random.rand(1,224,224,3).astype(np.float32)
 image = preprocess_input(image)
-
-measure_performance(lambda: model.predict(image), "Image Classification", N=10)
+predict = mobileNet.predict
+measure_performance(lambda: predict(image), "Image Classification", N=10)
 
 
 

@@ -22,7 +22,6 @@ import os
 process = psutil.Process(os.getpid()) 
 
 def measure_performance(function, description, N = 10000):
-    print(f"Task: {description}")
     function()
     start_wall = time.perf_counter()
     start_cpu = time.process_time()
@@ -30,13 +29,18 @@ def measure_performance(function, description, N = 10000):
         function()
     wall = time.perf_counter() - start_wall
     cpu = time.process_time() - start_cpu
-    print(f"CPU time : {cpu/N:.6f} s")
-    print(f"Usage    : {100 * cpu/wall:.2f} %")     
+    usage = cpu/wall
+    required_capacity = 2*10**9*cpu/wall*cpu/N
+    print(f"Task     : {description}")
+    print(f"CPU Time : {cpu/N:.6f} s")
+    print(f"Usage    : {100 * usage:.2f} %")     
+    print(f"Estimated Required Processing Capacity: {required_capacity:.0f}")
+    print("#########################################################")
 
 
 sample = X_test[0].reshape(1,-1)
 predict = clf.predict
-measure_performance(lambda: predict(sample), "Prediction of number")
+measure_performance(lambda: predict(sample), "Number Prediction")
 
 
 

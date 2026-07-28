@@ -17,7 +17,6 @@ clf.fit(X_train, y_train)
 
 import psutil
 import time
-import os
 
 freq = psutil.cpu_freq()
 print("Frequency Status")

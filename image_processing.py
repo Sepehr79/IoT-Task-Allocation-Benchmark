@@ -30,7 +30,7 @@ def measure_performance(function, description, N = 10000):
     cpu = time.process_time() - start_cpu
     mean_time = cpu/N
     usage = cpu/wall
-    required_capacity = 2*10**9*usage*mean_time
+    required_capacity = 2*10**9*mean_time
     print(f"Task     : {description}")
     print(f"CPU Time : {cpu/N:.6f} s")
     print(f"Usage    : {100 * usage:.2f} %")     

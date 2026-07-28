@@ -22,7 +22,6 @@ import os
 process = psutil.Process(os.getpid()) 
 
 def measure_performance(function, description, N = 10000):
-    function()
     start_wall = time.perf_counter()
     start_cpu = time.process_time()
     for _ in range(N):

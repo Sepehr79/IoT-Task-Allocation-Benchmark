@@ -1,20 +1,3 @@
-from sklearn import datasets, metrics, svm
-from sklearn.model_selection import train_test_split
-
-digits = datasets.load_digits()
-
-n_samples = len(digits.images)
-data = digits.images.reshape((n_samples, -1))
-
-clf = svm.SVC(gamma=0.001)
-
-X_train, X_test, y_train, y_test = train_test_split(
-    data, digits.target, test_size=0.5, shuffle=False
-)
-
-clf.fit(X_train, y_train)
-
-
 import psutil
 import time
 
@@ -33,25 +16,49 @@ def measure_performance(function, description, N = 10000):
     required_capacity = freq.current*1e6*mean_time
     print(f"Task: {description}")
     print(f"Elapsed Time: {mean_time:.6f} s")
-    print(f"Estimated Required Processing Capacity: {required_capacity:.0f}")
+    print(f"Estimated Required Processing Capacity: {required_capacity:,.0f}")
     print("#########################################################")
 
 
-sample = X_test[0].reshape(1,-1)
-predict = clf.predict
-measure_performance(lambda: predict(sample), "Number Prediction")
 
-
-from tensorflow.keras.applications import MobileNetV2
+from tensorflow.keras.applications import (
+    MobileNetV2,
+    ResNet50,
+    EfficientNetB0,
+    DenseNet121,
+    VGG16,
+)
+from tensorflow.keras.preprocessing import image
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
 import numpy as np
 
-mobileNet = MobileNetV2(weights=None)
+img = image.load_img("cat.jpg", target_size=(224, 224))
+x = image.img_to_array(img)
+x = np.expand_dims(x, axis=0)
+x = preprocess_input(x)
 
-image = np.random.rand(1,224,224,3).astype(np.float32)
-image = preprocess_input(image)
-predict = mobileNet.predict
-measure_performance(lambda: predict(image), "Image Classification", N=10)
+mobileNet = MobileNetV2(weights=None)
+resnet = ResNet50(weights=None)
+efficientNet = EfficientNetB0(weights=None)
+denseNet = DenseNet121(weights=None)
+vgg16 = VGG16(weights=None)
+
+mobileNet.predict(x, verbose=0)
+measure_performance(lambda: mobileNet.predict(x, verbose=0), "MobileNet Image Classification", N=10)
+
+resnet.predict(x, verbose=0)
+measure_performance(lambda: resnet.predict(x, verbose=0), "ResNet50 Image Classification", N=10)
+
+efficientNet.predict(x, verbose=0)
+measure_performance(lambda: efficientNet.predict(x, verbose=0), "EfficientNetB0 Image Classification", N=10)
+
+denseNet.predict(x, verbose=0)
+measure_performance(lambda: denseNet.predict(x, verbose=0), "DenseNet121 Image Classification", N=10)
+
+vgg16.predict(x, verbose=0)
+measure_performance(lambda: vgg16.predict(x, verbose=0), "VGG16 Image Classification", N=10)
+
+
 
 
 

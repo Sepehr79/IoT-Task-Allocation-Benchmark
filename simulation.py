@@ -3,12 +3,12 @@ NUM_SLOTS   = 200
 NUM_EDGES   = 8
 NUM_USERS   = 15 
 
-SLOT_LENGHT = 2 # Seconds
-USER_TASK_GENERATION_PROBABILITY = 0.5
+SLOT_LENGHT = 0.47 # Seconds
+USER_TASK_GENERATION_PROBABILITY = 0.8
 
-USER_CONTEXT_SIZE = 500 # KB
+USER_CONTEXT_SIZE = 200 # KB
 
-EDGE_CPUS = [ 4*10**9 ] # 4GHz
+EDGE_CPUS = [ 2*10**9 ] # 2GHz
 TRANSMISON_RATES = [5000 for _ in range(NUM_EDGES)]  # 5000 KB/s = 5 MB/s starting transmission rates between all users and edges
 
 
@@ -43,9 +43,9 @@ class User:
 
 # Generate random task
 def generate_task(time_slot, userIndex):
-    d = int(random.randint(600*10**6, 1200*10**6))
+    d = int(random.randint(10**8, 10**9))
     # Required Input data size (KB)
-    b = int(random.randint(500, 3000))
+    b = int(random.randint(100, 500))
     return Task(d, b, time_slot, userIndex)
 
 # Generate homogeneous edges
@@ -54,13 +54,46 @@ def generate_edge():
     return Edge(cpu)
 
 
-def schedule(task, edges, users, slot):
-    """Selects only one of the edge servers"""
-    selected_edge = random.randint(0, NUM_EDGES-1)
-    for i in range(len(task.A)):
-        task.A[i] = 0
-    task.A[selected_edge] = 1
-    task.selected_edge_index = selected_edge
+def schedule(tasks, edges, users, slot):
+    """Randomly distribute tasks among edge servers"""
+    edge_indices = list(range(NUM_EDGES))
+    random.shuffle(edge_indices)
+    for idx, task in enumerate(tasks):
+        selected_edge = edge_indices[idx % NUM_EDGES]
+
+        task.A = [0] * NUM_EDGES
+        task.A[selected_edge] = 1
+        task.selected_edge_index = selected_edge
+
+def greedy_schedule(tasks, edges, users, slot):
+    temp_queue = [edge.prev_queue for edge in edges]
+    for task in tasks:
+        best = None
+        best_cost = float('inf')
+        for i, edge in enumerate(edges):
+            transmission = (
+                task.B /
+                users[task.userIndex].connections[i]
+            )
+            computation = (
+                temp_queue[i] + task.D
+            ) / edge.F
+            context = 0
+            if users[task.userIndex].last_selected_edge != i:
+                context = (
+                    users[task.userIndex].C /
+                    users[task.userIndex].connections[i]
+                )
+            cost = transmission + computation + context
+            if cost < best_cost:
+                best_cost = cost
+                best = i
+
+        task.A = [0]*NUM_EDGES
+        task.A[best] = 1
+        task.selected_edge_index = best
+        temp_queue[best] += task.D
+
 
 ## Simulation Algorithm
 import random
@@ -82,25 +115,17 @@ for slot in range(NUM_SLOTS):
             task.S = slot
             tasks.append(task)
 
-
-    # Scheduler make decisions for all new tasks
-    for task in tasks:
-        if task.S == slot:
-            schedule(task, edges, users, slot)
-            selected_transmision_rate = users[task.userIndex].connections[task.selected_edge_index]
-
-            task.R = task.S + math.ceil(task.B / (selected_transmision_rate * SLOT_LENGHT))  
-            current_user = users[task.userIndex]
-            if (task.selected_edge_index != current_user.last_selected_edge):
-                task.R += math.ceil(current_user.C / (selected_transmision_rate * SLOT_LENGHT))
-            current_user.last_selected_edge = task.selected_edge_index
-
     # Get and process received tasks
     queue_before = [edge.prev_queue for edge in edges]
     current_slot_queue = {}
-    
-    # Compute the time slot which the received tasks will be fully executed
+    arrived_tasks = []
+
     for task in tasks:
+        # Gathering all new tasks to make decision for all at once
+        if task.S == slot:
+            arrived_tasks.append(task)
+
+        # Work out the time slot which the received tasks will be fully executed
         if task.R == slot:
             selected_computation_capacity = edges[task.selected_edge_index].F
             selected_edge_queue = queue_before[task.selected_edge_index]
@@ -114,7 +139,20 @@ for slot in range(NUM_SLOTS):
                 current_slot_queue[task.selected_edge_index] += task.D
             else:
                 current_slot_queue[task.selected_edge_index] = task.D
+
+    # Schedule all new tasks at once
+    schedule(arrived_tasks, edges, users, slot)
+    # Work out the time slot in which task is received by the server
+    for task in arrived_tasks:
+        selected_transmision_rate = users[task.userIndex].connections[task.selected_edge_index]
+        task.R = task.S + math.ceil(task.B / (selected_transmision_rate * SLOT_LENGHT))  
+        current_user = users[task.userIndex]
+        if (task.selected_edge_index != current_user.last_selected_edge):
+            task.R += math.ceil(current_user.C / (selected_transmision_rate * SLOT_LENGHT))
+            current_user.last_selected_edge = task.selected_edge_index
         
+
+
     
     # Update the edges' queues
     for i in range(len(edges)):

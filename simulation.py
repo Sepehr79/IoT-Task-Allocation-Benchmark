@@ -8,7 +8,7 @@ USER_TASK_GENERATION_PROBABILITY = 0.8
 
 USER_CONTEXT_SIZE = 200 # KB
 
-EDGE_CPUS = [ 2*10**9 ] # 2GHz
+EDGE_CPUS = [1*10**9, 2*10**9, 3*10**9] # Heterogeneous 
 TRANSMISON_RATES = [5000 for _ in range(NUM_EDGES)]  # 5000 KB/s = 5 MB/s starting transmission rates between all users and edges
 
 
@@ -88,7 +88,6 @@ def greedy_schedule(tasks, edges, users, slot):
             if cost < best_cost:
                 best_cost = cost
                 best = i
-
         task.A = [0]*NUM_EDGES
         task.A[best] = 1
         task.selected_edge_index = best
@@ -141,7 +140,7 @@ for slot in range(NUM_SLOTS):
                 current_slot_queue[task.selected_edge_index] = task.D
 
     # Schedule all new tasks at once
-    schedule(arrived_tasks, edges, users, slot)
+    greedy_schedule(arrived_tasks, edges, users, slot)
     # Work out the time slot in which task is received by the server
     for task in arrived_tasks:
         selected_transmision_rate = users[task.userIndex].connections[task.selected_edge_index]
@@ -150,8 +149,6 @@ for slot in range(NUM_SLOTS):
         if (task.selected_edge_index != current_user.last_selected_edge):
             task.R += math.ceil(current_user.C / (selected_transmision_rate * SLOT_LENGHT))
             current_user.last_selected_edge = task.selected_edge_index
-        
-
 
     
     # Update the edges' queues

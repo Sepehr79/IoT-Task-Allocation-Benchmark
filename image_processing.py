@@ -31,8 +31,20 @@ from tensorflow.keras.applications import (
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
 import numpy as np
+import os
+import random
 
-img = image.load_img("cat.jpg", target_size=(224, 224))
+folder_path = "dataset"
+valid_extensions = (".jpg", ".jpeg", ".png")
+
+image_files = [
+    os.path.join(folder_path, f)
+    for f in os.listdir(folder_path)
+    if f.lower().endswith(valid_extensions)
+]
+
+random_image = random.choice(image_files)
+img = image.load_img(random_image, target_size=(224, 224))
 x = image.img_to_array(img)
 x = np.expand_dims(x, axis=0)
 x = preprocess_input(x)
@@ -59,8 +71,13 @@ vgg16.predict(x, verbose=0)
 measure_performance(lambda: vgg16.predict(x, verbose=0), "VGG16 Image Classification", N=10)
 
 
+file_sizes = np.array([
+    os.path.getsize(img_file) / 1024
+    for img_file in image_files
+])
 
-
-
-
-
+print(f"Minimum: {np.min(file_sizes):.2f} KB")
+print(f"Maximum: {np.max(file_sizes):.2f} KB")
+print(f"Mean:    {np.mean(file_sizes):.2f} KB")
+print(f"Median:  {np.median(file_sizes):.2f} KB")
+print(f"Std:     {np.std(file_sizes):.2f} KB")

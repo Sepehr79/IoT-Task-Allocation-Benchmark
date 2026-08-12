@@ -3,13 +3,15 @@ NUM_SLOTS   = 10_000
 EXTRA_SLOTS = 2_000
 NUM_EDGES   = 8
 NUM_USERS   = 15 
+WEBSOCKET_CONNECTION = 2
+PROCESSING_CAPACITY_MEAN = 5*10**8
 
-SLOT_LENGHT = 0.06 # Seconds
-USER_TASK_GENERATION_PROBABILITY = 0.1
+SLOT_LENGHT = 0.5 # Seconds
+USER_TASK_GENERATION_PROBABILITY = 0.11
 
 USER_CONTEXT_SIZE = 200 # KB
 
-EDGE_CPUS = [1*10**9, 2*10**9, 3*10**9] # Heterogeneous 
+EDGE_CPUS = [2*10**8, 4*10**8, 6*10**8, 8*10**8] # Heterogeneous 
 TRANSMISON_RATES = [2000 for _ in range(NUM_EDGES)]  # 2000 KB/s = 2 MB/s starting transmission rates between all users and edges
 
 
@@ -46,9 +48,9 @@ class User:
 
 # Generate random task
 def generate_task(time_slot, userIndex):
-    d = int(np.clip(np.random.exponential(scale=5*10**8), 10**8, 10**9))
+    d = np.random.exponential(scale=PROCESSING_CAPACITY_MEAN)
     # Required Input data size (KB)
-    b = int(np.clip(np.random.exponential(scale=110), 50, 1000))
+    b = int(np.clip(np.random.exponential(scale=120), 80, 500))
     return Task(d, b, time_slot, userIndex)
 
 # Generate homogeneous edges
@@ -57,7 +59,7 @@ def generate_edge():
     return Edge(cpu)
 
 
-def schedule(tasks, edges, users, slot):
+def rr_schedule(tasks, edges, users, slot):
     """Randomly distribute tasks among edge servers"""
     edge_indices = list(range(NUM_EDGES))
     random.shuffle(edge_indices)
@@ -86,7 +88,7 @@ def greedy_schedule(tasks, edges, users, slot):
                 context = (
                     users[task.userIndex].C /
                     users[task.userIndex].connections[i]
-                )
+                ) + math.ceil(WEBSOCKET_CONNECTION / SLOT_LENGHT)
             cost = transmission + computation + context
             if cost < best_cost:
                 best_cost = cost
@@ -108,8 +110,13 @@ tasks = []
 
 computation_capacity_per_slot = sum([edge.F for edge in edges]) * SLOT_LENGHT 
 
+monitor_map = {
+    "server_change": 0,
+}
+
 for slot in range(NUM_SLOTS + EXTRA_SLOTS):  
 
+    print(f"Processing Slot: {slot}")
     if slot < NUM_SLOTS:
         for user_index in range(NUM_USERS):
             if random.random() < USER_TASK_GENERATION_PROBABILITY:
@@ -133,7 +140,8 @@ for slot in range(NUM_SLOTS + EXTRA_SLOTS):
         task.R = task.S + math.ceil(task.B / (selected_transmision_rate * SLOT_LENGHT))
         current_user = users[task.userIndex]
         if task.selected_edge_index != current_user.last_selected_edge:
-            task.R += math.ceil(current_user.C / (selected_transmision_rate * SLOT_LENGHT))
+            monitor_map["server_change"] += 1
+            task.R += math.ceil(WEBSOCKET_CONNECTION / SLOT_LENGHT) + math.ceil(current_user.C / (selected_transmision_rate * SLOT_LENGHT))
             current_user.last_selected_edge = task.selected_edge_index
 
     for task in tasks:
@@ -167,3 +175,4 @@ for task in tasks:
     if task.E != -1: # Select only finished tasks
         delay += task.E - task.S
 print(delay / len(tasks))
+print(monitor_map["server_change"])

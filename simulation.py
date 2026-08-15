@@ -25,11 +25,10 @@ USER_CONTEXT_SIZE = 60  # KB
 
 # Heterogeneous edge CPU capacities
 EDGE_CPUS = [
-    #2 * 10**8,
-    #4 * 10**8,
-    5 * 10**8
-    #6 * 10**8,
-    #8 * 10**8
+    2 * 10**8,
+    4 * 10**8,
+    6 * 10**8,
+    8 * 10**8
 ]
 
 # Transmission rate between every user and edge
@@ -438,7 +437,7 @@ for slot in range(
 
     if arrived_tasks:
 
-        greedy_schedule(
+        greedy_context_schedule(
             arrived_tasks,
             edges,
             users,

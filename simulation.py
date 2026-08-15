@@ -21,14 +21,15 @@ SLOT_LENGTH = 0.03  # seconds = 30 ms
 USER_TASK_GENERATION_PROBABILITY = 0.0126
 
 # User context size
-USER_CONTEXT_SIZE = 200  # KB
+USER_CONTEXT_SIZE = 60  # KB
 
 # Heterogeneous edge CPU capacities
 EDGE_CPUS = [
-    2 * 10**8,
-    4 * 10**8,
-    6 * 10**8,
-    8 * 10**8
+    #2 * 10**8,
+    #4 * 10**8,
+    5 * 10**8
+    #6 * 10**8,
+    #8 * 10**8
 ]
 
 # Transmission rate between every user and edge
@@ -142,13 +143,8 @@ def generate_task(time_slot, user_index):
     )
 
     # Required input data size (KB)
-    b = int(
-        np.clip(
-            np.random.exponential(scale=120),
-            80,
-            500
-        )
-    )
+    b = np.random.exponential(scale=120)
+        
 
     return Task(
         d,
@@ -196,7 +192,7 @@ def rr_schedule(tasks, edges, users, slot):
 # Greedy scheduler
 # ============================================================
 
-def greedy_schedule(tasks, edges, users, slot):
+def greedy_context_schedule(tasks, edges, users, slot):
 
     # Temporary queues used for estimating
     # the effect of scheduling current tasks
@@ -265,6 +261,81 @@ def greedy_schedule(tasks, edges, users, slot):
                 data_transmission +
                 computation +
                 context
+            )
+
+            if cost < best_cost:
+
+                best_cost = cost
+                best_edge = edge_index
+
+        # --------------------------------
+        # Assign selected edge
+        # --------------------------------
+
+        task.A = [0] * NUM_EDGES
+
+        task.A[best_edge] = 1
+
+        task.selected_edge_index = best_edge
+
+        # --------------------------------
+        # Update temporary queue
+        # --------------------------------
+
+        temp_queue[best_edge] += task.D
+
+
+def greedy_schedule(tasks, edges, users, slot):
+
+    # Temporary queues used for estimating
+    # the effect of scheduling current tasks
+    temp_queue = [
+        edge.prev_queue
+        for edge in edges
+    ]
+
+    for task in tasks:
+
+        best_edge = None
+        best_cost = float("inf")
+
+        user = users[task.userIndex]
+
+        for edge_index, edge in enumerate(edges):
+
+            transmission_rate = (
+                user.connections[edge_index]
+            )
+
+            # --------------------------------
+            # Data transmission time
+            # --------------------------------
+
+            data_transmission = (
+                task.B /
+                transmission_rate
+            )
+
+            # --------------------------------
+            # Estimated queue + processing
+            # --------------------------------
+
+            computation = (
+                temp_queue[edge_index] +
+                task.D
+            ) / edge.F
+
+            # --------------------------------
+            # Context/setup cost
+            # --------------------------------
+
+            # --------------------------------
+            # Total estimated cost
+            # --------------------------------
+
+            cost = (
+                data_transmission +
+                computation
             )
 
             if cost < best_cost:
@@ -736,6 +807,11 @@ if number_of_completed_tasks > 0:
         number_of_completed_tasks
     )
 
+    workload = (
+        (USER_TASK_GENERATION_PROBABILITY * NUM_USERS * PROCESSING_CAPACITY_MEAN) /
+        (sum(edge.F for edge in edges) * SLOT_LENGTH)
+    )
+
 
     # ========================================================
     # Print results
@@ -745,6 +821,10 @@ if number_of_completed_tasks > 0:
     print("=" * 55)
     print("                 DELAY STATISTICS")
     print("=" * 55)
+
+    print(
+        f"Workload: {workload}"
+    )
 
     print(
         f"Completed tasks: "
@@ -801,3 +881,4 @@ if number_of_completed_tasks > 0:
 else:
 
     print("No completed tasks.")
+

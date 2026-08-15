@@ -1,0 +1,2159 @@
+{
+  "message_type": "device_registration",
+  "user_id": 7,
+  "device": {
+    "device_id": "iiot_device_007",
+    "device_type": "industrial_monitoring_device",
+    "manufacturer": "IndustrialTech",
+    "model": "IMD-700",
+    "location": "production_line_2",
+    "firmware_version": "4.2.1"
+  },
+  "sensors": [
+    {
+      "sensor_id": "sensor_001",
+      "type": "vibration",
+      "unit": "mm/s",
+      "sampling_rate_hz": 1000
+    },
+    {
+      "sensor_id": "sensor_002",
+      "type": "temperature",
+      "unit": "celsius",
+      "sampling_rate_hz": 100
+    },
+    {
+      "sensor_id": "sensor_003",
+      "type": "motor_current",
+      "unit": "ampere",
+      "sampling_rate_hz": 500
+    },
+    {
+      "sensor_id": "sensor_004",
+      "type": "pressure",
+      "unit": "bar",
+      "sampling_rate_hz": 100
+    },
+    {
+      "sensor_id": "sensor_005",
+      "type": "rotational_speed",
+      "unit": "rpm",
+      "sampling_rate_hz": 100
+    }
+  ],
+  "supported_task_types": [
+    {
+      "task_type": "machine_anomaly_detection",
+      "description": "Detect abnormal machine operating conditions",
+      "required_sensors": [
+        "vibration",
+        "temperature",
+        "motor_current"
+      ],
+      "estimated_cpu_cycles": 500000000
+    },
+    {
+      "task_type": "predictive_maintenance",
+      "description": "Predict potential machine failures",
+      "required_sensors": [
+        "vibration",
+        "temperature",
+        "motor_current",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 800000000
+    },
+    {
+      "task_type": "motor_fault_diagnosis",
+      "description": "Identify motor faults",
+      "required_sensors": [
+        "vibration",
+        "motor_current",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 700000000
+    },
+    {
+      "task_type": "remaining_useful_life",
+      "description": "Estimate remaining useful life of equipment",
+      "required_sensors": [
+        "vibration",
+        "temperature",
+        "motor_current"
+      ],
+      "estimated_cpu_cycles": 1000000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    },
+    {
+      "task_type": "energy_consumption_prediction",
+      "description": "Predict future energy consumption",
+      "required_sensors": [
+        "motor_current",
+        "temperature",
+        "rotational_speed"
+      ],
+      "estimated_cpu_cycles": 600000000
+    }
+  ],
+  "device_capabilities": {
+    "local_processing": true,
+    "local_cpu_frequency_hz": 500000000,
+    "memory_mb": 512,
+    "storage_mb": 4096
+  },
+  "communication": {
+    "protocol": "WebSocket Secure",
+    "transport": "TLS",
+    "connection_type": "persistent",
+    "maximum_payload_kb": 60
+  }
+}

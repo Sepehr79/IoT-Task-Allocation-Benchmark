@@ -12,23 +12,23 @@ NUM_USERS = 15
 WEBSOCKET_CONNECTION = 2.0  # seconds
 
 # Mean required computation
-PROCESSING_CAPACITY_MEAN = 5 * 10**8  # cycles
+PROCESSING_CAPACITY_MEAN = 10**9  # cycles
 
 # Simulation slot
 SLOT_LENGTH = 0.03  # seconds = 30 ms
 
 # Task generation probability per user per slot
-USER_TASK_GENERATION_PROBABILITY = 0.0126
+USER_TASK_GENERATION_PROBABILITY = 0.0255
+
 
 # User context size
 USER_CONTEXT_SIZE = 60  # KB
 
 # Heterogeneous edge CPU capacities
 EDGE_CPUS = [
-    2 * 10**8,
-    4 * 10**8,
-    6 * 10**8,
-    8 * 10**8
+    1 * 10**9,
+    2 * 10**9,
+    3 * 10**9
 ]
 
 # Transmission rate between every user and edge
@@ -437,7 +437,7 @@ for slot in range(
 
     if arrived_tasks:
 
-        greedy_context_schedule(
+        greedy_schedule(
             arrived_tasks,
             edges,
             users,

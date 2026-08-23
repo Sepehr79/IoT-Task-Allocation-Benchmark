@@ -1,83 +1,45 @@
-# ============================================================
-# Environment variables
-# ============================================================
-
+# Enviroment variables
 NUM_SLOTS = 80_000
 EXTRA_SLOTS = 20_000
-
 NUM_EDGES = 8
 NUM_USERS = 15
-
-# Connection/setup delay when switching to another edge
 WEBSOCKET_CONNECTION = 2.0  # seconds
-
-# Mean required computation
 PROCESSING_CAPACITY_MEAN = 10**9  # cycles
-
-# Simulation slot
 SLOT_LENGTH = 0.03  # seconds = 30 ms
-
-# Task generation probability per user per slot
 USER_TASK_GENERATION_PROBABILITY = 0.0255
-
-
-# User context size
 USER_CONTEXT_SIZE = 60  # KB
-
-# Heterogeneous edge CPU capacities
 EDGE_CPUS = [
     1 * 10**9,
     2 * 10**9,
     3 * 10**9
 ]
-
-# Transmission rate between every user and edge
 TRANSMISSION_RATES = [
     2000 for _ in range(NUM_EDGES)
 ]  # KB/s
 
-
-# ============================================================
-# Imports
-# ============================================================
 
 import numpy as np
 import random
 import math
 
 
-# ============================================================
-# Task entity
-# ============================================================
-
 class Task:
 
     def __init__(self, d, b, s, user_index):
 
-        # -------------------------
-        # Task information
-        # -------------------------
-
         self.userIndex = user_index
 
-        self.D = d              # Required computation cycles
-        self.B = b              # Input data size (KB)
+        self.D = d             
+        self.B = b              
 
-        self.S = s              # Generation slot
-        self.R = -1             # Reception slot
-        self.E = -1             # Completion slot
-
-        # -------------------------
-        # Edge selection
-        # -------------------------
+        self.S = s  # Generation slot
+        self.R = -1 # Reception slot
+        self.E = -1 # Completion slot
 
         self.A = [0 for _ in range(NUM_EDGES)]
 
         self.selected_edge_index = -1
 
-        # -------------------------
-        # Delay components
-        # -------------------------
 
         self.data_transmission_delay = 0.0
         self.context_transmission_delay = 0.0
@@ -92,9 +54,6 @@ class Task:
         self.total_delay = 0.0
 
 
-# ============================================================
-# Edge entity
-# ============================================================
 
 class Edge:
 
@@ -103,45 +62,31 @@ class Edge:
         # CPU capacity in cycles/second
         self.F = f
 
-        # Queued computation workload in cycles
         self.prev_queue = 0
 
-        # Computation service capacity per slot
         self.service_rate = (
             self.F * SLOT_LENGTH
         )
 
 
-# ============================================================
-# User entity
-# ============================================================
-
 class User:
 
     def __init__(self, context_size):
 
-        # Context size in KB
         self.C = context_size
 
-        # Last selected edge
         self.last_selected_edge = -1
 
-        # Transmission rates to all edges
         self.connections = TRANSMISSION_RATES.copy()
 
 
-# ============================================================
-# Generate random task
-# ============================================================
 
 def generate_task(time_slot, user_index):
 
-    # Required computation cycles
     d = np.random.exponential(
         scale=PROCESSING_CAPACITY_MEAN
     )
 
-    # Required input data size (KB)
     b = np.random.exponential(scale=120)
         
 
@@ -153,9 +98,6 @@ def generate_task(time_slot, user_index):
     )
 
 
-# ============================================================
-# Generate edge
-# ============================================================
 
 def generate_edge():
 
@@ -164,10 +106,7 @@ def generate_edge():
     return Edge(cpu)
 
 
-# ============================================================
 # Round-robin scheduler
-# ============================================================
-
 def rr_schedule(tasks, edges, users, slot):
 
     edge_indices = list(range(NUM_EDGES))
@@ -187,14 +126,9 @@ def rr_schedule(tasks, edges, users, slot):
         task.selected_edge_index = selected_edge
 
 
-# ============================================================
 # Greedy scheduler
-# ============================================================
-
 def greedy_context_schedule(tasks, edges, users, slot):
 
-    # Temporary queues used for estimating
-    # the effect of scheduling current tasks
     temp_queue = [
         edge.prev_queue
         for edge in edges
@@ -213,27 +147,16 @@ def greedy_context_schedule(tasks, edges, users, slot):
                 user.connections[edge_index]
             )
 
-            # --------------------------------
-            # Data transmission time
-            # --------------------------------
 
             data_transmission = (
                 task.B /
                 transmission_rate
             )
 
-            # --------------------------------
-            # Estimated queue + processing
-            # --------------------------------
-
             computation = (
                 temp_queue[edge_index] +
                 task.D
             ) / edge.F
-
-            # --------------------------------
-            # Context/setup cost
-            # --------------------------------
 
             context = 0.0
 
@@ -252,10 +175,6 @@ def greedy_context_schedule(tasks, edges, users, slot):
                     WEBSOCKET_CONNECTION
                 )
 
-            # --------------------------------
-            # Total estimated cost
-            # --------------------------------
-
             cost = (
                 data_transmission +
                 computation +
@@ -267,27 +186,18 @@ def greedy_context_schedule(tasks, edges, users, slot):
                 best_cost = cost
                 best_edge = edge_index
 
-        # --------------------------------
-        # Assign selected edge
-        # --------------------------------
-
         task.A = [0] * NUM_EDGES
 
         task.A[best_edge] = 1
 
         task.selected_edge_index = best_edge
 
-        # --------------------------------
-        # Update temporary queue
-        # --------------------------------
-
         temp_queue[best_edge] += task.D
 
 
 def greedy_schedule(tasks, edges, users, slot):
 
-    # Temporary queues used for estimating
-    # the effect of scheduling current tasks
+
     temp_queue = [
         edge.prev_queue
         for edge in edges
@@ -306,31 +216,15 @@ def greedy_schedule(tasks, edges, users, slot):
                 user.connections[edge_index]
             )
 
-            # --------------------------------
-            # Data transmission time
-            # --------------------------------
-
             data_transmission = (
                 task.B /
                 transmission_rate
             )
 
-            # --------------------------------
-            # Estimated queue + processing
-            # --------------------------------
-
             computation = (
                 temp_queue[edge_index] +
                 task.D
             ) / edge.F
-
-            # --------------------------------
-            # Context/setup cost
-            # --------------------------------
-
-            # --------------------------------
-            # Total estimated cost
-            # --------------------------------
 
             cost = (
                 data_transmission +
@@ -342,26 +236,15 @@ def greedy_schedule(tasks, edges, users, slot):
                 best_cost = cost
                 best_edge = edge_index
 
-        # --------------------------------
-        # Assign selected edge
-        # --------------------------------
-
         task.A = [0] * NUM_EDGES
 
         task.A[best_edge] = 1
 
         task.selected_edge_index = best_edge
 
-        # --------------------------------
-        # Update temporary queue
-        # --------------------------------
-
         temp_queue[best_edge] += task.D
 
 
-# ============================================================
-# Initialize simulation
-# ============================================================
 
 users = [
     User(USER_CONTEXT_SIZE)
@@ -378,19 +261,12 @@ tasks = []
 server_changed = 0
 
 
-# ============================================================
 # Main simulation
-# ============================================================
-
 for slot in range(
     NUM_SLOTS + EXTRA_SLOTS
 ):
     print(f"Processing slot: {slot}")
 
-
-    # --------------------------------
-    # Generate new tasks
-    # --------------------------------
 
     if slot < NUM_SLOTS:
 
@@ -410,19 +286,11 @@ for slot in range(
                 tasks.append(task)
 
 
-    # --------------------------------
-    # Save queue state
-    # --------------------------------
-
     queue_before = [
         edge.prev_queue
         for edge in edges
     ]
 
-
-    # --------------------------------
-    # Find tasks generated now
-    # --------------------------------
 
     arrived_tasks = [
         task
@@ -431,23 +299,16 @@ for slot in range(
     ]
 
 
-    # --------------------------------
-    # Schedule new tasks
-    # --------------------------------
 
     if arrived_tasks:
 
-        greedy_schedule(
+        greedy_context_schedule(
             arrived_tasks,
             edges,
             users,
             slot
         )
 
-
-    # ========================================================
-    # Transmission phase
-    # ========================================================
 
     for task in arrived_tasks:
 
@@ -462,19 +323,10 @@ for slot in range(
         )
 
 
-        # --------------------------------
-        # 1. Input data transmission
-        # --------------------------------
-
         task.data_transmission_delay = (
             task.B /
             transmission_rate
         )
-
-
-        # --------------------------------
-        # 2. Context transmission
-        # --------------------------------
 
         if (
             edge_index
@@ -487,17 +339,12 @@ for slot in range(
                 transmission_rate
             )
 
-            # --------------------------------
-            # 3. Connection/setup delay
-            # --------------------------------
-
             task.connection_delay = (
                 WEBSOCKET_CONNECTION
             )
 
             server_changed += 1
 
-            # Update user's current edge
             user.last_selected_edge = (
                 edge_index
             )
@@ -509,9 +356,6 @@ for slot in range(
             task.connection_delay = 0.0
 
 
-        # --------------------------------
-        # Pure transmission delay
-        # --------------------------------
 
         task.transmission_delay = (
             task.data_transmission_delay +
@@ -519,21 +363,11 @@ for slot in range(
         )
 
 
-        # --------------------------------
-        # Communication delay including
-        # connection setup
-        # --------------------------------
-
         communication_delay = (
             task.transmission_delay +
             task.connection_delay
         )
 
-
-        # --------------------------------
-        # Convert communication time
-        # to simulation slots
-        # --------------------------------
 
         communication_slots = math.ceil(
             communication_delay /
@@ -541,28 +375,15 @@ for slot in range(
         )
 
 
-        # --------------------------------
-        # Reception slot
-        # --------------------------------
-
         task.R = (
             task.S +
             communication_slots
         )
 
-
-    # ========================================================
-    # Processing phase
-    # ========================================================
-
     current_slot_queue = {}
 
 
     for task in tasks:
-
-        # --------------------------------
-        # Task has reached its edge
-        # --------------------------------
 
         if (
             task.R == slot
@@ -576,20 +397,10 @@ for slot in range(
 
             edge = edges[edge_index]
 
-
-            # --------------------------------
-            # Existing queue
-            # --------------------------------
-
             previous_queue_cycles = (
                 queue_before[edge_index]
             )
 
-
-            # --------------------------------
-            # Tasks already arriving at this
-            # edge during this slot
-            # --------------------------------
 
             current_queue_cycles = (
                 current_slot_queue.get(
@@ -598,41 +409,21 @@ for slot in range(
                 )
             )
 
-
-            # --------------------------------
-            # Total workload ahead
-            # --------------------------------
-
             waiting_cycles = (
                 previous_queue_cycles +
                 current_queue_cycles
             )
 
 
-            # --------------------------------
-            # Queue delay
-            # --------------------------------
-
             task.queue_delay = (
                 waiting_cycles /
                 edge.F
             )
 
-
-            # --------------------------------
-            # Processing delay
-            # --------------------------------
-
             task.processing_delay = (
                 task.D /
                 edge.F
             )
-
-
-            # --------------------------------
-            # Convert queue and processing
-            # to simulation slots
-            # --------------------------------
 
             queue_slots = math.ceil(
                 task.queue_delay /
@@ -644,21 +435,11 @@ for slot in range(
                 SLOT_LENGTH
             )
 
-
-            # --------------------------------
-            # Completion slot
-            # --------------------------------
-
             task.E = (
                 task.R +
                 queue_slots +
                 processing_slots
             )
-
-
-            # --------------------------------
-            # Total delay in seconds
-            # --------------------------------
 
             task.total_delay = (
                 task.transmission_delay +
@@ -667,11 +448,6 @@ for slot in range(
                 task.processing_delay
             )
 
-
-            # --------------------------------
-            # Add workload to current queue
-            # --------------------------------
-
             current_slot_queue[
                 edge_index
             ] = (
@@ -679,10 +455,6 @@ for slot in range(
                 task.D
             )
 
-
-    # ========================================================
-    # Update edge queues
-    # ========================================================
 
     for edge_index in range(NUM_EDGES):
 
@@ -704,11 +476,6 @@ for slot in range(
             new_work
         )
 
-
-# ============================================================
-# Collect completed tasks
-# ============================================================
-
 completed_tasks = [
     task
     for task in tasks
@@ -716,20 +483,12 @@ completed_tasks = [
 ]
 
 
-# ============================================================
-# Delay statistics
-# ============================================================
-
 number_of_completed_tasks = (
     len(completed_tasks)
 )
 
 
 if number_of_completed_tasks > 0:
-
-    # --------------------------------
-    # Total accumulated delays
-    # --------------------------------
 
     total_data_transmission = sum(
         task.data_transmission_delay
@@ -765,11 +524,6 @@ if number_of_completed_tasks > 0:
         task.total_delay
         for task in completed_tasks
     )
-
-
-    # --------------------------------
-    # Average delays
-    # --------------------------------
 
     average_data_transmission = (
         total_data_transmission /
@@ -812,10 +566,7 @@ if number_of_completed_tasks > 0:
     )
 
 
-    # ========================================================
     # Print results
-    # ========================================================
-
     print("\n")
     print("=" * 55)
     print("                 DELAY STATISTICS")

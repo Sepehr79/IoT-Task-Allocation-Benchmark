@@ -16,7 +16,7 @@ async def benchmark():
 
     results = []
 
-    for i in range(20):
+    for i in range(1):
 
         start_time = time.perf_counter()
 

@@ -1,26 +1,54 @@
+import numpy as np
+import random
+import math
+from scipy.stats import truncnorm
+
+
 # Enviroment variables
 NUM_SLOTS = 80_000
 EXTRA_SLOTS = 20_000
 NUM_EDGES = 8
 NUM_USERS = 15
 WEBSOCKET_CONNECTION = 2.0  # seconds
-PROCESSING_CAPACITY_MEAN = 10**9  # cycles
+PROCESSING_CAPACITY_MEAN = 1e9
+PROCESSING_CAPACITY_MIN  = 0.5e9
+PROCESSING_CAPACITY_MAX  = 1.5e9
+PROCESSING_CAPACITY_STD  = 0.15e9
+
+DATA_SIZE_MEAN = 120      # KB
+DATA_SIZE_MIN  = 80       # KB
+DATA_SIZE_MAX  = 450      # KB
+DATA_SIZE_STD  = 40       # KB
+
+DATA_RATE_MEAN = 2000       # KB/s
+DATA_RATE_STD = 300         # KB/s
+
 SLOT_LENGTH = 0.03  # seconds = 30 ms
 USER_TASK_GENERATION_PROBABILITY = 0.0255
+
 USER_CONTEXT_SIZE = 60  # KB
 EDGE_CPUS = [
     1 * 10**9,
     2 * 10**9,
+    2 * 10**9,
+    2 * 10**9,
     3 * 10**9
 ]
-TRANSMISSION_RATES = [
-    2000 for _ in range(NUM_EDGES)
-]  # KB/s
 
-
-import numpy as np
-import random
-import math
+def generate_datarate():
+    sigma = np.sqrt(
+        np.log(
+            1 + (DATA_RATE_STD / DATA_RATE_MEAN) ** 2
+        )
+    )
+    mu = (
+        np.log(DATA_RATE_MEAN)
+        - 0.5 * sigma**2
+    )
+    return np.random.lognormal(
+        mean=mu,
+        sigma=sigma
+    )   
 
 
 class Task:
@@ -77,17 +105,24 @@ class User:
 
         self.last_selected_edge = -1
 
-        self.connections = TRANSMISSION_RATES.copy()
+        self.connections = [generate_datarate() for _ in range(NUM_EDGES)]
 
 
 
 def generate_task(time_slot, user_index):
-
-    d = np.random.exponential(
-        scale=PROCESSING_CAPACITY_MEAN
+    d = truncnorm.rvs(
+        (PROCESSING_CAPACITY_MIN - PROCESSING_CAPACITY_MEAN) / PROCESSING_CAPACITY_STD,
+        (PROCESSING_CAPACITY_MAX - PROCESSING_CAPACITY_MEAN) / PROCESSING_CAPACITY_STD,
+        loc=PROCESSING_CAPACITY_MEAN,
+        scale=PROCESSING_CAPACITY_STD
     )
 
-    b = np.random.exponential(scale=120)
+    b = truncnorm.rvs(
+        (DATA_SIZE_MIN - DATA_SIZE_MEAN) / DATA_SIZE_STD,
+        (DATA_SIZE_MAX - DATA_SIZE_MEAN) / DATA_SIZE_STD,
+        loc=DATA_SIZE_MEAN,
+        scale=DATA_SIZE_STD
+    )
         
 
     return Task(
@@ -96,8 +131,6 @@ def generate_task(time_slot, user_index):
         time_slot,
         user_index
     )
-
-
 
 def generate_edge():
 
@@ -302,7 +335,7 @@ for slot in range(
 
     if arrived_tasks:
 
-        greedy_context_schedule(
+        greedy_schedule(
             arrived_tasks,
             edges,
             users,
@@ -475,6 +508,9 @@ for slot in range(
             +
             new_work
         )
+
+    for user in users:
+        user.connections = [generate_datarate() for _ in range(NUM_EDGES)]
 
 completed_tasks = [
     task

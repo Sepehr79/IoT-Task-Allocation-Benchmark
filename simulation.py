@@ -48,7 +48,7 @@ def generate_datarate():
     return np.random.lognormal(
         mean=mu,
         sigma=sigma
-    )   
+    ) 
 
 
 class Task:
@@ -285,8 +285,16 @@ users = [
 ]
 
 edges = [
-    generate_edge()
-    for _ in range(NUM_EDGES)
+    Edge(1*10**9),
+    Edge(1*10**9),
+    Edge(2*10**9),
+    Edge(2*10**9),
+    Edge(2*10**9),
+    Edge(2*10**9),
+    Edge(3*10**9),
+    Edge(3*10**9),
+    #generate_edge()
+    #for _ in range(NUM_EDGES)
 ]
 
 tasks = []
@@ -335,7 +343,7 @@ for slot in range(
 
     if arrived_tasks:
 
-        greedy_schedule(
+        greedy_context_schedule(
             arrived_tasks,
             edges,
             users,

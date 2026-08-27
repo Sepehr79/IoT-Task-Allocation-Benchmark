@@ -2,38 +2,7 @@ import numpy as np
 import random
 import math
 from scipy.stats import truncnorm
-
-
-# Enviroment variables
-NUM_SLOTS = 80_000
-EXTRA_SLOTS = 20_000
-NUM_EDGES = 8
-NUM_USERS = 15
-WEBSOCKET_CONNECTION = 2.0  # seconds
-PROCESSING_CAPACITY_MEAN = 1e9
-PROCESSING_CAPACITY_MIN  = 0.5e9
-PROCESSING_CAPACITY_MAX  = 1.5e9
-PROCESSING_CAPACITY_STD  = 0.15e9
-
-DATA_SIZE_MEAN = 120      # KB
-DATA_SIZE_MIN  = 80       # KB
-DATA_SIZE_MAX  = 450      # KB
-DATA_SIZE_STD  = 40       # KB
-
-DATA_RATE_MEAN = 2000       # KB/s
-DATA_RATE_STD = 300         # KB/s
-
-SLOT_LENGTH = 0.03  # seconds = 30 ms
-USER_TASK_GENERATION_PROBABILITY = 0.0255
-
-USER_CONTEXT_SIZE = 60  # KB
-EDGE_CPUS = [
-    1 * 10**9,
-    2 * 10**9,
-    2 * 10**9,
-    2 * 10**9,
-    3 * 10**9
-]
+from config import *
 
 def generate_datarate():
     sigma = np.sqrt(
@@ -131,12 +100,6 @@ def generate_task(time_slot, user_index):
         time_slot,
         user_index
     )
-
-def generate_edge():
-
-    cpu = random.choice(EDGE_CPUS)
-
-    return Edge(cpu)
 
 
 # Round-robin scheduler
@@ -293,386 +256,385 @@ edges = [
     Edge(2*10**9),
     Edge(3*10**9),
     Edge(3*10**9),
-    #generate_edge()
-    #for _ in range(NUM_EDGES)
 ]
 
 tasks = []
 
 server_changed = 0
 
+if __name__ == "__main__":
 
-# Main simulation
-for slot in range(
-    NUM_SLOTS + EXTRA_SLOTS
-):
-    print(f"Processing slot: {slot}")
-
-
-    if slot < NUM_SLOTS:
-
-        for user_index in range(NUM_USERS):
-
-            if (
-                random.random()
-                <
-                USER_TASK_GENERATION_PROBABILITY
-            ):
-
-                task = generate_task(
-                    slot,
-                    user_index
-                )
-
-                tasks.append(task)
+    # Main simulation
+    for slot in range(
+        NUM_SLOTS + EXTRA_SLOTS
+    ):
+        print(f"Processing slot: {slot}")
 
 
-    queue_before = [
-        edge.prev_queue
-        for edge in edges
-    ]
+        if slot < NUM_SLOTS:
+
+            for user_index in range(NUM_USERS):
+
+                if (
+                    random.random()
+                    <
+                    USER_TASK_GENERATION_PROBABILITY
+                ):
+
+                    task = generate_task(
+                        slot,
+                        user_index
+                    )
+
+                    tasks.append(task)
 
 
-    arrived_tasks = [
-        task
-        for task in tasks
-        if task.S == slot
-    ]
+        queue_before = [
+            edge.prev_queue
+            for edge in edges
+        ]
+
+
+        arrived_tasks = [
+            task
+            for task in tasks
+            if task.S == slot
+        ]
 
 
 
-    if arrived_tasks:
+        if arrived_tasks:
 
-        greedy_context_schedule(
-            arrived_tasks,
-            edges,
-            users,
-            slot
-        )
-
-
-    for task in arrived_tasks:
-
-        user = users[task.userIndex]
-
-        edge_index = (
-            task.selected_edge_index
-        )
-
-        transmission_rate = (
-            user.connections[edge_index]
-        )
-
-
-        task.data_transmission_delay = (
-            task.B /
-            transmission_rate
-        )
-
-        if (
-            edge_index
-            !=
-            user.last_selected_edge
-        ):
-
-            task.context_transmission_delay = (
-                user.C /
-                transmission_rate
+            greedy_context_schedule(
+                arrived_tasks,
+                edges,
+                users,
+                slot
             )
 
-            task.connection_delay = (
-                WEBSOCKET_CONNECTION
-            )
 
-            server_changed += 1
+        for task in arrived_tasks:
 
-            user.last_selected_edge = (
-                edge_index
-            )
-
-        else:
-
-            task.context_transmission_delay = 0.0
-
-            task.connection_delay = 0.0
-
-
-
-        task.transmission_delay = (
-            task.data_transmission_delay +
-            task.context_transmission_delay
-        )
-
-
-        communication_delay = (
-            task.transmission_delay +
-            task.connection_delay
-        )
-
-
-        communication_slots = math.ceil(
-            communication_delay /
-            SLOT_LENGTH
-        )
-
-
-        task.R = (
-            task.S +
-            communication_slots
-        )
-
-    current_slot_queue = {}
-
-
-    for task in tasks:
-
-        if (
-            task.R == slot
-            and
-            task.E == -1
-        ):
+            user = users[task.userIndex]
 
             edge_index = (
                 task.selected_edge_index
             )
 
-            edge = edges[edge_index]
-
-            previous_queue_cycles = (
-                queue_before[edge_index]
+            transmission_rate = (
+                user.connections[edge_index]
             )
 
 
-            current_queue_cycles = (
+            task.data_transmission_delay = (
+                task.B /
+                transmission_rate
+            )
+
+            if (
+                edge_index
+                !=
+                user.last_selected_edge
+            ):
+
+                task.context_transmission_delay = (
+                    user.C /
+                    transmission_rate
+                )
+
+                task.connection_delay = (
+                    WEBSOCKET_CONNECTION
+                )
+
+                server_changed += 1
+
+                user.last_selected_edge = (
+                    edge_index
+                )
+
+            else:
+
+                task.context_transmission_delay = 0.0
+
+                task.connection_delay = 0.0
+
+
+
+            task.transmission_delay = (
+                task.data_transmission_delay +
+                task.context_transmission_delay
+            )
+
+
+            communication_delay = (
+                task.transmission_delay +
+                task.connection_delay
+            )
+
+
+            communication_slots = math.ceil(
+                communication_delay /
+                SLOT_LENGTH
+            )
+
+
+            task.R = (
+                task.S +
+                communication_slots
+            )
+
+        current_slot_queue = {}
+
+
+        for task in tasks:
+
+            if (
+                task.R == slot
+                and
+                task.E == -1
+            ):
+
+                edge_index = (
+                    task.selected_edge_index
+                )
+
+                edge = edges[edge_index]
+
+                previous_queue_cycles = (
+                    queue_before[edge_index]
+                )
+
+
+                current_queue_cycles = (
+                    current_slot_queue.get(
+                        edge_index,
+                        0
+                    )
+                )
+
+                waiting_cycles = (
+                    previous_queue_cycles +
+                    current_queue_cycles
+                )
+
+
+                task.queue_delay = (
+                    waiting_cycles /
+                    edge.F
+                )
+
+                task.processing_delay = (
+                    task.D /
+                    edge.F
+                )
+
+                queue_slots = math.ceil(
+                    task.queue_delay /
+                    SLOT_LENGTH
+                )
+
+                processing_slots = math.ceil(
+                    task.processing_delay /
+                    SLOT_LENGTH
+                )
+
+                task.E = (
+                    task.R +
+                    queue_slots +
+                    processing_slots
+                )
+
+                task.total_delay = (
+                    task.transmission_delay +
+                    task.connection_delay +
+                    task.queue_delay +
+                    task.processing_delay
+                )
+
+                current_slot_queue[
+                    edge_index
+                ] = (
+                    current_queue_cycles +
+                    task.D
+                )
+
+
+        for edge_index in range(NUM_EDGES):
+
+            new_work = (
                 current_slot_queue.get(
                     edge_index,
                     0
                 )
             )
 
-            waiting_cycles = (
-                previous_queue_cycles +
-                current_queue_cycles
+            edges[edge_index].prev_queue = (
+                max(
+                    edges[edge_index].prev_queue
+                    -
+                    edges[edge_index].service_rate,
+                    0
+                )
+                +
+                new_work
             )
 
+        for user in users:
+            user.connections = [generate_datarate() for _ in range(NUM_EDGES)]
 
-            task.queue_delay = (
-                waiting_cycles /
-                edge.F
-            )
-
-            task.processing_delay = (
-                task.D /
-                edge.F
-            )
-
-            queue_slots = math.ceil(
-                task.queue_delay /
-                SLOT_LENGTH
-            )
-
-            processing_slots = math.ceil(
-                task.processing_delay /
-                SLOT_LENGTH
-            )
-
-            task.E = (
-                task.R +
-                queue_slots +
-                processing_slots
-            )
-
-            task.total_delay = (
-                task.transmission_delay +
-                task.connection_delay +
-                task.queue_delay +
-                task.processing_delay
-            )
-
-            current_slot_queue[
-                edge_index
-            ] = (
-                current_queue_cycles +
-                task.D
-            )
+    completed_tasks = [
+        task
+        for task in tasks
+        if task.E != -1
+    ]
 
 
-    for edge_index in range(NUM_EDGES):
+    number_of_completed_tasks = (
+        len(completed_tasks)
+    )
 
-        new_work = (
-            current_slot_queue.get(
-                edge_index,
-                0
-            )
+
+    if number_of_completed_tasks > 0:
+
+        total_data_transmission = sum(
+            task.data_transmission_delay
+            for task in completed_tasks
         )
 
-        edges[edge_index].prev_queue = (
-            max(
-                edges[edge_index].prev_queue
-                -
-                edges[edge_index].service_rate,
-                0
-            )
-            +
-            new_work
+        total_context_transmission = sum(
+            task.context_transmission_delay
+            for task in completed_tasks
         )
 
-    for user in users:
-        user.connections = [generate_datarate() for _ in range(NUM_EDGES)]
+        total_transmission = sum(
+            task.transmission_delay
+            for task in completed_tasks
+        )
 
-completed_tasks = [
-    task
-    for task in tasks
-    if task.E != -1
-]
+        total_connection = sum(
+            task.connection_delay
+            for task in completed_tasks
+        )
 
+        total_queue = sum(
+            task.queue_delay
+            for task in completed_tasks
+        )
 
-number_of_completed_tasks = (
-    len(completed_tasks)
-)
+        total_processing = sum(
+            task.processing_delay
+            for task in completed_tasks
+        )
 
+        total_delay = sum(
+            task.total_delay
+            for task in completed_tasks
+        )
 
-if number_of_completed_tasks > 0:
+        average_data_transmission = (
+            total_data_transmission /
+            number_of_completed_tasks
+        )
 
-    total_data_transmission = sum(
-        task.data_transmission_delay
-        for task in completed_tasks
-    )
+        average_context_transmission = (
+            total_context_transmission /
+            number_of_completed_tasks
+        )
 
-    total_context_transmission = sum(
-        task.context_transmission_delay
-        for task in completed_tasks
-    )
+        average_transmission = (
+            total_transmission /
+            number_of_completed_tasks
+        )
 
-    total_transmission = sum(
-        task.transmission_delay
-        for task in completed_tasks
-    )
+        average_connection = (
+            total_connection /
+            number_of_completed_tasks
+        )
 
-    total_connection = sum(
-        task.connection_delay
-        for task in completed_tasks
-    )
+        average_queue = (
+            total_queue /
+            number_of_completed_tasks
+        )
 
-    total_queue = sum(
-        task.queue_delay
-        for task in completed_tasks
-    )
+        average_processing = (
+            total_processing /
+            number_of_completed_tasks
+        )
 
-    total_processing = sum(
-        task.processing_delay
-        for task in completed_tasks
-    )
+        average_total = (
+            total_delay /
+            number_of_completed_tasks
+        )
 
-    total_delay = sum(
-        task.total_delay
-        for task in completed_tasks
-    )
-
-    average_data_transmission = (
-        total_data_transmission /
-        number_of_completed_tasks
-    )
-
-    average_context_transmission = (
-        total_context_transmission /
-        number_of_completed_tasks
-    )
-
-    average_transmission = (
-        total_transmission /
-        number_of_completed_tasks
-    )
-
-    average_connection = (
-        total_connection /
-        number_of_completed_tasks
-    )
-
-    average_queue = (
-        total_queue /
-        number_of_completed_tasks
-    )
-
-    average_processing = (
-        total_processing /
-        number_of_completed_tasks
-    )
-
-    average_total = (
-        total_delay /
-        number_of_completed_tasks
-    )
-
-    workload = (
-        (USER_TASK_GENERATION_PROBABILITY * NUM_USERS * PROCESSING_CAPACITY_MEAN) /
-        (sum(edge.F for edge in edges) * SLOT_LENGTH)
-    )
+        workload = (
+            (USER_TASK_GENERATION_PROBABILITY * NUM_USERS * PROCESSING_CAPACITY_MEAN) /
+            (sum(edge.F for edge in edges) * SLOT_LENGTH)
+        )
 
 
-    # Print results
-    print("\n")
-    print("=" * 55)
-    print("                 DELAY STATISTICS")
-    print("=" * 55)
+        # Print results
+        print("\n")
+        print("=" * 55)
+        print("                 DELAY STATISTICS")
+        print("=" * 55)
 
-    print(
-        f"Workload: {workload}"
-    )
+        print(
+            f"Workload: {workload}"
+        )
 
-    print(
-        f"Completed tasks: "
-        f"{number_of_completed_tasks}"
-    )
+        print(
+            f"Completed tasks: "
+            f"{number_of_completed_tasks}"
+        )
 
-    print("-" * 55)
+        print("-" * 55)
 
-    print(
-        f"Average data transmission delay: "
-        f"{average_data_transmission:.4f} s"
-    )
+        print(
+            f"Average data transmission delay: "
+            f"{average_data_transmission:.4f} s"
+        )
 
-    print(
-        f"Average context transmission delay: "
-        f"{average_context_transmission:.4f} s"
-    )
+        print(
+            f"Average context transmission delay: "
+            f"{average_context_transmission:.4f} s"
+        )
 
-    print(
-        f"Average transmission delay: "
-        f"{average_transmission:.4f} s"
-    )
+        print(
+            f"Average transmission delay: "
+            f"{average_transmission:.4f} s"
+        )
 
-    print(
-        f"Average connection/setup delay: "
-        f"{average_connection:.4f} s"
-    )
+        print(
+            f"Average connection/setup delay: "
+            f"{average_connection:.4f} s"
+        )
 
-    print(
-        f"Average queue delay: "
-        f"{average_queue:.4f} s"
-    )
+        print(
+            f"Average queue delay: "
+            f"{average_queue:.4f} s"
+        )
 
-    print(
-        f"Average processing delay: "
-        f"{average_processing:.4f} s"
-    )
+        print(
+            f"Average processing delay: "
+            f"{average_processing:.4f} s"
+        )
 
-    print("-" * 55)
+        print("-" * 55)
 
-    print(
-        f"Average total delay: "
-        f"{average_total:.4f} s"
-    )
+        print(
+            f"Average total delay: "
+            f"{average_total:.4f} s"
+        )
 
-    print(
-        f"Server changes: "
-        f"{server_changed}"
-    )
+        print(
+            f"Server changes: "
+            f"{server_changed}"
+        )
 
-    print("=" * 55)
+        print("=" * 55)
 
 
-else:
+    else:
 
-    print("No completed tasks.")
+        print("No completed tasks.")
 

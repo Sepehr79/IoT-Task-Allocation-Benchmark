@@ -353,18 +353,15 @@ if __name__ == "__main__":
             if random.random() < VIRTUALIZED_SLOT:
 
                 for edge_index in range(NUM_EDGES):
-                    for task in arrived_tasks:
-                        vir_task = copy.deepcopy(task)
-
-                        vir_task.virtual_task = True
-
-                        calc_receive_time(
-                            vir_task,
-                            users,
-                            edge_index
-                        )
-                        virs.append(vir_task)
-                        tasks.append(vir_task)
+                    vir_task = copy.deepcopy(arrived_tasks[0])
+                    vir_task.virtual_task = True
+                    calc_receive_time(
+                        vir_task,
+                        users,
+                        edge_index
+                    )
+                    virs.append(vir_task)
+                    tasks.append(vir_task)
 
             # Then perform normal allocation
             greedy_context_schedule(

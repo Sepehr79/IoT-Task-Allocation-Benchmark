@@ -671,6 +671,7 @@ for task in dataset:
     row = {
         "processing_capcacity": task.D,
         "data_size": task.B,
+        "workload": workload
     }
 
     for i in range(NUM_EDGES):

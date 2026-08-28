@@ -3,6 +3,7 @@ import random
 import math
 from scipy.stats import truncnorm
 from config import *
+import copy
 
 def generate_datarate():
     sigma = np.sqrt(
@@ -49,6 +50,12 @@ class Task:
         self.processing_delay = 0.0
 
         self.total_delay = 0.0
+
+        self.delays = [0 for _ in range(NUM_EDGES)]
+        self.queues = [0 for _ in range(NUM_EDGES)]
+        self.last_allocation = [0 for _ in range(NUM_EDGES)]
+        self.user_rates = [0 for _ in range(NUM_EDGES)]
+        self.virtual_task = False
 
 
 
@@ -240,7 +247,41 @@ def greedy_schedule(tasks, edges, users, slot):
 
         temp_queue[best_edge] += task.D
 
+def calc_receive_time(task, users, edge_index):
+        user = users[task.userIndex]
+        task.selected_edge_index = edge_index
+        transmission_rate = (
+                    user.connections[edge_index]
+                )
+        task.data_transmission_delay = (
+                    task.B /
+                    transmission_rate
+        )
+        if (edge_index != user.last_selected_edge):
+            task.context_transmission_delay = (
+                user.C /
+                transmission_rate
+            )
+            task.connection_delay = (WEBSOCKET_CONNECTION)
+            if not task.virtual_task:
+                user.last_selected_edge = (edge_index)
+        else:
+            task.context_transmission_delay = 0.0
+            task.connection_delay = 0.0
 
+        task.transmission_delay = (
+                    task.data_transmission_delay +
+                    task.context_transmission_delay
+                )
+        communication_delay = (
+                    task.transmission_delay +
+                    task.connection_delay
+                )
+        communication_slots = math.ceil(
+                    communication_delay /
+                    SLOT_LENGTH
+                )
+        task.R = (task.S + communication_slots)
 
 users = [
     User(USER_CONTEXT_SIZE)
@@ -259,6 +300,7 @@ edges = [
 ]
 
 tasks = []
+virs = []
 
 server_changed = 0
 
@@ -270,6 +312,10 @@ if __name__ == "__main__":
     ):
         print(f"Processing slot: {slot}")
 
+        queue_before = [
+            edge.prev_queue
+            for edge in edges
+        ]
 
         if slot < NUM_SLOTS:
 
@@ -286,25 +332,41 @@ if __name__ == "__main__":
                         user_index
                     )
 
+                    task.queues = queue_before.copy()
+                    last_edge = users[user_index].last_selected_edge
+                    task.user_rates = users[user_index].connections
+                    if last_edge != -1:
+                        task.last_allocation[last_edge] = 1
                     tasks.append(task)
 
 
-        queue_before = [
-            edge.prev_queue
-            for edge in edges
-        ]
-
-
         arrived_tasks = [
-            task
-            for task in tasks
+            task for task in tasks
             if task.S == slot
         ]
 
-
+        random.shuffle(arrived_tasks)
 
         if arrived_tasks:
 
+            # Generate counterfactual samples
+            if random.random() < VIRTUALIZED_SLOT:
+
+                for edge_index in range(NUM_EDGES):
+                    for task in arrived_tasks:
+                        vir_task = copy.deepcopy(task)
+
+                        vir_task.virtual_task = True
+
+                        calc_receive_time(
+                            vir_task,
+                            users,
+                            edge_index
+                        )
+                        virs.append(vir_task)
+                        tasks.append(vir_task)
+
+            # Then perform normal allocation
             greedy_context_schedule(
                 arrived_tasks,
                 edges,
@@ -312,77 +374,19 @@ if __name__ == "__main__":
                 slot
             )
 
-
         for task in arrived_tasks:
-
+            edge_index = (task.selected_edge_index)
             user = users[task.userIndex]
-
-            edge_index = (
-                task.selected_edge_index
-            )
-
-            transmission_rate = (
-                user.connections[edge_index]
-            )
-
-
-            task.data_transmission_delay = (
-                task.B /
-                transmission_rate
-            )
-
-            if (
+            previous_edge = user.last_selected_edge
+            calc_receive_time(
+                task,
+                users,
                 edge_index
-                !=
-                user.last_selected_edge
-            ):
-
-                task.context_transmission_delay = (
-                    user.C /
-                    transmission_rate
-                )
-
-                task.connection_delay = (
-                    WEBSOCKET_CONNECTION
-                )
-
+            )
+            if edge_index != previous_edge:
                 server_changed += 1
 
-                user.last_selected_edge = (
-                    edge_index
-                )
-
-            else:
-
-                task.context_transmission_delay = 0.0
-
-                task.connection_delay = 0.0
-
-
-
-            task.transmission_delay = (
-                task.data_transmission_delay +
-                task.context_transmission_delay
-            )
-
-
-            communication_delay = (
-                task.transmission_delay +
-                task.connection_delay
-            )
-
-
-            communication_slots = math.ceil(
-                communication_delay /
-                SLOT_LENGTH
-            )
-
-
-            task.R = (
-                task.S +
-                communication_slots
-            )
-
+            
         current_slot_queue = {}
 
 
@@ -451,12 +455,13 @@ if __name__ == "__main__":
                     task.processing_delay
                 )
 
-                current_slot_queue[
-                    edge_index
-                ] = (
-                    current_queue_cycles +
-                    task.D
-                )
+                if not task.virtual_task:
+                    current_slot_queue[
+                        edge_index
+                    ] = (
+                        current_queue_cycles +
+                        task.D
+                    )
 
 
         for edge_index in range(NUM_EDGES):
@@ -486,6 +491,7 @@ if __name__ == "__main__":
         task
         for task in tasks
         if task.E != -1
+        and not task.virtual_task
     ]
 
 
@@ -631,10 +637,63 @@ if __name__ == "__main__":
             f"{server_changed}"
         )
 
+        print(
+            f"Virtual tasks: "
+            f"{len([task for task in tasks if task.virtual_task]) / NUM_EDGES}"
+        )
+
         print("=" * 55)
 
 
     else:
 
         print("No completed tasks.")
+
+
+dataset = []
+i = 0
+while i < len(virs):
+    task = Task(virs[i].D, virs[i].B, virs[i].S, virs[i].userIndex)
+    task.queues = virs[i].queues
+    task.last_allocation = virs[i].last_allocation
+    task.user_rates = virs[i].user_rates
+    for j in range(NUM_EDGES):
+        task.delays[j] = virs[i+j].total_delay
+    i += NUM_EDGES
+    dataset.append(task)
+
+import pandas as pd
+
+rows = []
+
+for task in dataset:
+
+    row = {
+        "processing_capcacity": task.D,
+        "data_size": task.B,
+    }
+
+    for i in range(NUM_EDGES):
+        row[f"queue_{i}"] = task.queues[i]
+
+    for i in range(NUM_EDGES):
+        row[f"last_allocation_{i}"] = task.last_allocation[i]
+    for i in range(NUM_EDGES):
+        row[f"rate_{i}"] = task.user_rates[i]
+    for i in range(NUM_EDGES):
+        row[f"delay_{i}"] = task.delays[i]
+    
+
+    rows.append(row)
+
+df = pd.DataFrame(rows)
+
+df.to_csv(
+    "task_dataset.csv",
+    mode="a",
+    header=not os.path.exists("task_dataset.csv"),
+    index=False
+)
+    
+
 

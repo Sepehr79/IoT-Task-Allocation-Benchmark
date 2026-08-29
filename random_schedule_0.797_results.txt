@@ -4,17 +4,17 @@
     =======================================================
     Algorithm: random_schedule
     Workload: 0.7968749999999999
-    Completed tasks: 7716
+    Completed tasks: 7609
     -------------------------------------------------------
-    Average data transmission delay: 0.0674 s
-    Average context transmission delay: 0.0268 s
-    Average transmission delay: 0.0943 s
-    Average connection/setup delay: 1.7506 s
-    Average queue delay: 4.9333 s
-    Average processing delay: 0.5158 s
+    Average data transmission delay: 0.0670 s
+    Average context transmission delay: 0.0270 s
+    Average transmission delay: 0.0940 s
+    Average connection/setup delay: 1.7577 s
+    Average queue delay: 6.0589 s
+    Average processing delay: 0.5191 s
     -------------------------------------------------------
-    Average total delay: 7.2940 s
-    Server changes: 6754
-    Virtual tasks: 6470.0
+    Average total delay: 8.4297 s
+    Server changes: 6687
+    Virtual tasks: 6433.0
     =======================================================
     

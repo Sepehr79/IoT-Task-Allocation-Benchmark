@@ -4,17 +4,17 @@
     =======================================================
     Algorithm: round_robin_schedule
     Workload: 0.7968749999999999
-    Completed tasks: 7547
+    Completed tasks: 7614
     -------------------------------------------------------
-    Average data transmission delay: 0.0674 s
-    Average context transmission delay: 0.0269 s
-    Average transmission delay: 0.0943 s
-    Average connection/setup delay: 1.7527 s
-    Average queue delay: 4.1979 s
-    Average processing delay: 0.5142 s
+    Average data transmission delay: 0.0675 s
+    Average context transmission delay: 0.0267 s
+    Average transmission delay: 0.0942 s
+    Average connection/setup delay: 1.7410 s
+    Average queue delay: 6.6628 s
+    Average processing delay: 0.5171 s
     -------------------------------------------------------
-    Average total delay: 6.5591 s
-    Server changes: 6614
-    Virtual tasks: 6338.0
+    Average total delay: 9.0151 s
+    Server changes: 6628
+    Virtual tasks: 6376.0
     =======================================================
     

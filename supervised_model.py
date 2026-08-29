@@ -140,7 +140,7 @@ mlp = MLPRegressor(
 
     n_iter_no_change=20,
 
-    random_state=RANDOM_STATE
+    random_state=RANDOM_STATE,
 )
 
 

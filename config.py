@@ -9,6 +9,7 @@ NUM_SLOTS = int(os.getenv("NUM_SLOTS"))
 EXTRA_SLOTS = int(os.getenv("EXTRA_SLOTS"))
 NUM_EDGES = int(os.getenv("NUM_EDGES"))
 NUM_USERS = int(os.getenv("NUM_USERS"))
+SCHEDULE_ALGORITHM = str(os.getenv("SCHEDULE_ALGORITHM"))
 
 WEBSOCKET_CONNECTION = float(os.getenv("WEBSOCKET_CONNECTION"))
 

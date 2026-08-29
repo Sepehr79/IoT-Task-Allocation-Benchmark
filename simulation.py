@@ -109,8 +109,23 @@ def generate_task(time_slot, user_index):
     )
 
 
+# Random scheduler
+def random_schedule(tasks, edges, users, slot):
+
+    for task in tasks:
+
+        selected_edge = random.randrange(
+            NUM_EDGES
+        )
+
+        task.A = [0] * NUM_EDGES
+
+        task.A[selected_edge] = 1
+
+        task.selected_edge_index = selected_edge
+
 # Round-robin scheduler
-def rr_schedule(tasks, edges, users, slot):
+def round_robin_schedule(tasks, edges, users, slot):
 
     edge_indices = list(range(NUM_EDGES))
 
@@ -247,6 +262,14 @@ def greedy_schedule(tasks, edges, users, slot):
 
         temp_queue[best_edge] += task.D
 
+
+scheduling = {
+    "r": random_schedule,
+    "rr": round_robin_schedule,
+    "g": greedy_schedule,
+    "gc": greedy_context_schedule
+}
+
 def calc_receive_time(task, users, edge_index):
         user = users[task.userIndex]
         task.selected_edge_index = edge_index
@@ -283,20 +306,22 @@ def calc_receive_time(task, users, edge_index):
                 )
         task.R = (task.S + communication_slots)
 
+schedule = scheduling[SCHEDULE_ALGORITHM]
+
 users = [
     User(USER_CONTEXT_SIZE)
     for _ in range(NUM_USERS)
 ]
 
 edges = [
-    Edge(1*10**9),
-    Edge(1*10**9),
+    Edge(1.5*10**9),
+    Edge(1.5*10**9),
     Edge(2*10**9),
     Edge(2*10**9),
     Edge(2*10**9),
     Edge(2*10**9),
-    Edge(3*10**9),
-    Edge(3*10**9),
+    Edge(2.5*10**9),
+    Edge(2.5*10**9),
 ]
 
 tasks = []
@@ -334,7 +359,7 @@ if __name__ == "__main__":
 
                     task.queues = queue_before.copy()
                     last_edge = users[user_index].last_selected_edge
-                    task.user_rates = users[user_index].connections
+                    task.user_rates = users[user_index].connections.copy()
                     if last_edge != -1:
                         task.last_allocation[last_edge] = 1
                     tasks.append(task)
@@ -350,7 +375,7 @@ if __name__ == "__main__":
         if arrived_tasks:
 
             # Generate counterfactual samples
-            if random.random() < VIRTUALIZED_SLOT:
+            if VIRTUALIZED_SLOT:
 
                 for edge_index in range(NUM_EDGES):
                     vir_task = copy.deepcopy(arrived_tasks[0])
@@ -364,7 +389,7 @@ if __name__ == "__main__":
                     tasks.append(vir_task)
 
             # Then perform normal allocation
-            greedy_context_schedule(
+            schedule(
                 arrived_tasks,
                 edges,
                 users,
@@ -575,123 +600,100 @@ if __name__ == "__main__":
         )
 
 
-        # Print results
-        print("\n")
-        print("=" * 55)
-        print("                 DELAY STATISTICS")
-        print("=" * 55)
+    # ============================================================
+    # Save and print results
+    # ============================================================
 
-        print(
-            f"Workload: {workload}"
-        )
-
-        print(
-            f"Completed tasks: "
-            f"{number_of_completed_tasks}"
-        )
-
-        print("-" * 55)
-
-        print(
-            f"Average data transmission delay: "
-            f"{average_data_transmission:.4f} s"
-        )
-
-        print(
-            f"Average context transmission delay: "
-            f"{average_context_transmission:.4f} s"
-        )
-
-        print(
-            f"Average transmission delay: "
-            f"{average_transmission:.4f} s"
-        )
-
-        print(
-            f"Average connection/setup delay: "
-            f"{average_connection:.4f} s"
-        )
-
-        print(
-            f"Average queue delay: "
-            f"{average_queue:.4f} s"
-        )
-
-        print(
-            f"Average processing delay: "
-            f"{average_processing:.4f} s"
-        )
-
-        print("-" * 55)
-
-        print(
-            f"Average total delay: "
-            f"{average_total:.4f} s"
-        )
-
-        print(
-            f"Server changes: "
-            f"{server_changed}"
-        )
-
-        print(
-            f"Virtual tasks: "
-            f"{len([task for task in tasks if task.virtual_task]) / NUM_EDGES}"
-        )
-
-        print("=" * 55)
-
-
-    else:
-
-        print("No completed tasks.")
-
-
-dataset = []
-i = 0
-while i < len(virs):
-    task = Task(virs[i].D, virs[i].B, virs[i].S, virs[i].userIndex)
-    task.queues = virs[i].queues
-    task.last_allocation = virs[i].last_allocation
-    task.user_rates = virs[i].user_rates
-    for j in range(NUM_EDGES):
-        task.delays[j] = virs[i+j].total_delay
-    i += NUM_EDGES
-    dataset.append(task)
-
-import pandas as pd
-
-rows = []
-
-for task in dataset:
-
-    row = {
-        "processing_capcacity": task.D,
-        "data_size": task.B,
-        "workload": workload
+    results = f"""
+    {"=" * 55}
+                    DELAY STATISTICS
+    {"=" * 55}
+    Algorithm: {schedule.__name__}
+    Workload: {workload}
+    Completed tasks: {number_of_completed_tasks}
+    {"-" * 55}
+    Average data transmission delay: {average_data_transmission:.4f} s
+    Average context transmission delay: {average_context_transmission:.4f} s
+    Average transmission delay: {average_transmission:.4f} s
+    Average connection/setup delay: {average_connection:.4f} s
+    Average queue delay: {average_queue:.4f} s
+    Average processing delay: {average_processing:.4f} s
+    {"-" * 55}
+    Average total delay: {average_total:.4f} s
+    Server changes: {server_changed}
+    Virtual tasks: {
+        len([task for task in tasks if task.virtual_task])
+        / NUM_EDGES
     }
+    {"=" * 55}
+    """
 
-    for i in range(NUM_EDGES):
-        row[f"queue_{i}"] = task.queues[i]
 
-    for i in range(NUM_EDGES):
-        row[f"last_allocation_{i}"] = task.last_allocation[i]
-    for i in range(NUM_EDGES):
-        row[f"rate_{i}"] = task.user_rates[i]
-    for i in range(NUM_EDGES):
-        row[f"delay_{i}"] = task.delays[i]
-    
+    # Print to console
+    print(results)
 
-    rows.append(row)
 
-df = pd.DataFrame(rows)
+    # Append to file
+    filename = (
+        f"{schedule.__name__}"
+        f"_{workload:.3f}_results.txt"
+    )
 
-df.to_csv(
-    "task_dataset.csv",
-    mode="a",
-    header=not os.path.exists("task_dataset.csv"),
-    index=False
-)
-    
+    with open(
+        filename,
+        "w",
+        encoding="utf-8"
+    ) as file:
+
+        file.write(results)
+        file.write("\n")
+
+
+    dataset = []
+    i = 0
+    while i < len(virs):
+        task = Task(virs[i].D, virs[i].B, virs[i].S, virs[i].userIndex)
+        task.queues = virs[i].queues
+        task.last_allocation = virs[i].last_allocation
+        task.user_rates = virs[i].user_rates
+        for j in range(NUM_EDGES):
+            task.delays[j] = virs[i+j].total_delay
+        i += NUM_EDGES
+        dataset.append(task)
+
+    import pandas as pd
+
+    rows = []
+
+    for task in dataset:
+
+        row = {
+            "processing_capcacity": task.D,
+            "data_size": task.B,
+            "workload": workload
+        }
+
+        for i in range(NUM_EDGES):
+            row[f"queue_{i}"] = task.queues[i]
+
+        for i in range(NUM_EDGES):
+            row[f"last_allocation_{i}"] = task.last_allocation[i]
+        for i in range(NUM_EDGES):
+            row[f"rate_{i}"] = task.user_rates[i]
+        for i in range(NUM_EDGES):
+            row[f"delay_{i}"] = task.delays[i]
+        
+
+        rows.append(row)
+
+    df = pd.DataFrame(rows)
+
+    df.to_csv(
+            "allocation_dataset.csv",
+            mode="a",
+            header=not os.path.exists("allocation_dataset.csv"),
+            index=False
+        )
+        
 
 

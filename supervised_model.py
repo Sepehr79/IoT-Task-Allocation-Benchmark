@@ -24,7 +24,7 @@ RANDOM_STATE = 42
 # ============================================================
 
 df = pd.read_csv(
-    "task_dataset.csv"
+    "allocation_dataset.csv"
 )
 
 print(
@@ -96,7 +96,8 @@ X_train, X_test, y_train, y_test = train_test_split(
     X,
     y,
     test_size=TEST_SIZE,
-    random_state=RANDOM_STATE
+    random_state=RANDOM_STATE,
+    shuffle=True,
 )
 
 

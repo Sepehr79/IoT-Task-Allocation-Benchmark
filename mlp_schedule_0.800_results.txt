@@ -3,18 +3,18 @@
                     DELAY STATISTICS
     =======================================================
     Algorithm: mlp_schedule
-    Workload: 0.7968749999999999
-    Completed tasks: 7662
+    Workload: 0.8
+    Completed tasks: 38655
     -------------------------------------------------------
-    Average data transmission delay: 0.0667 s
-    Average context transmission delay: 0.0074 s
-    Average transmission delay: 0.0742 s
-    Average connection/setup delay: 0.4834 s
-    Average queue delay: 1.9256 s
-    Average processing delay: 0.4853 s
+    Average data transmission delay: 0.0654 s
+    Average context transmission delay: 0.0219 s
+    Average transmission delay: 0.0873 s
+    Average connection/setup delay: 0.0294 s
+    Average queue delay: 0.5671 s
+    Average processing delay: 0.0980 s
     -------------------------------------------------------
-    Average total delay: 2.9684 s
-    Server changes: 1852
+    Average total delay: 0.7819 s
+    Server changes: 28445
     Virtual tasks: 0.0
     =======================================================
     

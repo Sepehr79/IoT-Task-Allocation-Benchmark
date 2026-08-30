@@ -52,7 +52,7 @@ async def main():
             )
 
             # Wait before next connection
-            await asyncio.sleep(1)
+            #await asyncio.sleep(1)
 
         average = sum(results) / len(results)
         minimum = min(results)

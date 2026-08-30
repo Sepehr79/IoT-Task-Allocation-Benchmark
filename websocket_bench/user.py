@@ -5,7 +5,7 @@ import time
 from websockets.asyncio.client import connect
 
 
-SERVER_IP = "192.168.151.207"
+SERVER_IP = "192.168.173.207"
 SERVER_PORT = 8765
 URI = f"wss://{SERVER_IP}:{SERVER_PORT}"
 
@@ -21,7 +21,7 @@ async def main():
     results = []
 
     # Create file from scratch
-    with open("connection_results___56.txt", "w") as f:
+    with open("connection_results_half_second.txt", "w") as f:
 
         f.write(f"Server: {SERVER_IP}\n")
         f.write(f"Port: {SERVER_PORT}\n")

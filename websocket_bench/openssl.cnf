@@ -4,10 +4,10 @@ x509_extensions = v3_req
 prompt = no
 
 [req_distinguished_name]
-CN = 192.168.151.207
+CN = 192.168.173.207
 
 [v3_req]
 subjectAltName = @alt_names
 
 [alt_names]
-IP.1 = 192.168.151.207
+IP.1 = 192.168.173.207

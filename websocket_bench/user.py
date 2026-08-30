@@ -4,6 +4,15 @@ import time
 
 import websockets
 
+import socket
+
+_orig_getaddrinfo = socket.getaddrinfo
+
+def ipv4_only_getaddrinfo(host, port, family=0, type=0, proto=0, flags=0):
+    return _orig_getaddrinfo(host, port, socket.AF_INET, type, proto, flags)
+
+socket.getaddrinfo = ipv4_only_getaddrinfo
+
 
 URI = "wss://localhost:8765"
 
@@ -39,9 +48,7 @@ async def benchmark():
             )
 
     print("\nResults")
-    print(f"Minimum : {min(results):.3f} ms")
-    print(f"Maximum : {max(results):.3f} ms")
-    print(f"Average : {sum(results) / len(results):.3f} ms")
+    print(f"{sum(results) / len(results):.3f} ms")
 
 
 asyncio.run(benchmark())

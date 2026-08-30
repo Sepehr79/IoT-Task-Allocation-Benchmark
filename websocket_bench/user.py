@@ -5,11 +5,11 @@ import time
 from websockets.asyncio.client import connect
 
 
-SERVER_IP = "127.0.0.1"
+SERVER_IP = "192.168.151.207"
 SERVER_PORT = 8765
 URI = f"wss://{SERVER_IP}:{SERVER_PORT}"
 
-NUM_TRIALS = 100
+NUM_TRIALS = 20
 
 
 async def main():

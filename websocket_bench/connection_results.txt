@@ -1,28 +1,28 @@
 Server: 192.168.151.207
 Port: 8765
 ----------------------------------------
-Trial 001: 129.062 ms
-Trial 002: 65.404 ms
-Trial 003: 75.468 ms
-Trial 004: 64.813 ms
-Trial 005: 73.337 ms
-Trial 006: 66.742 ms
-Trial 007: 55.237 ms
-Trial 008: 64.851 ms
-Trial 009: 61.290 ms
-Trial 010: 61.410 ms
-Trial 011: 61.355 ms
-Trial 012: 62.104 ms
-Trial 013: 63.552 ms
-Trial 014: 68.042 ms
-Trial 015: 63.841 ms
-Trial 016: 71.924 ms
-Trial 017: 59.085 ms
-Trial 018: 60.390 ms
-Trial 019: 62.395 ms
-Trial 020: 62.405 ms
+Trial 001: 158.281 ms
+Trial 002: 116.031 ms
+Trial 003: 366.841 ms
+Trial 004: 277.395 ms
+Trial 005: 97.679 ms
+Trial 006: 269.677 ms
+Trial 007: 80.579 ms
+Trial 008: 268.866 ms
+Trial 009: 86.146 ms
+Trial 010: 264.061 ms
+Trial 011: 136.991 ms
+Trial 012: 324.084 ms
+Trial 013: 85.142 ms
+Trial 014: 85.874 ms
+Trial 015: 262.441 ms
+Trial 016: 136.822 ms
+Trial 017: 276.563 ms
+Trial 018: 274.026 ms
+Trial 019: 66.986 ms
+Trial 020: 98.797 ms
 
 Results
-Average: 67.635 ms
-Minimum: 55.237 ms
-Maximum: 129.062 ms
+Average: 186.664 ms
+Minimum: 66.986 ms
+Maximum: 366.841 ms

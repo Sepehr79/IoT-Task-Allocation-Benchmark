@@ -1,47 +1,52 @@
 import asyncio
 import ssl
-from pathlib import Path
 
-import websockets
+from websockets.asyncio.server import serve
 
 
 HOST = "0.0.0.0"
 PORT = 8765
 
 
-async def handle_user(websocket):
-    print("User connected")
+async def handler(websocket):
+    print("Client connected")
 
     try:
         async for message in websocket:
-            print(f"Received task: {message}")
+            print(f"Received: {message}")
 
-            # Process the task here
-            result = f"Task processed: {message}"
+            await websocket.send(
+                f"Server received: {message}"
+            )
 
-            await websocket.send(result)
+    except Exception as e:
+        print(f"Connection error: {e}")
 
-    except websockets.ConnectionClosed:
-        print("User disconnected")
+    finally:
+        print("Client disconnected")
 
 
 async def main():
-    base_dir = Path(__file__).resolve().parent
 
-    ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
-
-    ssl_context.load_cert_chain(
-        certfile=base_dir / "server.crt",
-        keyfile=base_dir / "server.key"
+    ssl_context = ssl.SSLContext(
+        ssl.PROTOCOL_TLS_SERVER
     )
 
-    async with websockets.serve(
-        handle_user,
+    ssl_context.load_cert_chain(
+        certfile="server.crt",
+        keyfile="server.key"
+    )
+
+    async with serve(
+        handler,
         HOST,
         PORT,
         ssl=ssl_context
     ):
-        print(f"Secure WebSocket server running on wss://localhost:{PORT}")
+        print(
+            f"WSS server listening on "
+            f"wss://{HOST}:{PORT}"
+        )
 
         await asyncio.Future()
 

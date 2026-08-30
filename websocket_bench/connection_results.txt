@@ -1,0 +1,18 @@
+Server: 192.168.246.250
+Port: 8765
+----------------------------------------
+Trial 001: 238.228 ms
+Trial 002: 99.373 ms
+Trial 003: 125.196 ms
+Trial 004: 163.096 ms
+Trial 005: 165.500 ms
+Trial 006: 113.271 ms
+Trial 007: 114.298 ms
+Trial 008: 111.879 ms
+Trial 009: 110.490 ms
+Trial 010: 119.762 ms
+
+Results
+Average: 136.109 ms
+Minimum: 99.373 ms
+Maximum: 238.228 ms

@@ -2,22 +2,17 @@ import asyncio
 import ssl
 import time
 
-import websockets
-
-import socket
-
-_orig_getaddrinfo = socket.getaddrinfo
-
-def ipv4_only_getaddrinfo(host, port, family=0, type=0, proto=0, flags=0):
-    return _orig_getaddrinfo(host, port, socket.AF_INET, type, proto, flags)
-
-socket.getaddrinfo = ipv4_only_getaddrinfo
+from websockets.asyncio.client import connect
 
 
-URI = "wss://localhost:8765"
+SERVER_IP = "192.168.246.250"
+SERVER_PORT = 8765
+URI = f"wss://{SERVER_IP}:{SERVER_PORT}"
+
+NUM_TRIALS = 1
 
 
-async def benchmark():
+async def main():
 
     ssl_context = ssl.create_default_context(
         cafile="server.crt"
@@ -25,30 +20,42 @@ async def benchmark():
 
     results = []
 
-    for i in range(1):
+    conn = True
+    if conn:
+        conn = False
 
-        start_time = time.perf_counter()
+        for i in range(NUM_TRIALS):
 
-        async with websockets.connect(
-            URI,
-            ssl=ssl_context
-        ) as websocket:
+            start = time.perf_counter()
 
-            end_time = time.perf_counter()
+            async with connect(
+                URI,
+                ssl=ssl_context
+            ) as websocket:
 
-            connection_delay = (
-                end_time - start_time
-            ) * 1000
+                end = time.perf_counter()
 
-            results.append(connection_delay)
+            delay_ms = (end - start) * 1000
+            results.append(delay_ms)
 
             print(
-                f"Trial {i + 1:02d}: "
-                f"{connection_delay:.3f} ms"
+                f"Trial {i + 1:03d}: "
+                f"{delay_ms:.3f} ms"
             )
 
-    print("\nResults")
-    print(f"{sum(results) / len(results):.3f} ms")
+
+            # Wait before next connection
+            await asyncio.sleep(1)
+
+        average = sum(results) / len(results)
+        minimum = min(results)
+        maximum = max(results)
+
+        print("\nResults")
+        print(f"Average: {average:.3f} ms")
+        print(f"Minimum: {minimum:.3f} ms")
+        print(f"Maximum: {maximum:.3f} ms")
 
 
-asyncio.run(benchmark())
+if __name__ == "__main__":
+    asyncio.run(main())

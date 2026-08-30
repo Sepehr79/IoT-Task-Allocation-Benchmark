@@ -1,0 +1,28 @@
+Server: 192.168.173.207
+Port: 8765
+----------------------------------------
+Trial 001: 99.036 ms
+Trial 002: 246.387 ms
+Trial 003: 270.601 ms
+Trial 004: 270.978 ms
+Trial 005: 265.280 ms
+Trial 006: 268.032 ms
+Trial 007: 72.473 ms
+Trial 008: 282.000 ms
+Trial 009: 151.922 ms
+Trial 010: 252.814 ms
+Trial 011: 88.599 ms
+Trial 012: 246.892 ms
+Trial 013: 293.083 ms
+Trial 014: 160.345 ms
+Trial 015: 169.412 ms
+Trial 016: 65.516 ms
+Trial 017: 166.704 ms
+Trial 018: 151.484 ms
+Trial 019: 256.234 ms
+Trial 020: 190.088 ms
+
+Results
+Average: 198.394 ms
+Minimum: 65.516 ms
+Maximum: 293.083 ms

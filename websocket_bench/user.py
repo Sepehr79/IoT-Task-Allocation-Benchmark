@@ -21,7 +21,7 @@ async def main():
     results = []
 
     # Create file from scratch
-    with open("connection_results.txt", "w") as f:
+    with open("connection_results___56.txt", "w") as f:
 
         f.write(f"Server: {SERVER_IP}\n")
         f.write(f"Port: {SERVER_PORT}\n")

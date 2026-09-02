@@ -1,8 +1,8 @@
 Server: 192.168.173.207
 Port: 8765
 ----------------------------------------
-Trial 001: 99.036 ms
-Trial 002: 246.387 ms
+Trial 001: 246.050 ms
+Trial 002: 99.036 ms
 Trial 003: 270.601 ms
 Trial 004: 270.978 ms
 Trial 005: 265.280 ms
@@ -26,3 +26,7 @@ Results
 Average: 198.394 ms
 Minimum: 65.516 ms
 Maximum: 293.083 ms
+
+8 13
+6 10
+46 76

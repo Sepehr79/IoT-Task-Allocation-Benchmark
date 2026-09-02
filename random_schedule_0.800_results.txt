@@ -1,0 +1,20 @@
+
+    =======================================================
+                    DELAY STATISTICS
+    =======================================================
+    Algorithm: random_schedule
+    Workload: 0.8
+    Completed tasks: 3861
+    -------------------------------------------------------
+    Average data transmission delay: 0.0667 s
+    Average context transmission delay: 0.0267 s
+    Average transmission delay: 0.0934 s
+    Average connection/setup delay: 0.1751 s
+    Average queue delay: 2.7025 s
+    Average processing delay: 0.2675 s
+    -------------------------------------------------------
+    Average total delay: 3.2385 s
+    Server changes: 3381
+    Virtual tasks: 2707.0
+    =======================================================
+    

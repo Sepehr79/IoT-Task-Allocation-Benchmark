@@ -20,7 +20,7 @@ if os.path.exists(MODEL_FILE_SK):
     mlp_model = joblib.load(MODEL_FILE_SK)
 
 if os.path.exists(MODEL_FILE_TS) and os.path.exists(TARGET_SCALER):
-    ts_model = tf.keras.models.load_model(MODEL_FILE_TS)
+    ts_model = tf.keras.models.load_model(MODEL_FILE_TS, compile=False)
     target_scaler = joblib.load(TARGET_SCALER)
 
 

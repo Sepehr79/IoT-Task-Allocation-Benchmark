@@ -1,9 +1,9 @@
 import tensorflow as tf
 import numpy as np
 import pandas as pd
-from sklearn.preprocessing import StandardScaler 
-import joblib
+from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
+import joblib
 from config import NUM_EDGES
 
 
@@ -11,9 +11,14 @@ from config import NUM_EDGES
 # Configuration
 # ============================================================
 
-TEST_SIZE = 0.2
-VALIDATION_SIZE = 0.15
+TEST_SIZE = 0.10
+VALIDATION_SIZE = 0.10
 RANDOM_STATE = 42
+
+BATCH_SIZE = 64
+EPOCHS = 500
+LEARNING_RATE = 0.001
+L2_ALPHA = 0.0001
 
 
 # ============================================================
@@ -123,49 +128,94 @@ normalization = tf.keras.layers.Normalization()
 normalization.adapt(X_train)
 
 
+# ============================================================
+# Target normalization
+#
+# Equivalent to:
+#
+# TransformedTargetRegressor(
+#     regressor=mlp,
+#     transformer=StandardScaler()
+# )
+# ============================================================
+
 target_scaler = StandardScaler()
 
-y_train_scaled = target_scaler.fit_transform(y_train)
-y_val_scaled = target_scaler.transform(y_val)
-y_test_scaled = target_scaler.transform(y_test)
+y_train_scaled = target_scaler.fit_transform(
+    y_train
+)
+
+y_val_scaled = target_scaler.transform(
+    y_val
+)
+
 
 # ============================================================
-# MLP
+# L2 Regularization
+# ============================================================
+
+l2_reg = tf.keras.regularizers.l2(
+    L2_ALPHA
+)
+
+
+# ============================================================
+# MLP Model
 # ============================================================
 
 inputs = tf.keras.Input(
     shape=(X_train.shape[1],)
 )
 
+
+# Input normalization
 x = normalization(inputs)
 
+
+# Hidden layer 1
 x = tf.keras.layers.Dense(
     128,
-    activation="relu"
+    activation="relu",
+    kernel_regularizer=l2_reg
 )(x)
 
+
+# Hidden layer 2
 x = tf.keras.layers.Dense(
     128,
-    activation="relu"
+    activation="relu",
+    kernel_regularizer=l2_reg
 )(x)
 
+
+# Hidden layer 3
 x = tf.keras.layers.Dense(
     64,
-    activation="relu"
+    activation="relu",
+    kernel_regularizer=l2_reg
 )(x)
 
+
+# Hidden layer 4
 x = tf.keras.layers.Dense(
     32,
-    activation="relu"
+    activation="relu",
+    kernel_regularizer=l2_reg
 )(x)
 
+
+# Hidden layer 5
 x = tf.keras.layers.Dense(
     16,
-    activation="relu"
+    activation="relu",
+    kernel_regularizer=l2_reg
 )(x)
 
+
+# Output layer
 outputs = tf.keras.layers.Dense(
-    NUM_EDGES
+    NUM_EDGES,
+    activation="linear"
 )(x)
 
 
@@ -179,7 +229,62 @@ model = tf.keras.Model(
 # Loss
 # ============================================================
 
-loss_fn = tf.keras.losses.MeanSquaredError()
+
+#loss_fn = combined_loss
+
+def combined_loss(
+    y_true,
+    y_pred,
+    mse_weight=1.0,
+    rank_weight=0.5,
+    margin=0.0,
+    queue_weight_alpha=1.0,   # controls how much extra weight high-delay (queue-dominated) samples get
+):
+    """
+    Combined loss = weighted MSE (emphasizing queue-delay-dominated cases)
+                    + pairwise ranking loss (relative order / regret accuracy)
+
+    y_true, y_pred: shape (batch_size, NUM_EDGES)
+    """
+
+    # ------------------------------------------------------------
+    # Weighted MSE
+    #
+    # Queue delay is the largest, most variable component of total
+    # delay. When true delay is large, it's almost always because
+    # queue delay dominates. Weighting those cases more forces the
+    # model to fit the queue-dominated regime more accurately,
+    # instead of being pulled toward the easy, low-delay bulk.
+    # ------------------------------------------------------------
+    abs_y_true = tf.abs(y_true)
+    mean_abs = tf.reduce_mean(abs_y_true) + 1e-8
+
+    weight = 1.0 + queue_weight_alpha * (abs_y_true / mean_abs)
+
+    weighted_sq_error = weight * tf.square(y_true - y_pred)
+    weighted_mse = tf.reduce_mean(weighted_sq_error)
+
+    # ------------------------------------------------------------
+    # Pairwise ranking loss (unchanged from before)
+    # ------------------------------------------------------------
+    true_diff = tf.expand_dims(y_true, axis=2) - tf.expand_dims(y_true, axis=1)
+    pred_diff = tf.expand_dims(y_pred, axis=2) - tf.expand_dims(y_pred, axis=1)
+
+    sign_true = tf.sign(true_diff)
+    pairwise_hinge = tf.nn.relu(margin - sign_true * pred_diff)
+
+    mask = tf.cast(tf.not_equal(sign_true, 0.0), tf.float32)
+    rank_loss = tf.reduce_sum(pairwise_hinge * mask) / (tf.reduce_sum(mask) + 1e-8)
+
+    return mse_weight * weighted_mse + rank_weight * rank_loss
+
+#loss_fn = tf.keras.losses.MeanSquaredError()
+loss_fn = lambda y_true, y_pred: combined_loss(
+    y_true, y_pred,
+    mse_weight=1.0,
+    rank_weight=0.5,
+    queue_weight_alpha=1.0,   # این رو بین 0.5 تا 2 sweep کنید
+)
 
 
 # ============================================================
@@ -188,11 +293,18 @@ loss_fn = tf.keras.losses.MeanSquaredError()
 
 model.compile(
     optimizer=tf.keras.optimizers.Adam(
-        learning_rate=0.001
+        learning_rate=LEARNING_RATE
     ),
     loss=loss_fn,
     metrics=["mae"]
 )
+
+
+# ============================================================
+# Model summary
+# ============================================================
+
+model.summary()
 
 
 # ============================================================
@@ -210,18 +322,28 @@ early_stopping = tf.keras.callbacks.EarlyStopping(
 # Train
 # ============================================================
 
-model.fit(
+history = model.fit(
     X_train,
     y_train_scaled,
-    validation_data=(X_val, y_val_scaled),
-    epochs=500,
-    batch_size=64,
-    callbacks=[early_stopping]
+
+    validation_data=(
+        X_val,
+        y_val_scaled
+    ),
+
+    epochs=EPOCHS,
+    batch_size=BATCH_SIZE,
+
+    callbacks=[
+        early_stopping
+    ],
+
+    verbose=1
 )
 
 
 # ============================================================
-# Save complete model
+# Save model
 # ============================================================
 
 model.save(
@@ -232,8 +354,10 @@ joblib.dump(
     target_scaler,
     "target_scaler.pkl"
 )
+
+
 # ============================================================
-# Evaluation on Test Set
+# Prediction
 # ============================================================
 
 y_pred_scaled = model.predict(
@@ -242,9 +366,50 @@ y_pred_scaled = model.predict(
 )
 
 
-# Convert predictions back to original delay scale
+# ============================================================
+# Convert predictions back to original scale
+#
+# Model output:
+#       standardized delay
+#
+# After inverse_transform:
+#       delay in seconds
+# ============================================================
+
 y_pred = target_scaler.inverse_transform(
     y_pred_scaled
+)
+
+
+# ============================================================
+# Show predictions
+# ============================================================
+
+print("\nTrue:")
+print(y_test[:5])
+
+print("\nPredicted:")
+print(y_pred[:5])
+
+
+# ============================================================
+# Best edge
+# ============================================================
+
+print("\nTrue best:")
+print(
+    np.argmin(
+        y_test[:5],
+        axis=1
+    )
+)
+
+print("\nPredicted best:")
+print(
+    np.argmin(
+        y_pred[:5],
+        axis=1
+    )
 )
 
 
@@ -256,10 +421,14 @@ mse = np.mean(
     (y_test - y_pred) ** 2
 )
 
-rmse = np.sqrt(mse)
+rmse = np.sqrt(
+    mse
+)
 
 mae = np.mean(
-    np.abs(y_test - y_pred)
+    np.abs(
+        y_test - y_pred
+    )
 )
 
 
@@ -291,14 +460,16 @@ for i in range(NUM_EDGES):
 
     edge_mae = np.mean(
         np.abs(
-            y_test[:, i] -
+            y_test[:, i]
+            -
             y_pred[:, i]
         )
     )
 
     edge_mse = np.mean(
         (
-            y_test[:, i] -
+            y_test[:, i]
+            -
             y_pred[:, i]
         ) ** 2
     )
@@ -330,7 +501,8 @@ predicted_best_edge = np.argmin(
 
 
 best_edge_accuracy = np.mean(
-    true_best_edge ==
+    true_best_edge
+    ==
     predicted_best_edge
 )
 
@@ -352,13 +524,16 @@ optimal_delay = np.min(
     axis=1
 )
 
+
 selected_delay = y_test[
     np.arange(len(y_test)),
     predicted_best_edge
 ]
 
+
 regret = (
-    selected_delay -
+    selected_delay
+    -
     optimal_delay
 )
 

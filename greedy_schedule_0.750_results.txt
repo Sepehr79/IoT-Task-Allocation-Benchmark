@@ -1,0 +1,20 @@
+
+    =======================================================
+                    DELAY STATISTICS
+    =======================================================
+    Algorithm: greedy_schedule
+    Workload: 0.75
+    Completed tasks: 7295
+    -------------------------------------------------------
+    Average data transmission delay: 0.0655 s
+    Average context transmission delay: 0.0250 s
+    Average transmission delay: 0.0905 s
+    Average connection/setup delay: 0.1675 s
+    Average queue delay: 0.4238 s
+    Average processing delay: 0.2521 s
+    -------------------------------------------------------
+    Average total delay: 0.9339 s
+    Server changes: 6110
+    Virtual tasks: 0.0
+    =======================================================
+    

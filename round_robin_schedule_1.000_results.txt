@@ -1,0 +1,20 @@
+
+    =======================================================
+                    DELAY STATISTICS
+    =======================================================
+    Algorithm: round_robin_schedule
+    Workload: 1.0
+    Completed tasks: 9587
+    -------------------------------------------------------
+    Average data transmission delay: 0.0676 s
+    Average context transmission delay: 0.0269 s
+    Average transmission delay: 0.0945 s
+    Average connection/setup delay: 0.1755 s
+    Average queue delay: 17.2776 s
+    Average processing delay: 0.2648 s
+    -------------------------------------------------------
+    Average total delay: 17.8124 s
+    Server changes: 8411
+    Virtual tasks: 0.0
+    =======================================================
+    

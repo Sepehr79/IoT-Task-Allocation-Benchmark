@@ -6,7 +6,7 @@ from pathlib import Path
 from websockets.asyncio.client import connect
 
 
-SERVER_IP = "192.168.173.207"
+SERVER_IP = "192.168.152.207"
 SERVER_PORT = 8765
 URI = f"wss://{SERVER_IP}:{SERVER_PORT}"
 

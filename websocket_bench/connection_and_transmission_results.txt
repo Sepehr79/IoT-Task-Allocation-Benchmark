@@ -1,0 +1,452 @@
+Server: 192.168.152.207
+Port: 8765
+File: ../dataset/Non-Defected_0_8666.jpeg
+File size: 129615 bytes
+------------------------------------------------------------
+Trial 001: Connection = 67.899 ms, Transmission = 57.585 ms
+Trial 002: Connection = 61.861 ms, Transmission = 62.596 ms
+Trial 003: Connection = 65.387 ms, Transmission = 62.136 ms
+Trial 004: Connection = 66.442 ms, Transmission = 58.080 ms
+Trial 005: Connection = 65.032 ms, Transmission = 57.518 ms
+Trial 006: Connection = 60.582 ms, Transmission = 61.609 ms
+Trial 007: Connection = 64.315 ms, Transmission = 64.330 ms
+Trial 008: Connection = 59.792 ms, Transmission = 59.470 ms
+Trial 009: Connection = 58.447 ms, Transmission = 60.918 ms
+Trial 010: Connection = 59.895 ms, Transmission = 61.844 ms
+Trial 011: Connection = 60.858 ms, Transmission = 59.911 ms
+Trial 012: Connection = 62.164 ms, Transmission = 65.846 ms
+Trial 013: Connection = 61.670 ms, Transmission = 59.216 ms
+Trial 014: Connection = 59.094 ms, Transmission = 67.585 ms
+Trial 015: Connection = 59.698 ms, Transmission = 60.050 ms
+Trial 016: Connection = 57.343 ms, Transmission = 62.888 ms
+Trial 017: Connection = 58.932 ms, Transmission = 65.176 ms
+Trial 018: Connection = 60.192 ms, Transmission = 66.977 ms
+Trial 019: Connection = 58.795 ms, Transmission = 66.844 ms
+Trial 020: Connection = 65.307 ms, Transmission = 70.130 ms
+
+Results
+Connection Average: 61.685 ms
+Connection Minimum: 57.343 ms
+Connection Maximum: 67.899 ms
+
+Transmission Average: 62.536 ms
+Transmission Minimum: 57.518 ms
+Transmission Maximum: 70.130 ms
+Server: 192.168.152.207
+Port: 8765
+File: ../dataset/Non-Defected_0_1343.jpeg
+File size: 105847 bytes
+------------------------------------------------------------
+Trial 001: Connection = 124.784 ms, Transmission = 49.820 ms
+Trial 002: Connection = 59.851 ms, Transmission = 53.583 ms
+Trial 003: Connection = 72.376 ms, Transmission = 51.819 ms
+Trial 004: Connection = 61.776 ms, Transmission = 46.380 ms
+Trial 005: Connection = 63.690 ms, Transmission = 43.285 ms
+Trial 006: Connection = 64.665 ms, Transmission = 45.178 ms
+Trial 007: Connection = 60.397 ms, Transmission = 52.223 ms
+Trial 008: Connection = 60.252 ms, Transmission = 47.286 ms
+Trial 009: Connection = 73.959 ms, Transmission = 46.718 ms
+Trial 010: Connection = 60.592 ms, Transmission = 45.763 ms
+Trial 011: Connection = 59.998 ms, Transmission = 64.283 ms
+Trial 012: Connection = 63.417 ms, Transmission = 45.028 ms
+Trial 013: Connection = 65.931 ms, Transmission = 43.855 ms
+Trial 014: Connection = 64.370 ms, Transmission = 43.605 ms
+Trial 015: Connection = 67.828 ms, Transmission = 51.106 ms
+Trial 016: Connection = 59.457 ms, Transmission = 51.634 ms
+Trial 017: Connection = 68.666 ms, Transmission = 49.980 ms
+Trial 018: Connection = 60.406 ms, Transmission = 51.069 ms
+Trial 019: Connection = 71.726 ms, Transmission = 47.084 ms
+Trial 020: Connection = 65.315 ms, Transmission = 47.158 ms
+
+Results
+Connection Average: 67.473 ms
+Connection Minimum: 59.457 ms
+Connection Maximum: 124.784 ms
+
+Transmission Average: 48.843 ms
+Transmission Minimum: 43.285 ms
+Transmission Maximum: 64.283 ms
+Server: 192.168.152.207
+Port: 8765
+File: ../dataset/non-defected_0_3906.jpeg
+File size: 197040 bytes
+------------------------------------------------------------
+Trial 001: Connection = 63.369 ms, Transmission = 99.649 ms
+Trial 002: Connection = 60.690 ms, Transmission = 92.781 ms
+Trial 003: Connection = 60.249 ms, Transmission = 78.158 ms
+Trial 004: Connection = 64.273 ms, Transmission = 87.030 ms
+Trial 005: Connection = 63.868 ms, Transmission = 76.320 ms
+Trial 006: Connection = 59.651 ms, Transmission = 75.392 ms
+Trial 007: Connection = 58.418 ms, Transmission = 81.514 ms
+Trial 008: Connection = 57.765 ms, Transmission = 94.547 ms
+Trial 009: Connection = 58.186 ms, Transmission = 81.338 ms
+Trial 010: Connection = 62.280 ms, Transmission = 85.685 ms
+Trial 011: Connection = 60.978 ms, Transmission = 79.972 ms
+Trial 012: Connection = 65.453 ms, Transmission = 88.526 ms
+Trial 013: Connection = 60.080 ms, Transmission = 149.986 ms
+Trial 014: Connection = 58.845 ms, Transmission = 78.179 ms
+Trial 015: Connection = 66.962 ms, Transmission = 89.570 ms
+Trial 016: Connection = 67.464 ms, Transmission = 85.413 ms
+Trial 017: Connection = 61.308 ms, Transmission = 85.756 ms
+Trial 018: Connection = 65.195 ms, Transmission = 82.021 ms
+Trial 019: Connection = 63.961 ms, Transmission = 92.270 ms
+Trial 020: Connection = 62.599 ms, Transmission = 87.107 ms
+
+Results
+Connection Average: 62.080 ms
+Connection Minimum: 57.765 ms
+Connection Maximum: 67.464 ms
+
+Transmission Average: 88.561 ms
+Transmission Minimum: 75.392 ms
+Transmission Maximum: 149.986 ms
+Server: 192.168.152.207
+Port: 8765
+File: ../dataset/defected_0_9148.jpeg
+File size: 90983 bytes
+------------------------------------------------------------
+Trial 001: Connection = 64.725 ms, Transmission = 42.180 ms
+Trial 002: Connection = 82.391 ms, Transmission = 39.052 ms
+Trial 003: Connection = 72.072 ms, Transmission = 83.116 ms
+Trial 004: Connection = 65.996 ms, Transmission = 44.207 ms
+Trial 005: Connection = 102.498 ms, Transmission = 42.495 ms
+Trial 006: Connection = 75.350 ms, Transmission = 48.113 ms
+Trial 007: Connection = 66.884 ms, Transmission = 43.168 ms
+Trial 008: Connection = 62.625 ms, Transmission = 42.208 ms
+Trial 009: Connection = 111.053 ms, Transmission = 46.484 ms
+Trial 010: Connection = 78.068 ms, Transmission = 48.142 ms
+Trial 011: Connection = 94.654 ms, Transmission = 50.598 ms
+Trial 012: Connection = 64.004 ms, Transmission = 71.672 ms
+Trial 013: Connection = 82.864 ms, Transmission = 40.669 ms
+Trial 014: Connection = 68.634 ms, Transmission = 47.513 ms
+Trial 015: Connection = 108.772 ms, Transmission = 74.185 ms
+Trial 016: Connection = 60.889 ms, Transmission = 50.472 ms
+Trial 017: Connection = 101.088 ms, Transmission = 42.239 ms
+Trial 018: Connection = 67.731 ms, Transmission = 39.745 ms
+Trial 019: Connection = 88.988 ms, Transmission = 39.793 ms
+Trial 020: Connection = 62.864 ms, Transmission = 47.661 ms
+
+Results
+Connection Average: 79.108 ms
+Connection Minimum: 60.889 ms
+Connection Maximum: 111.053 ms
+
+Transmission Average: 49.186 ms
+Transmission Minimum: 39.052 ms
+Transmission Maximum: 83.116 ms
+Server: 192.168.152.207
+Port: 8765
+File: ../dataset/non-defected_0_8352.jpeg
+File size: 117510 bytes
+------------------------------------------------------------
+Trial 001: Connection = 64.569 ms, Transmission = 58.259 ms
+Trial 002: Connection = 59.875 ms, Transmission = 53.351 ms
+Trial 003: Connection = 96.111 ms, Transmission = 55.880 ms
+Trial 004: Connection = 60.246 ms, Transmission = 56.610 ms
+Trial 005: Connection = 70.338 ms, Transmission = 57.320 ms
+Trial 006: Connection = 74.294 ms, Transmission = 106.328 ms
+Trial 007: Connection = 62.940 ms, Transmission = 55.332 ms
+Trial 008: Connection = 20.588 ms, Transmission = 99.392 ms
+Trial 009: Connection = 119.024 ms, Transmission = 117.993 ms
+Trial 010: Connection = 61.971 ms, Transmission = 61.163 ms
+Trial 011: Connection = 60.196 ms, Transmission = 56.691 ms
+Trial 012: Connection = 64.272 ms, Transmission = 85.233 ms
+Trial 013: Connection = 65.153 ms, Transmission = 105.963 ms
+Trial 014: Connection = 61.685 ms, Transmission = 54.263 ms
+Trial 015: Connection = 147.573 ms, Transmission = 65.252 ms
+Trial 016: Connection = 59.319 ms, Transmission = 51.507 ms
+Trial 017: Connection = 101.234 ms, Transmission = 54.209 ms
+Trial 018: Connection = 57.539 ms, Transmission = 57.731 ms
+Trial 019: Connection = 142.592 ms, Transmission = 141.992 ms
+Trial 020: Connection = 60.843 ms, Transmission = 100.150 ms
+
+Results
+Connection Average: 75.518 ms
+Connection Minimum: 20.588 ms
+Connection Maximum: 147.573 ms
+
+Transmission Average: 74.731 ms
+Transmission Minimum: 51.507 ms
+Transmission Maximum: 141.992 ms
+Server: 192.168.152.207
+Port: 8765
+File: ../dataset/defected_0_5506.jpeg
+File size: 83690 bytes
+------------------------------------------------------------
+Trial 001: Connection = 72.017 ms, Transmission = 102.980 ms
+Trial 002: Connection = 111.460 ms, Transmission = 46.563 ms
+Trial 003: Connection = 89.293 ms, Transmission = 53.385 ms
+Trial 004: Connection = 66.582 ms, Transmission = 47.096 ms
+Trial 005: Connection = 61.126 ms, Transmission = 44.572 ms
+Trial 006: Connection = 62.598 ms, Transmission = 40.275 ms
+Trial 007: Connection = 60.678 ms, Transmission = 40.459 ms
+Trial 008: Connection = 61.581 ms, Transmission = 38.771 ms
+Trial 009: Connection = 66.219 ms, Transmission = 41.953 ms
+Trial 010: Connection = 136.221 ms, Transmission = 49.642 ms
+Trial 011: Connection = 59.746 ms, Transmission = 47.545 ms
+Trial 012: Connection = 61.278 ms, Transmission = 43.836 ms
+Trial 013: Connection = 60.134 ms, Transmission = 68.251 ms
+Trial 014: Connection = 31.609 ms, Transmission = 185.589 ms
+Trial 015: Connection = 100.897 ms, Transmission = 41.810 ms
+Trial 016: Connection = 76.951 ms, Transmission = 48.987 ms
+Trial 017: Connection = 151.067 ms, Transmission = 40.933 ms
+Trial 018: Connection = 60.891 ms, Transmission = 50.727 ms
+Trial 019: Connection = 109.660 ms, Transmission = 73.447 ms
+Trial 020: Connection = 76.274 ms, Transmission = 40.643 ms
+
+Results
+Connection Average: 78.814 ms
+Connection Minimum: 31.609 ms
+Connection Maximum: 151.067 ms
+
+Transmission Average: 57.373 ms
+Transmission Minimum: 38.771 ms
+Transmission Maximum: 185.589 ms
+Server: 192.168.152.207
+Port: 8765
+File: ../dataset/defected_0_734.jpeg
+File size: 110535 bytes
+------------------------------------------------------------
+Server: 192.168.152.207
+Port: 8765
+File: ../dataset/non-defected_0_6601.jpeg
+File size: 101618 bytes
+------------------------------------------------------------
+Trial 001: Connection = 102.451 ms, Transmission = 40.296 ms
+Trial 002: Connection = 59.673 ms, Transmission = 31.687 ms
+Trial 003: Connection = 59.538 ms, Transmission = 33.251 ms
+Trial 004: Connection = 65.814 ms, Transmission = 36.197 ms
+Trial 005: Connection = 86.036 ms, Transmission = 33.680 ms
+Trial 006: Connection = 66.882 ms, Transmission = 46.827 ms
+Trial 007: Connection = 90.862 ms, Transmission = 43.341 ms
+Trial 008: Connection = 60.232 ms, Transmission = 34.254 ms
+Trial 009: Connection = 68.988 ms, Transmission = 79.203 ms
+Trial 010: Connection = 61.261 ms, Transmission = 36.764 ms
+Trial 011: Connection = 87.319 ms, Transmission = 44.045 ms
+Trial 012: Connection = 65.773 ms, Transmission = 72.445 ms
+Trial 013: Connection = 89.661 ms, Transmission = 32.437 ms
+Trial 014: Connection = 59.946 ms, Transmission = 42.779 ms
+Trial 015: Connection = 63.400 ms, Transmission = 76.583 ms
+Trial 016: Connection = 70.656 ms, Transmission = 34.450 ms
+Trial 017: Connection = 61.802 ms, Transmission = 41.446 ms
+Trial 018: Connection = 64.362 ms, Transmission = 42.136 ms
+Trial 019: Connection = 63.524 ms, Transmission = 43.475 ms
+Trial 020: Connection = 71.925 ms, Transmission = 34.120 ms
+
+Results
+Connection Average: 71.005 ms
+Connection Minimum: 59.538 ms
+Connection Maximum: 102.451 ms
+
+Transmission Average: 43.971 ms
+Transmission Minimum: 31.687 ms
+Transmission Maximum: 79.203 ms
+Server: 192.168.152.207
+Port: 8765
+File: ../dataset/non-defected_0_8693.jpeg
+File size: 143574 bytes
+------------------------------------------------------------
+Trial 001: Connection = 62.373 ms, Transmission = 63.880 ms
+Trial 002: Connection = 58.595 ms, Transmission = 59.639 ms
+Trial 003: Connection = 58.826 ms, Transmission = 64.074 ms
+Trial 004: Connection = 59.573 ms, Transmission = 54.843 ms
+Trial 005: Connection = 58.028 ms, Transmission = 61.076 ms
+Trial 006: Connection = 57.786 ms, Transmission = 59.424 ms
+Trial 007: Connection = 57.372 ms, Transmission = 65.063 ms
+Trial 008: Connection = 59.766 ms, Transmission = 64.509 ms
+Trial 009: Connection = 62.631 ms, Transmission = 60.533 ms
+Trial 010: Connection = 68.977 ms, Transmission = 64.234 ms
+Trial 011: Connection = 60.628 ms, Transmission = 59.548 ms
+Trial 012: Connection = 59.538 ms, Transmission = 57.698 ms
+Trial 013: Connection = 62.585 ms, Transmission = 68.641 ms
+Trial 014: Connection = 66.821 ms, Transmission = 69.029 ms
+Trial 015: Connection = 120.655 ms, Transmission = 63.333 ms
+Trial 016: Connection = 68.269 ms, Transmission = 75.255 ms
+Trial 017: Connection = 70.163 ms, Transmission = 61.682 ms
+Trial 018: Connection = 63.584 ms, Transmission = 60.463 ms
+Trial 019: Connection = 61.584 ms, Transmission = 59.621 ms
+Trial 020: Connection = 75.184 ms, Transmission = 67.337 ms
+
+Results
+Connection Average: 65.647 ms
+Connection Minimum: 57.372 ms
+Connection Maximum: 120.655 ms
+
+Transmission Average: 62.994 ms
+Transmission Minimum: 54.843 ms
+Transmission Maximum: 75.255 ms
+Server: 192.168.152.207
+Port: 8765
+File: ../dataset/Non-Defected_0_972.jpeg
+File size: 104830 bytes
+------------------------------------------------------------
+Trial 001: Connection = 59.860 ms, Transmission = 48.332 ms
+Trial 002: Connection = 57.078 ms, Transmission = 50.751 ms
+Trial 003: Connection = 56.493 ms, Transmission = 52.157 ms
+Trial 004: Connection = 60.424 ms, Transmission = 54.436 ms
+Trial 005: Connection = 59.727 ms, Transmission = 51.788 ms
+Trial 006: Connection = 58.960 ms, Transmission = 51.269 ms
+Trial 007: Connection = 59.972 ms, Transmission = 47.115 ms
+Trial 008: Connection = 60.479 ms, Transmission = 53.602 ms
+Trial 009: Connection = 58.566 ms, Transmission = 51.034 ms
+Trial 010: Connection = 74.751 ms, Transmission = 50.037 ms
+Trial 011: Connection = 56.822 ms, Transmission = 51.467 ms
+Trial 012: Connection = 60.697 ms, Transmission = 51.484 ms
+Trial 013: Connection = 64.766 ms, Transmission = 45.766 ms
+Trial 014: Connection = 62.467 ms, Transmission = 48.486 ms
+Trial 015: Connection = 62.760 ms, Transmission = 56.768 ms
+Trial 016: Connection = 61.543 ms, Transmission = 47.623 ms
+Trial 017: Connection = 107.699 ms, Transmission = 51.240 ms
+Trial 018: Connection = 61.505 ms, Transmission = 48.352 ms
+Trial 019: Connection = 60.114 ms, Transmission = 46.755 ms
+Trial 020: Connection = 59.665 ms, Transmission = 53.342 ms
+
+Results
+Connection Average: 63.217 ms
+Connection Minimum: 56.493 ms
+Connection Maximum: 107.699 ms
+
+Transmission Average: 50.590 ms
+Transmission Minimum: 45.766 ms
+Transmission Maximum: 56.768 ms
+Server: 192.168.152.207
+Port: 8765
+File: ../dataset/non-defected_0_7313.jpeg
+File size: 122940 bytes
+------------------------------------------------------------
+Trial 001: Connection = 61.009 ms, Transmission = 59.668 ms
+Trial 002: Connection = 56.219 ms, Transmission = 53.264 ms
+Trial 003: Connection = 60.626 ms, Transmission = 58.721 ms
+Trial 004: Connection = 61.374 ms, Transmission = 63.435 ms
+Trial 005: Connection = 61.088 ms, Transmission = 57.819 ms
+Trial 006: Connection = 97.961 ms, Transmission = 58.424 ms
+Trial 007: Connection = 56.881 ms, Transmission = 58.358 ms
+Trial 008: Connection = 62.948 ms, Transmission = 62.933 ms
+Trial 009: Connection = 97.100 ms, Transmission = 65.517 ms
+Trial 010: Connection = 57.290 ms, Transmission = 56.097 ms
+Trial 011: Connection = 58.436 ms, Transmission = 62.438 ms
+Trial 012: Connection = 57.735 ms, Transmission = 57.143 ms
+Trial 013: Connection = 58.778 ms, Transmission = 57.134 ms
+Trial 014: Connection = 57.523 ms, Transmission = 56.954 ms
+Trial 015: Connection = 63.647 ms, Transmission = 57.154 ms
+Trial 016: Connection = 61.431 ms, Transmission = 57.342 ms
+Trial 017: Connection = 59.477 ms, Transmission = 54.941 ms
+Trial 018: Connection = 58.610 ms, Transmission = 63.246 ms
+Trial 019: Connection = 57.963 ms, Transmission = 54.090 ms
+Trial 020: Connection = 59.978 ms, Transmission = 59.481 ms
+
+Results
+Connection Average: 63.304 ms
+Connection Minimum: 56.219 ms
+Connection Maximum: 97.961 ms
+
+Transmission Average: 58.708 ms
+Transmission Minimum: 53.264 ms
+Transmission Maximum: 65.517 ms
+Server: 192.168.152.207
+Port: 8765
+File: ../dataset/non-defected_0_7313.jpeg
+File size: 122940 bytes
+------------------------------------------------------------
+Server: 192.168.152.207
+Port: 8765
+File: ../dataset/non-defected_0_7313.jpeg
+File size: 122940 bytes
+------------------------------------------------------------
+Trial 001: Connection = 61.137 ms, Transmission = 56.169 ms
+Trial 002: Connection = 56.461 ms, Transmission = 72.522 ms
+Trial 003: Connection = 64.329 ms, Transmission = 57.665 ms
+Trial 004: Connection = 58.439 ms, Transmission = 62.892 ms
+Trial 005: Connection = 59.674 ms, Transmission = 64.724 ms
+Trial 006: Connection = 60.842 ms, Transmission = 56.214 ms
+Trial 007: Connection = 56.838 ms, Transmission = 89.449 ms
+Trial 008: Connection = 59.027 ms, Transmission = 62.077 ms
+Trial 009: Connection = 65.175 ms, Transmission = 56.046 ms
+Trial 010: Connection = 122.803 ms, Transmission = 59.819 ms
+Trial 011: Connection = 57.179 ms, Transmission = 55.078 ms
+Trial 012: Connection = 59.323 ms, Transmission = 69.330 ms
+Trial 013: Connection = 60.969 ms, Transmission = 58.248 ms
+Trial 014: Connection = 58.307 ms, Transmission = 62.914 ms
+Trial 015: Connection = 60.413 ms, Transmission = 57.632 ms
+Trial 016: Connection = 65.102 ms, Transmission = 59.276 ms
+Trial 017: Connection = 63.525 ms, Transmission = 67.479 ms
+Trial 018: Connection = 60.152 ms, Transmission = 56.516 ms
+Trial 019: Connection = 64.334 ms, Transmission = 56.787 ms
+Trial 020: Connection = 61.357 ms, Transmission = 60.154 ms
+
+Results
+Connection Average: 63.769 ms
+Connection Minimum: 56.461 ms
+Connection Maximum: 122.803 ms
+
+Transmission Average: 62.050 ms
+Transmission Minimum: 55.078 ms
+Transmission Maximum: 89.449 ms
+Server: 192.168.152.207
+Port: 8765
+File: ../dataset/defected_0_5506.jpeg
+File size: 83690 bytes
+------------------------------------------------------------
+Trial 001: Connection = 65.040 ms, Transmission = 47.563 ms
+Trial 002: Connection = 58.024 ms, Transmission = 40.757 ms
+Trial 003: Connection = 58.168 ms, Transmission = 42.229 ms
+Trial 004: Connection = 60.041 ms, Transmission = 54.119 ms
+Trial 005: Connection = 60.975 ms, Transmission = 43.079 ms
+Trial 006: Connection = 58.973 ms, Transmission = 51.769 ms
+Trial 007: Connection = 60.856 ms, Transmission = 43.506 ms
+Trial 008: Connection = 60.918 ms, Transmission = 38.314 ms
+Trial 009: Connection = 63.022 ms, Transmission = 39.895 ms
+Trial 010: Connection = 61.484 ms, Transmission = 36.333 ms
+Trial 011: Connection = 61.442 ms, Transmission = 39.989 ms
+Trial 012: Connection = 59.527 ms, Transmission = 84.899 ms
+Trial 013: Connection = 58.663 ms, Transmission = 43.385 ms
+Trial 014: Connection = 65.185 ms, Transmission = 39.972 ms
+Trial 015: Connection = 68.802 ms, Transmission = 43.136 ms
+Trial 016: Connection = 65.656 ms, Transmission = 38.490 ms
+Trial 017: Connection = 59.299 ms, Transmission = 42.662 ms
+Trial 018: Connection = 61.533 ms, Transmission = 43.483 ms
+Trial 019: Connection = 60.686 ms, Transmission = 36.884 ms
+Trial 020: Connection = 63.012 ms, Transmission = 42.290 ms
+
+Results
+Connection Average: 61.565 ms
+Connection Minimum: 58.024 ms
+Connection Maximum: 68.802 ms
+
+Transmission Average: 44.638 ms
+Transmission Minimum: 36.333 ms
+Transmission Maximum: 84.899 ms
+Server: 192.168.152.207
+Port: 8765
+File: ../dataset/defected_0_6289.jpeg
+File size: 82049 bytes
+------------------------------------------------------------
+Trial 001: Connection = 67.878 ms, Transmission = 40.193 ms
+Trial 002: Connection = 67.077 ms, Transmission = 40.649 ms
+Trial 003: Connection = 69.896 ms, Transmission = 76.735 ms
+Trial 004: Connection = 85.252 ms, Transmission = 108.235 ms
+Trial 005: Connection = 125.729 ms, Transmission = 37.324 ms
+Trial 006: Connection = 106.220 ms, Transmission = 100.238 ms
+Trial 007: Connection = 123.926 ms, Transmission = 107.347 ms
+Trial 008: Connection = 67.027 ms, Transmission = 53.841 ms
+Trial 009: Connection = 66.081 ms, Transmission = 43.920 ms
+Trial 010: Connection = 97.207 ms, Transmission = 48.469 ms
+Trial 011: Connection = 64.152 ms, Transmission = 48.368 ms
+Trial 012: Connection = 72.872 ms, Transmission = 46.043 ms
+Trial 013: Connection = 76.418 ms, Transmission = 39.185 ms
+Trial 014: Connection = 63.164 ms, Transmission = 58.085 ms
+Trial 015: Connection = 66.117 ms, Transmission = 44.492 ms
+Trial 016: Connection = 59.938 ms, Transmission = 40.822 ms
+Trial 017: Connection = 70.165 ms, Transmission = 45.073 ms
+Trial 018: Connection = 65.044 ms, Transmission = 65.599 ms
+Trial 019: Connection = 67.432 ms, Transmission = 47.293 ms
+Trial 020: Connection = 64.956 ms, Transmission = 55.612 ms
+
+Results
+Connection Average: 77.328 ms
+Connection Minimum: 59.938 ms
+Connection Maximum: 125.729 ms
+
+Transmission Average: 57.376 ms
+Transmission Minimum: 37.324 ms
+Transmission Maximum: 108.235 ms

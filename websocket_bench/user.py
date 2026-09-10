@@ -33,7 +33,7 @@ async def main():
         return
 
     # Select the first file
-    file_path = files[0]
+    file_path = files[20]
 
     # Read file once
     with open(file_path, "rb") as f:
@@ -58,7 +58,7 @@ async def main():
     # -----------------------------
     # Output file
     # -----------------------------
-    with open(OUTPUT_FILE, "w") as f:
+    with open(OUTPUT_FILE, "a") as f:
 
         f.write(f"Server: {SERVER_IP}\n")
         f.write(f"Port: {SERVER_PORT}\n")
@@ -134,7 +134,7 @@ async def main():
             )
 
             # Wait before next connection
-            await asyncio.sleep(WAIT_BETWEEN_TRIALS)
+            # await asyncio.sleep(WAIT_BETWEEN_TRIALS)
 
         # -----------------------------
         # Statistics

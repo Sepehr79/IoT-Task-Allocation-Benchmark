@@ -104,6 +104,9 @@ class User:
 
         self.connections = [generate_datarate() for _ in range(NUM_EDGES)]
 
+        self.data = 0
+        self.capacity = 0
+
 
 
 def generate_task(time_slot, user_index):
@@ -423,6 +426,427 @@ def greedy_context_schedule(tasks, edges, users, slot):
 
         temp_queue[best_edge] += task.D
 
+import random
+import math
+
+
+# ---------------------------------------------------------
+# Cost of a complete assignment
+# ---------------------------------------------------------
+def delay_cost(tasks, edges, users, slot, solution=None):
+
+    temp_queue = [
+        edge.prev_queue
+        for edge in edges
+    ]
+
+    sum_delay = 0.0
+
+    for task_index, task in enumerate(tasks):
+
+        user = users[task.userIndex]
+
+        # If a solution is provided, use it.
+        # Otherwise use task.selected_edge_index.
+        if solution is not None:
+            edge_index = solution[task_index]
+        else:
+            edge_index = task.selected_edge_index
+
+        edge = edges[edge_index]
+
+        transmission_rate = (
+            user.connections[edge_index]
+        )
+
+        # -------------------------
+        # Data transmission
+        # -------------------------
+        data_transmission = (
+            task.B /
+            transmission_rate
+        )
+
+        # -------------------------
+        # Computation
+        # -------------------------
+        computation = (
+            temp_queue[edge_index] +
+            task.D
+        ) / edge.F
+
+        # -------------------------
+        # Context transfer
+        # -------------------------
+        context = 0.0
+
+        if user.last_selected_edge != edge_index:
+
+            context_transmission = (
+                user.C /
+                transmission_rate
+            )
+
+            context = (
+                context_transmission +
+                WEBSOCKET_CONNECTION
+            )
+
+        # -------------------------
+        # Total task delay
+        # -------------------------
+        cost = (
+            data_transmission +
+            computation +
+            context
+        )
+
+        sum_delay += cost
+
+        # Update queue
+        temp_queue[edge_index] += task.D
+
+    return sum_delay
+
+
+# ---------------------------------------------------------
+# Convert a WOA position into a valid discrete solution
+# ---------------------------------------------------------
+def discretize_solution(position):
+
+    solution = []
+
+    for value in position:
+
+        edge_index = int(round(value))
+
+        # Keep edge index inside [0, NUM_EDGES - 1]
+        edge_index = max(
+            0,
+            min(NUM_EDGES - 1, edge_index)
+        )
+
+        solution.append(edge_index)
+
+    return solution
+
+
+# ---------------------------------------------------------
+# Generate random solution
+# ---------------------------------------------------------
+def random_solution(num_tasks):
+
+    return [
+        random.randint(0, NUM_EDGES - 1)
+        for _ in range(num_tasks)
+    ]
+
+
+# ---------------------------------------------------------
+# Convert discrete solution to continuous WOA position
+# ---------------------------------------------------------
+def solution_to_position(solution):
+
+    return [
+        float(edge_index)
+        for edge_index in solution
+    ]
+
+
+# ---------------------------------------------------------
+# WOA scheduler
+# ---------------------------------------------------------
+def woa_schedule(
+    tasks,
+    edges,
+    users,
+    slot,
+    num_whales=40,
+    max_iterations=50
+):
+
+    num_tasks = len(tasks)
+
+    if num_tasks == 0:
+        return 0.0
+
+    # =====================================================
+    # 1. Generate initial population
+    # =====================================================
+
+    population = []
+
+    # -----------------------------------------------------
+    # First solution = Greedy solution
+    # -----------------------------------------------------
+
+    # We do not want to permanently modify the task
+    # assignments while constructing the initial population.
+    greedy_context_schedule(
+        tasks,
+        edges,
+        users,
+        slot
+    )
+
+    greedy_solution = [
+        task.selected_edge_index
+        for task in tasks
+    ]
+
+    population.append(
+        solution_to_position(greedy_solution)
+    )
+
+    # -----------------------------------------------------
+    # Remaining whales = random solutions
+    # -----------------------------------------------------
+
+    for _ in range(num_whales - 1):
+
+        solution = random_solution(num_tasks)
+
+        population.append(
+            solution_to_position(solution)
+        )
+
+    # =====================================================
+    # 2. Evaluate initial population
+    # =====================================================
+
+    fitness = []
+
+    for position in population:
+
+        solution = discretize_solution(position)
+
+        cost = delay_cost(
+            tasks,
+            edges,
+            users,
+            slot,
+            solution
+        )
+
+        fitness.append(cost)
+
+    # =====================================================
+    # 3. Find initial best solution
+    # =====================================================
+
+    best_index = min(
+        range(len(fitness)),
+        key=lambda i: fitness[i]
+    )
+
+    best_position = population[best_index].copy()
+    best_fitness = fitness[best_index]
+
+    # =====================================================
+    # 4. WOA main loop
+    # =====================================================
+
+    for iteration in range(max_iterations):
+
+        # a decreases linearly from 2 to 0
+        a = 2 - (
+            2 * iteration / max_iterations
+        )
+
+        for i in range(num_whales):
+
+            current_position = population[i]
+
+            r1 = random.random()
+            r2 = random.random()
+
+            A = (
+                2 * a * r1
+            ) - a
+
+            C = (
+                2 * r2
+            )
+
+            p = random.random()
+
+            l = random.uniform(-1, 1)
+
+            b = 1.0
+
+            new_position = [
+                0.0
+                for _ in range(num_tasks)
+            ]
+
+            # =================================================
+            # Case 1: Exploitation / encircling prey
+            # =================================================
+
+            if p < 0.5:
+
+                if abs(A) < 1:
+
+                    # -----------------------------------------
+                    # Encircling the current best solution
+                    # -----------------------------------------
+
+                    for j in range(num_tasks):
+
+                        D = abs(
+                            C * best_position[j]
+                            - current_position[j]
+                        )
+
+                        new_position[j] = (
+                            best_position[j]
+                            - A * D
+                        )
+
+                else:
+
+                    # -----------------------------------------
+                    # Exploration:
+                    # use a random whale
+                    # -----------------------------------------
+
+                    random_index = random.randint(
+                        0,
+                        num_whales - 1
+                    )
+
+                    random_position = population[
+                        random_index
+                    ]
+
+                    for j in range(num_tasks):
+
+                        D = abs(
+                            C * random_position[j]
+                            - current_position[j]
+                        )
+
+                        new_position[j] = (
+                            random_position[j]
+                            - A * D
+                        )
+
+            # =================================================
+            # Case 2: Bubble-net / spiral attack
+            # =================================================
+
+            else:
+
+                for j in range(num_tasks):
+
+                    D = abs(
+                        best_position[j]
+                        - current_position[j]
+                    )
+
+                    new_position[j] = (
+                        D *
+                        math.exp(b * l) *
+                        math.cos(2 * math.pi * l)
+                        + best_position[j]
+                    )
+
+            # =================================================
+            # Keep position inside edge range
+            # =================================================
+
+            for j in range(num_tasks):
+
+                new_position[j] = max(
+                    0.0,
+                    min(
+                        NUM_EDGES - 1,
+                        new_position[j]
+                    )
+                )
+
+            # =================================================
+            # Evaluate new whale
+            # =================================================
+
+            new_solution = discretize_solution(
+                new_position
+            )
+
+            new_fitness = delay_cost(
+                tasks,
+                edges,
+                users,
+                slot,
+                new_solution
+            )
+
+            # =================================================
+            # Greedy-style elitist replacement
+            # =================================================
+
+            current_solution = discretize_solution(
+                current_position
+            )
+
+            current_fitness = delay_cost(
+                tasks,
+                edges,
+                users,
+                slot,
+                current_solution
+            )
+
+            if new_fitness < current_fitness:
+
+                population[i] = new_position
+                fitness[i] = new_fitness
+
+            # =================================================
+            # Update global best
+            # =================================================
+
+            if new_fitness < best_fitness:
+
+                best_position = new_position.copy()
+                best_fitness = new_fitness
+
+        # -----------------------------------------------------
+        # Optional progress information
+        # -----------------------------------------------------
+
+        # print(
+        #     f"Iteration {iteration + 1}/{max_iterations}, "
+        #     f"Best cost = {best_fitness:.6f}"
+        # )
+
+    # =====================================================
+    # 5. Convert best position to final assignment
+    # =====================================================
+
+    best_solution = discretize_solution(
+        best_position
+    )
+
+    # =====================================================
+    # 6. Write final assignment into tasks
+    # =====================================================
+
+    for task_index, task in enumerate(tasks):
+
+        edge_index = best_solution[task_index]
+
+        task.A = [0] * NUM_EDGES
+
+        task.A[edge_index] = 1
+
+        task.selected_edge_index = edge_index
+
+    # =====================================================
+    # 7. Return objective value
+    # =====================================================
+
+    return best_fitness
 
 def greedy_schedule(tasks, edges, users, slot):
 
@@ -480,7 +904,8 @@ scheduling = {
     "g": greedy_schedule,
     "gc": greedy_context_schedule,
     "mlp": mlp_schedule,
-    "mlp2": mlp_schedule2
+    "mlp2": mlp_schedule2,
+    "woa": woa_schedule
 }
 
 def calc_receive_time(task, users, edge_index):
@@ -577,6 +1002,9 @@ if __name__ == "__main__":
                         task.last_allocation[last_edge] = 1
                     tasks.append(task)
 
+                    users[user_index].data += task.B
+                    users[user_index].capacity += task.D
+
 
         arrived_tasks = [
             task for task in tasks
@@ -612,6 +1040,8 @@ if __name__ == "__main__":
         for task in arrived_tasks:
             edge_index = (task.selected_edge_index)
             user = users[task.userIndex]
+            user.data -= task.B
+            user.capacity -= task.D
             previous_edge = user.last_selected_edge
             calc_receive_time(
                 task,

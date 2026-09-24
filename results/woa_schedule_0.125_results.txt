@@ -1,0 +1,20 @@
+
+    =======================================================
+                    DELAY STATISTICS
+    =======================================================
+    Algorithm: woa_schedule
+    Workload: 0.125
+    Completed tasks: 3081
+    -------------------------------------------------------
+    Average data transmission delay: 0.0659 s
+    Average context transmission delay: 0.0025 s
+    Average transmission delay: 0.0684 s
+    Average connection/setup delay: 0.0057 s
+    Average queue delay: 0.0143 s
+    Average processing delay: 0.0882 s
+    -------------------------------------------------------
+    Average total delay: 0.1766 s
+    Server changes: 294
+    Virtual tasks: 0.0
+    =======================================================
+    

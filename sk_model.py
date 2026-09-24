@@ -117,9 +117,9 @@ print(
 mlp = MLPRegressor(
 
     hidden_layer_sizes=(
-        128,
-        128,
         64,
+        64,
+        32,
         32,
         16
     ),

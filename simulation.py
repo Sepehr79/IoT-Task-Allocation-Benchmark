@@ -6,6 +6,8 @@ from config import *
 import copy
 import joblib
 import tensorflow as tf
+from itertools import product
+import time
 
 MODEL_FILE_SK = "delay_prediction_pipeline.joblib"
 MODEL_FILE_TS = "delay_predictor.keras"
@@ -265,6 +267,70 @@ def mlp_schedule2(tasks, edges, users, slot):
         temp_queue[selected_edge] += task.D
 
 
+def exhaustive_schedule(
+    tasks,
+    edges,
+    users,
+    slot
+):
+
+    start_time = time.perf_counter()
+
+    num_tasks = len(tasks)
+    num_edges = len(edges)
+
+    if num_tasks == 0:
+        return 0.0
+
+    best_delay = float("inf")
+    best_solution = None
+
+    evaluated_solutions = 0
+
+
+    for solution in product(
+        range(num_edges),
+        repeat=num_tasks
+    ):
+
+        cost = delay_cost(
+            tasks,
+            edges,
+            users,
+            slot,
+            solution
+        )
+
+        evaluated_solutions += 1
+
+        if cost < best_delay:
+
+            best_delay = cost
+            best_solution = list(solution)
+
+    execution_time = (
+        time.perf_counter() - start_time
+    )
+
+    for task_index, task in enumerate(tasks):
+
+        edge_index = best_solution[task_index]
+
+        task.A = [0] * num_edges
+
+        task.A[edge_index] = 1
+
+        task.selected_edge_index = edge_index
+
+    # print(
+    #     f"Exhaustive Search: "
+    #     f"{evaluated_solutions} solutions evaluated, "
+    #     f"time = {execution_time:.6f}s, "
+    #     f"best delay = {best_delay:.6f}s"
+    # )
+
+    return best_delay
+
 def mlp_schedule(tasks, edges, users, slot):
     if not mlp_model:
         return
@@ -430,9 +496,7 @@ import random
 import math
 
 
-# ---------------------------------------------------------
 # Cost of a complete assignment
-# ---------------------------------------------------------
 def delay_cost(tasks, edges, users, slot, solution=None):
 
     temp_queue = [
@@ -446,8 +510,6 @@ def delay_cost(tasks, edges, users, slot, solution=None):
 
         user = users[task.userIndex]
 
-        # If a solution is provided, use it.
-        # Otherwise use task.selected_edge_index.
         if solution is not None:
             edge_index = solution[task_index]
         else:
@@ -459,25 +521,16 @@ def delay_cost(tasks, edges, users, slot, solution=None):
             user.connections[edge_index]
         )
 
-        # -------------------------
-        # Data transmission
-        # -------------------------
         data_transmission = (
             task.B /
             transmission_rate
         )
 
-        # -------------------------
-        # Computation
-        # -------------------------
         computation = (
             temp_queue[edge_index] +
             task.D
         ) / edge.F
 
-        # -------------------------
-        # Context transfer
-        # -------------------------
         context = 0.0
 
         if user.last_selected_edge != edge_index:
@@ -492,9 +545,6 @@ def delay_cost(tasks, edges, users, slot, solution=None):
                 WEBSOCKET_CONNECTION
             )
 
-        # -------------------------
-        # Total task delay
-        # -------------------------
         cost = (
             data_transmission +
             computation +
@@ -503,15 +553,12 @@ def delay_cost(tasks, edges, users, slot, solution=None):
 
         sum_delay += cost
 
-        # Update queue
         temp_queue[edge_index] += task.D
 
     return sum_delay
 
 
-# ---------------------------------------------------------
 # Convert a WOA position into a valid discrete solution
-# ---------------------------------------------------------
 def discretize_solution(position):
 
     solution = []
@@ -520,7 +567,6 @@ def discretize_solution(position):
 
         edge_index = int(round(value))
 
-        # Keep edge index inside [0, NUM_EDGES - 1]
         edge_index = max(
             0,
             min(NUM_EDGES - 1, edge_index)
@@ -531,9 +577,7 @@ def discretize_solution(position):
     return solution
 
 
-# ---------------------------------------------------------
 # Generate random solution
-# ---------------------------------------------------------
 def random_solution(num_tasks):
 
     return [
@@ -542,9 +586,7 @@ def random_solution(num_tasks):
     ]
 
 
-# ---------------------------------------------------------
 # Convert discrete solution to continuous WOA position
-# ---------------------------------------------------------
 def solution_to_position(solution):
 
     return [
@@ -553,16 +595,14 @@ def solution_to_position(solution):
     ]
 
 
-# ---------------------------------------------------------
 # WOA scheduler
-# ---------------------------------------------------------
 def woa_schedule(
     tasks,
     edges,
     users,
     slot,
-    num_whales=40,
-    max_iterations=50
+    num_whales=20,
+    max_iterations=100
 ):
 
     num_tasks = len(tasks)
@@ -570,18 +610,10 @@ def woa_schedule(
     if num_tasks == 0:
         return 0.0
 
-    # =====================================================
     # 1. Generate initial population
-    # =====================================================
-
     population = []
 
-    # -----------------------------------------------------
     # First solution = Greedy solution
-    # -----------------------------------------------------
-
-    # We do not want to permanently modify the task
-    # assignments while constructing the initial population.
     greedy_context_schedule(
         tasks,
         edges,
@@ -598,10 +630,7 @@ def woa_schedule(
         solution_to_position(greedy_solution)
     )
 
-    # -----------------------------------------------------
     # Remaining whales = random solutions
-    # -----------------------------------------------------
-
     for _ in range(num_whales - 1):
 
         solution = random_solution(num_tasks)
@@ -610,10 +639,7 @@ def woa_schedule(
             solution_to_position(solution)
         )
 
-    # =====================================================
     # 2. Evaluate initial population
-    # =====================================================
-
     fitness = []
 
     for position in population:
@@ -630,10 +656,7 @@ def woa_schedule(
 
         fitness.append(cost)
 
-    # =====================================================
     # 3. Find initial best solution
-    # =====================================================
-
     best_index = min(
         range(len(fitness)),
         key=lambda i: fitness[i]
@@ -642,10 +665,7 @@ def woa_schedule(
     best_position = population[best_index].copy()
     best_fitness = fitness[best_index]
 
-    # =====================================================
     # 4. WOA main loop
-    # =====================================================
-
     for iteration in range(max_iterations):
 
         # a decreases linearly from 2 to 0
@@ -679,18 +699,12 @@ def woa_schedule(
                 for _ in range(num_tasks)
             ]
 
-            # =================================================
             # Case 1: Exploitation / encircling prey
-            # =================================================
-
             if p < 0.5:
 
                 if abs(A) < 1:
 
-                    # -----------------------------------------
                     # Encircling the current best solution
-                    # -----------------------------------------
-
                     for j in range(num_tasks):
 
                         D = abs(
@@ -705,11 +719,8 @@ def woa_schedule(
 
                 else:
 
-                    # -----------------------------------------
                     # Exploration:
                     # use a random whale
-                    # -----------------------------------------
-
                     random_index = random.randint(
                         0,
                         num_whales - 1
@@ -731,10 +742,7 @@ def woa_schedule(
                             - A * D
                         )
 
-            # =================================================
             # Case 2: Bubble-net / spiral attack
-            # =================================================
-
             else:
 
                 for j in range(num_tasks):
@@ -751,10 +759,7 @@ def woa_schedule(
                         + best_position[j]
                     )
 
-            # =================================================
             # Keep position inside edge range
-            # =================================================
-
             for j in range(num_tasks):
 
                 new_position[j] = max(
@@ -765,10 +770,7 @@ def woa_schedule(
                     )
                 )
 
-            # =================================================
             # Evaluate new whale
-            # =================================================
-
             new_solution = discretize_solution(
                 new_position
             )
@@ -781,10 +783,7 @@ def woa_schedule(
                 new_solution
             )
 
-            # =================================================
             # Greedy-style elitist replacement
-            # =================================================
-
             current_solution = discretize_solution(
                 current_position
             )
@@ -802,36 +801,18 @@ def woa_schedule(
                 population[i] = new_position
                 fitness[i] = new_fitness
 
-            # =================================================
             # Update global best
-            # =================================================
-
             if new_fitness < best_fitness:
 
                 best_position = new_position.copy()
                 best_fitness = new_fitness
 
-        # -----------------------------------------------------
-        # Optional progress information
-        # -----------------------------------------------------
-
-        # print(
-        #     f"Iteration {iteration + 1}/{max_iterations}, "
-        #     f"Best cost = {best_fitness:.6f}"
-        # )
-
-    # =====================================================
-    # 5. Convert best position to final assignment
-    # =====================================================
 
     best_solution = discretize_solution(
         best_position
     )
 
-    # =====================================================
     # 6. Write final assignment into tasks
-    # =====================================================
-
     for task_index, task in enumerate(tasks):
 
         edge_index = best_solution[task_index]
@@ -842,10 +823,7 @@ def woa_schedule(
 
         task.selected_edge_index = edge_index
 
-    # =====================================================
     # 7. Return objective value
-    # =====================================================
-
     return best_fitness
 
 def greedy_schedule(tasks, edges, users, slot):
@@ -905,7 +883,8 @@ scheduling = {
     "gc": greedy_context_schedule,
     "mlp": mlp_schedule,
     "mlp2": mlp_schedule2,
-    "woa": woa_schedule
+    "woa": woa_schedule,
+    "exh": exhaustive_schedule
 }
 
 def calc_receive_time(task, users, edge_index):
@@ -973,7 +952,6 @@ if __name__ == "__main__":
     for slot in range(
         NUM_SLOTS + EXTRA_SLOTS
     ):
-        print(f"Processing slot: {slot}")
 
         queue_before = [
             edge.prev_queue
@@ -1010,6 +988,8 @@ if __name__ == "__main__":
             task for task in tasks
             if task.S == slot
         ]
+
+        print(f"Processing slot: {slot}, Number of tasks: {len(arrived_tasks)}")
 
         random.shuffle(arrived_tasks)
 

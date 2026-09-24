@@ -278,13 +278,13 @@ def combined_loss(
 
     return mse_weight * weighted_mse + rank_weight * rank_loss
 
-#loss_fn = tf.keras.losses.MeanSquaredError()
-loss_fn = lambda y_true, y_pred: combined_loss(
-    y_true, y_pred,
-    mse_weight=1.0,
-    rank_weight=0.5,
-    queue_weight_alpha=1.0,   # این رو بین 0.5 تا 2 sweep کنید
-)
+loss_fn = tf.keras.losses.MeanSquaredError()
+#loss_fn = lambda y_true, y_pred: combined_loss(
+#    y_true, y_pred,
+#    mse_weight=1.0,
+#    rank_weight=0.5,
+#    queue_weight_alpha=1.0,   # این رو بین 0.5 تا 2 sweep کنید
+#)
 
 
 # ============================================================

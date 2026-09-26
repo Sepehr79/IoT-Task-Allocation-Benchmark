@@ -989,10 +989,12 @@ if __name__ == "__main__":
             if task.S == slot
         ]
 
-        print(f"Processing slot: {slot}, Number of tasks: {len(arrived_tasks)}")
+        print(f"Processing slot: {slot}, Number of tasks: {len(arrived_tasks)}", end="")
 
         random.shuffle(arrived_tasks)
 
+        start_time = 0
+        end_time = 0
         if arrived_tasks:
 
             # Generate counterfactual samples
@@ -1009,6 +1011,7 @@ if __name__ == "__main__":
                     virs.append(vir_task)
                     tasks.append(vir_task)
 
+            start_time = time.perf_counter()
             # Then perform normal allocation
             schedule(
                 arrived_tasks,
@@ -1016,6 +1019,9 @@ if __name__ == "__main__":
                 users,
                 slot
             )
+            end_time = time.perf_counter()
+
+        print(f", Elapsed time: {(end_time - start_time) * 1000:.3f} ms")
 
         for task in arrived_tasks:
             edge_index = (task.selected_edge_index)

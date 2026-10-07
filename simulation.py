@@ -4,30 +4,9 @@ import math
 from scipy.stats import truncnorm
 from config import *
 import copy
-import joblib
-import tensorflow as tf
 from itertools import product
 import time
 import pickle
-
-MODEL_FILE_SK = "delay_prediction_pipeline.joblib"
-MODEL_FILE_TS = "delay_predictor.keras"
-TARGET_SCALER = "target_scaler.pkl"
-
-mlp_model = None
-
-ts_model = None
-target_scaler = None
-
-if os.path.exists(MODEL_FILE_SK):
-    mlp_model = joblib.load(MODEL_FILE_SK)
-
-if os.path.exists(MODEL_FILE_TS) and os.path.exists(TARGET_SCALER):
-    ts_model = tf.keras.models.load_model(MODEL_FILE_TS, compile=False)
-    target_scaler = joblib.load(TARGET_SCALER)
-
-
-
 
 def generate_datarate():
     sigma = np.sqrt(
@@ -170,104 +149,6 @@ def round_robin_schedule(tasks, edges, users, slot):
 
         task.selected_edge_index = selected_edge
 
-
-def mlp_schedule2(tasks, edges, users, slot):
-    if not ts_model:
-        return
-    temp_queue = [
-        edge.prev_queue
-        for edge in edges
-    ]
-
-    for task in tasks:
-
-        user = users[task.userIndex]
-
-        # ----------------------------------------------------
-        # Build features
-        # ----------------------------------------------------
-
-        features = [
-            task.D,
-            task.B
-        ]
-
-        # Queue state
-        features.extend(
-            temp_queue
-        )
-
-        # Last allocation
-        last_allocation = [
-            0
-            for _ in range(NUM_EDGES)
-        ]
-
-        if user.last_selected_edge != -1:
-
-            last_allocation[
-                user.last_selected_edge
-            ] = 1
-
-        features.extend(
-            last_allocation
-        )
-
-        # Transmission rates
-        features.extend(
-            user.connections
-        )
-
-        # Convert to 2D array
-        X = np.array(
-            features,
-            dtype=float
-        ).reshape(1, -1)
-
-        # ----------------------------------------------------
-        # Predict delay for all edges
-        # ----------------------------------------------------
-
-        predicted_delays_scaled = ts_model(
-            X, training=False
-        ).numpy()
-
-        predicted_delays = target_scaler.inverse_transform(
-            predicted_delays_scaled
-        )
-
-        # ----------------------------------------------------
-        # Select Edge with minimum predicted delay
-        # ----------------------------------------------------
-
-        selected_edge = int(
-            np.argmin(
-                predicted_delays
-            )
-        )
-
-        # ----------------------------------------------------
-        # Store allocation
-        # ----------------------------------------------------
-
-        task.A = [
-            0
-            for _ in range(NUM_EDGES)
-        ]
-
-        task.A[selected_edge] = 1
-
-        task.selected_edge_index = (
-            selected_edge
-        )
-
-        # ----------------------------------------------------
-        # Update temporary queue
-        # ----------------------------------------------------
-
-        temp_queue[selected_edge] += task.D
-
-
 def exhaustive_schedule(
     tasks,
     edges,
@@ -331,99 +212,6 @@ def exhaustive_schedule(
     # )
 
     return best_delay
-
-def mlp_schedule(tasks, edges, users, slot):
-    if not mlp_model:
-        return
-    temp_queue = [
-        edge.prev_queue
-        for edge in edges
-    ]
-
-    for task in tasks:
-
-        user = users[task.userIndex]
-
-        # ----------------------------------------------------
-        # Build features
-        # ----------------------------------------------------
-
-        features = [
-            task.D,
-            task.B
-        ]
-
-        # Queue state
-        features.extend(
-            temp_queue
-        )
-
-        # Last allocation
-        last_allocation = [
-            0
-            for _ in range(NUM_EDGES)
-        ]
-
-        if user.last_selected_edge != -1:
-
-            last_allocation[
-                user.last_selected_edge
-            ] = 1
-
-        features.extend(
-            last_allocation
-        )
-
-        # Transmission rates
-        features.extend(
-            user.connections
-        )
-
-        # Convert to 2D array
-        X = np.array(
-            features,
-            dtype=float
-        ).reshape(1, -1)
-
-        # ----------------------------------------------------
-        # Predict delay for all edges
-        # ----------------------------------------------------
-
-        predicted_delays = mlp_model.predict(
-            X
-        )[0]
-
-        # ----------------------------------------------------
-        # Select Edge with minimum predicted delay
-        # ----------------------------------------------------
-
-        selected_edge = int(
-            np.argmin(
-                predicted_delays
-            )
-        )
-
-        # ----------------------------------------------------
-        # Store allocation
-        # ----------------------------------------------------
-
-        task.A = [
-            0
-            for _ in range(NUM_EDGES)
-        ]
-
-        task.A[selected_edge] = 1
-
-        task.selected_edge_index = (
-            selected_edge
-        )
-
-        # ----------------------------------------------------
-        # Update temporary queue
-        # ----------------------------------------------------
-
-        temp_queue[selected_edge] += task.D
-
 
 # Greedy scheduler
 def greedy_context_schedule(tasks, edges, users, slot):
@@ -882,8 +670,6 @@ scheduling = {
     "rr": round_robin_schedule,
     "g": greedy_schedule,
     "gc": greedy_context_schedule,
-    "mlp": mlp_schedule,
-    "mlp2": mlp_schedule2,
     "woa": woa_schedule,
     "exh": exhaustive_schedule,
 }

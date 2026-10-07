@@ -8,6 +8,7 @@ import joblib
 import tensorflow as tf
 from itertools import product
 import time
+import pickle
 
 MODEL_FILE_SK = "delay_prediction_pipeline.joblib"
 MODEL_FILE_TS = "delay_predictor.keras"
@@ -442,7 +443,7 @@ def greedy_context_schedule(tasks, edges, users, slot):
         for edge_index, edge in enumerate(edges):
 
             transmission_rate = (
-                user.connections[edge_index]
+                task.user_rates[edge_index]
             )
 
 
@@ -518,7 +519,7 @@ def delay_cost(tasks, edges, users, slot, solution=None):
         edge = edges[edge_index]
 
         transmission_rate = (
-            user.connections[edge_index]
+            task.user_rates[edge_index]
         )
 
         data_transmission = (
@@ -844,7 +845,7 @@ def greedy_schedule(tasks, edges, users, slot):
         for edge_index, edge in enumerate(edges):
 
             transmission_rate = (
-                user.connections[edge_index]
+                task.user_rates[edge_index]
             )
 
             data_transmission = (
@@ -884,14 +885,14 @@ scheduling = {
     "mlp": mlp_schedule,
     "mlp2": mlp_schedule2,
     "woa": woa_schedule,
-    "exh": exhaustive_schedule
+    "exh": exhaustive_schedule,
 }
 
 def calc_receive_time(task, users, edge_index):
         user = users[task.userIndex]
         task.selected_edge_index = edge_index
         transmission_rate = (
-                    user.connections[edge_index]
+                    task.user_rates[edge_index]
                 )
         task.data_transmission_delay = (
                     task.B /
@@ -946,7 +947,13 @@ virs = []
 
 server_changed = 0
 
+slot_tasks = {}
+
 if __name__ == "__main__":
+
+    prev_tasks = []
+    with open("slot_tasks.pkl", "rb") as file:
+        prev_tasks = pickle.load(file)
 
     # Main simulation
     for slot in range(
@@ -960,28 +967,50 @@ if __name__ == "__main__":
 
         if slot < NUM_SLOTS:
 
-            for user_index in range(NUM_USERS):
+            if not TASK_GENERATION and len(prev_tasks) > 0:
+                for task in prev_tasks[slot]:
 
-                if (
-                    random.random()
-                    <
-                    USER_TASK_GENERATION_PROBABILITY
-                ):
+                    task = copy.deepcopy(task)
 
-                    task = generate_task(
-                        slot,
-                        user_index
-                    )
-
+                    # Current execution state
                     task.queues = queue_before.copy()
+
+                    user_index = task.userIndex
+
                     last_edge = users[user_index].last_selected_edge
-                    task.user_rates = users[user_index].connections.copy()
+
                     if last_edge != -1:
                         task.last_allocation[last_edge] = 1
+
+                    # Add task to current simulation
                     tasks.append(task)
 
                     users[user_index].data += task.B
                     users[user_index].capacity += task.D
+                
+            else:
+                slot_tasks[slot] = []
+                for user_index in range(NUM_USERS):
+                    if (
+                        random.random()
+                        <
+                        USER_TASK_GENERATION_PROBABILITY
+                    ):
+                        
+                        task = generate_task(
+                            slot,
+                            user_index
+                        )
+                        task.queues = queue_before.copy()
+                        last_edge = users[user_index].last_selected_edge
+                        task.user_rates = users[user_index].connections.copy()
+                        if last_edge != -1:
+                            task.last_allocation[last_edge] = 1
+                        tasks.append(task)
+                        slot_tasks[slot].append(copy.deepcopy(task))
+                        users[user_index].data += task.B
+                        users[user_index].capacity += task.D
+            
 
 
         arrived_tasks = [
@@ -991,7 +1020,6 @@ if __name__ == "__main__":
 
         print(f"Processing slot: {slot}, Number of tasks: {len(arrived_tasks)}", end="")
 
-        random.shuffle(arrived_tasks)
 
         start_time = 0
         end_time = 0
@@ -1145,12 +1173,26 @@ if __name__ == "__main__":
         and not task.virtual_task
     ]
 
+    number_of_completed_tasks = len(completed_tasks)
 
-    number_of_completed_tasks = (
-        len(completed_tasks)
+    # Workload is independent of completed tasks
+    workload = (
+        USER_TASK_GENERATION_PROBABILITY
+        * NUM_USERS
+        * PROCESSING_CAPACITY_MEAN
+    ) / (
+        sum(edge.F for edge in edges)
+        * SLOT_LENGTH
     )
 
-
+    # Default values
+    average_data_transmission = 0.0
+    average_context_transmission = 0.0
+    average_transmission = 0.0
+    average_connection = 0.0
+    average_queue = 0.0
+    average_processing = 0.0
+    average_total = 0.0
     if number_of_completed_tasks > 0:
 
         total_data_transmission = sum(
@@ -1223,10 +1265,6 @@ if __name__ == "__main__":
             number_of_completed_tasks
         )
 
-        workload = (
-            (USER_TASK_GENERATION_PROBABILITY * NUM_USERS * PROCESSING_CAPACITY_MEAN) /
-            (sum(edge.F for edge in edges) * SLOT_LENGTH)
-        )
 
 
     # ============================================================
@@ -1325,4 +1363,8 @@ if __name__ == "__main__":
         )
         
 
+if len(slot_tasks) > 0:
+    with open("slot_tasks.pkl", "wb") as file:
+            pickle.dump(slot_tasks, file)
+            print("slot_tasks saved successfully.")
 

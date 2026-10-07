@@ -11,6 +11,8 @@ NUM_EDGES = int(os.getenv("NUM_EDGES"))
 NUM_USERS = int(os.getenv("NUM_USERS"))
 SCHEDULE_ALGORITHM = str(os.getenv("SCHEDULE_ALGORITHM"))
 
+
+
 WEBSOCKET_CONNECTION = float(os.getenv("WEBSOCKET_CONNECTION"))
 
 PROCESSING_CAPACITY_MEAN = float(os.getenv("PROCESSING_CAPACITY_MEAN"))
@@ -24,6 +26,8 @@ DATA_SIZE_MAX = float(os.getenv("DATA_SIZE_MAX"))
 DATA_SIZE_STD = float(os.getenv("DATA_SIZE_STD"))
 
 VIRTUALIZED_SLOT = float(os.getenv("VIRTUALIZED_SLOT"))
+
+TASK_GENERATION = float(os.getenv("TASK_GENERATION"))
 
 DATA_RATE_MEAN = float(os.getenv("DATA_RATE_MEAN"))
 DATA_RATE_STD = float(os.getenv("DATA_RATE_STD"))

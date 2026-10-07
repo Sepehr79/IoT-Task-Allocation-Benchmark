@@ -58,7 +58,6 @@ class Task:
         self.queues = [0 for _ in range(NUM_EDGES)]
         self.last_allocation = [0 for _ in range(NUM_EDGES)]
         self.user_rates = [0 for _ in range(NUM_EDGES)]
-        self.virtual_task = False
 
 
 
@@ -690,8 +689,7 @@ def calc_receive_time(task, users, edge_index):
                 transmission_rate
             )
             task.connection_delay = (WEBSOCKET_CONNECTION)
-            if not task.virtual_task:
-                user.last_selected_edge = (edge_index)
+            user.last_selected_edge = (edge_index)
         else:
             task.context_transmission_delay = 0.0
             task.connection_delay = 0.0
@@ -729,7 +727,6 @@ edges = [
 ]
 
 tasks = []
-virs = []
 
 server_changed = 0
 
@@ -810,20 +807,6 @@ if __name__ == "__main__":
         start_time = 0
         end_time = 0
         if arrived_tasks:
-
-            # Generate counterfactual samples
-            if VIRTUALIZED_SLOT:
-
-                for edge_index in range(NUM_EDGES):
-                    vir_task = copy.deepcopy(arrived_tasks[0])
-                    vir_task.virtual_task = True
-                    calc_receive_time(
-                        vir_task,
-                        users,
-                        edge_index
-                    )
-                    virs.append(vir_task)
-                    tasks.append(vir_task)
 
             start_time = time.perf_counter()
             # Then perform normal allocation
@@ -920,13 +903,12 @@ if __name__ == "__main__":
                     task.processing_delay
                 )
 
-                if not task.virtual_task:
-                    current_slot_queue[
-                        edge_index
-                    ] = (
-                        current_queue_cycles +
-                        task.D
-                    )
+                current_slot_queue[
+                    edge_index
+                ] = (
+                    current_queue_cycles +
+                    task.D
+                )
 
 
         for edge_index in range(NUM_EDGES):
@@ -956,7 +938,6 @@ if __name__ == "__main__":
         task
         for task in tasks
         if task.E != -1
-        and not task.virtual_task
     ]
 
     number_of_completed_tasks = len(completed_tasks)
@@ -1074,79 +1055,10 @@ if __name__ == "__main__":
     {"-" * 55}
     Average total delay: {average_total:.4f} s
     Server changes: {server_changed}
-    Virtual tasks: {
-        len([task for task in tasks if task.virtual_task])
-        / NUM_EDGES
-    }
     {"=" * 55}
     """
-
-
     # Print to console
     print(results)
-
-
-    # Append to file
-    filename = (
-        f"{schedule.__name__}"
-        f"_{workload:.3f}_results.txt"
-    )
-
-    with open(
-        filename,
-        "w",
-        encoding="utf-8"
-    ) as file:
-
-        file.write(results)
-        file.write("\n")
-
-
-    dataset = []
-    i = 0
-    while i < len(virs):
-        task = Task(virs[i].D, virs[i].B, virs[i].S, virs[i].userIndex)
-        task.queues = virs[i].queues
-        task.last_allocation = virs[i].last_allocation
-        task.user_rates = virs[i].user_rates
-        for j in range(NUM_EDGES):
-            task.delays[j] = virs[i+j].total_delay
-        i += NUM_EDGES
-        dataset.append(task)
-
-    import pandas as pd
-
-    rows = []
-
-    for task in dataset:
-
-        row = {
-            "processing_capcacity": task.D,
-            "data_size": task.B,
-            "workload": workload
-        }
-
-        for i in range(NUM_EDGES):
-            row[f"queue_{i}"] = task.queues[i]
-
-        for i in range(NUM_EDGES):
-            row[f"last_allocation_{i}"] = task.last_allocation[i]
-        for i in range(NUM_EDGES):
-            row[f"rate_{i}"] = task.user_rates[i]
-        for i in range(NUM_EDGES):
-            row[f"delay_{i}"] = task.delays[i]
-        
-
-        rows.append(row)
-
-    df = pd.DataFrame(rows)
-
-    df.to_csv(
-            "allocation_dataset.csv",
-            mode="a",
-            header=not os.path.exists("allocation_dataset.csv"),
-            index=False
-        )
         
 
 if len(slot_tasks) > 0:

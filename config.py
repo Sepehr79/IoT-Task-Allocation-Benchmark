@@ -25,8 +25,6 @@ DATA_SIZE_MIN = float(os.getenv("DATA_SIZE_MIN"))
 DATA_SIZE_MAX = float(os.getenv("DATA_SIZE_MAX"))
 DATA_SIZE_STD = float(os.getenv("DATA_SIZE_STD"))
 
-VIRTUALIZED_SLOT = float(os.getenv("VIRTUALIZED_SLOT"))
-
 TASK_GENERATION = float(os.getenv("TASK_GENERATION"))
 
 DATA_RATE_MEAN = float(os.getenv("DATA_RATE_MEAN"))

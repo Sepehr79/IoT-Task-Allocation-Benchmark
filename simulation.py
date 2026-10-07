@@ -673,23 +673,39 @@ scheduling = {
     "exh": exhaustive_schedule,
 }
 
-def calc_receive_time(task, users, edge_index):
+users = [
+    User(USER_CONTEXT_SIZE)
+    for _ in range(NUM_USERS)
+]
+
+edges = [
+    Edge(1.5*10**9),
+    Edge(1.5*10**9),
+    Edge(2*10**9),
+    Edge(2*10**9),
+    Edge(2*10**9),
+    Edge(2*10**9),
+    Edge(2.5*10**9),
+    Edge(2.5*10**9),
+]
+
+
+def calc_receive_time(task):
         user = users[task.userIndex]
-        task.selected_edge_index = edge_index
         transmission_rate = (
-                    task.user_rates[edge_index]
+                    task.user_rates[task.selected_edge_index]
                 )
         task.data_transmission_delay = (
                     task.B /
                     transmission_rate
         )
-        if (edge_index != user.last_selected_edge):
+        if (task.selected_edge_index != user.last_selected_edge):
             task.context_transmission_delay = (
                 user.C /
                 transmission_rate
             )
             task.connection_delay = (WEBSOCKET_CONNECTION)
-            user.last_selected_edge = (edge_index)
+            user.last_selected_edge = (task.selected_edge_index)
         else:
             task.context_transmission_delay = 0.0
             task.connection_delay = 0.0
@@ -709,22 +725,6 @@ def calc_receive_time(task, users, edge_index):
         task.R = (task.S + communication_slots)
 
 schedule = scheduling[SCHEDULE_ALGORITHM]
-
-users = [
-    User(USER_CONTEXT_SIZE)
-    for _ in range(NUM_USERS)
-]
-
-edges = [
-    Edge(1.5*10**9),
-    Edge(1.5*10**9),
-    Edge(2*10**9),
-    Edge(2*10**9),
-    Edge(2*10**9),
-    Edge(2*10**9),
-    Edge(2.5*10**9),
-    Edge(2.5*10**9),
-]
 
 tasks = []
 
@@ -821,17 +821,11 @@ if __name__ == "__main__":
         print(f", Elapsed time: {(end_time - start_time) * 1000:.3f} ms")
 
         for task in arrived_tasks:
-            edge_index = (task.selected_edge_index)
-            user = users[task.userIndex]
-            user.data -= task.B
-            user.capacity -= task.D
-            previous_edge = user.last_selected_edge
             calc_receive_time(
                 task,
-                users,
-                edge_index
             )
-            if edge_index != previous_edge:
+            user = users[task.userIndex]
+            if task.selected_edge_index != user.last_selected_edge:
                 server_changed += 1
 
             

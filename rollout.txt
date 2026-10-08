@@ -1,0 +1,1000 @@
+[rollout-BFS d=1] slot 1100/1200 ( 91.7%) | decisions=122 | leaves=2,192 | max_frontier=1 | elapsed=    1.2s | ETA=    0.1s
+[rollout-BFS d=1] slot 1200/1200 (100.0%) | decisions=122 | leaves=2,192 | max_frontier=1 | elapsed=    1.2s | ETA=    0.0s
+
+=======================================================
+Algorithm: exact slot-level rollout BFS (depth=1, then base policy greedy_context_schedule for k=None)
+Base policy: greedy_context_schedule
+Completed tasks: 195
+Average transmission+connection delay: 0.1078 s
+Average queue delay: 0.0984 s
+Average processing delay: 0.0998 s
+Average total delay: 0.3060 s
+Server changes: 90
+Scheduling time: 1.24 s
+Decisions (slots): 122 | avg nodes: 18 | avg leaves: 18
+Max estimated leaves: 256 | decisions with reduced depth: 0
+Max BFS frontier size: 1
+Avg time/decision: 10.1 ms
+
+BFS per-level summary (averaged over decisions):
+level |      generated | kept (frontier) |  time(ms)
+    0 |           18.0 |             0.0 |      9.99
+=======================================================
+
+>>> Starting exact slot-level rollout (BFS): depth=2, k=None, base_policy=greedy_context_schedule, adaptive_limit=None
+    [slot 1] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=2 | leaves at depth (base policy continues): 256
+    [slot 2] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0 | leaves at depth (base policy continues): 16
+    [slot 4] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=0 | leaves at depth (base policy continues): 64
+    [slot 8] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0 | leaves at depth (base policy continues): 16
+    [slot 11] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0 | leaves at depth (base policy continues): 4
+    [slot 14] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0 | leaves at depth (base policy continues): 4
+    [slot 16] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=1 | leaves at depth (base policy continues): 256
+    [slot 17] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0 | leaves at depth (base policy continues): 4
+    [slot 21] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=2 | leaves at depth (base policy continues): 256
+    [slot 22] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0 | leaves at depth (base policy continues): 16
+    [slot 25] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0 | leaves at depth (base policy continues): 16
+    [slot 28] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1 | leaves at depth (base policy continues): 16
+    [slot 29] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1 | leaves at depth (base policy continues): 16
+    [slot 30] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1 | leaves at depth (base policy continues): 16
+    [slot 31] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=3 | leaves at depth (base policy continues): 256
+    [slot 32] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=0 | leaves at depth (base policy continues): 64
+    [slot 34] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1 | leaves at depth (base policy continues): 16
+    [slot 35] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1 | leaves at depth (base policy continues): 16
+    [slot 36] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1 | leaves at depth (base policy continues): 16
+    [slot 37] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2 | leaves at depth (base policy continues): 64
+    [slot 38] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1 | leaves at depth (base policy continues): 64
+    [slot 39] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2 | leaves at depth (base policy continues): 64
+    [slot 40] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0 | leaves at depth (base policy continues): 16
+    [slot 42] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0 | leaves at depth (base policy continues): 4
+    [slot 44] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2 | leaves at depth (base policy continues): 64
+    [slot 45] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1 | leaves at depth (base policy continues): 64
+    [slot 46] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0 | leaves at depth (base policy continues): 4
+    [slot 50] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=3 | leaves at depth (base policy continues): 1,024
+    [slot 51] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=1 | leaves at depth (base policy continues): 256
+    [slot 52] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1 | leaves at depth (base policy continues): 16
+    [slot 53] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1 | leaves at depth (base policy continues): 16
+    [slot 54] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0 | leaves at depth (base policy continues): 4
+    [slot 56] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2 | leaves at depth (base policy continues): 64
+    [slot 57] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1 | leaves at depth (base policy continues): 64
+    [slot 58] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1 | leaves at depth (base policy continues): 16
+    [slot 59] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0 | leaves at depth (base policy continues): 4
+    [slot 62] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=3 | leaves at depth (base policy continues): 256
+    [slot 63] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=1 | leaves at depth (base policy continues): 256
+    [slot 64] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0 | leaves at depth (base policy continues): 4
+    [slot 66] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0 | leaves at depth (base policy continues): 4
+    [slot 68] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0 | leaves at depth (base policy continues): 4
+    [slot 71] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=3 | leaves at depth (base policy continues): 256
+    [slot 72] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=0 | leaves at depth (base policy continues): 64
+    [slot 74] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0 | leaves at depth (base policy continues): 4
+    [slot 78] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=2 | leaves at depth (base policy continues): 256
+    [slot 79] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0 | leaves at depth (base policy continues): 16
+    [slot 81] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1 | leaves at depth (base policy continues): 64
+    [slot 82] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0 | leaves at depth (base policy continues): 4
+    [slot 86] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1 | leaves at depth (base policy continues): 16
+    [slot 87] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1 | leaves at depth (base policy continues): 16
+    [slot 88] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0 | leaves at depth (base policy continues): 4
+    [slot 90] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0 | leaves at depth (base policy continues): 4
+    [slot 92] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0 | leaves at depth (base policy continues): 4
+    [slot 94] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1 | leaves at depth (base policy continues): 64
+    [slot 95] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0 | leaves at depth (base policy continues): 4
+    [slot 98] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0 | leaves at depth (base policy continues): 16
+[rollout-BFS d=2] slot 100/1200 (  8.3%) | decisions=56 | leaves=4,448 | max_frontier=64 | elapsed=    3.6s | ETA=   39.5s
+    [slot 100] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0 | leaves at depth (base policy continues): 4
+    [slot 104] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0 | leaves at depth (base policy continues): 4
+    [slot 106] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1 | leaves at depth (base policy continues): 64
+    [slot 107] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2 | leaves at depth (base policy continues): 64
+    [slot 108] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0 | leaves at depth (base policy continues): 16
+    [slot 110] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0 | leaves at depth (base policy continues): 16
+    [slot 112] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1 | leaves at depth (base policy continues): 16
+    [slot 113] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2 | leaves at depth (base policy continues): 64
+    [slot 114] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=2 | leaves at depth (base policy continues): 256
+    [slot 115] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=2 | leaves at depth (base policy continues): 256
+    [slot 116] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1 | leaves at depth (base policy continues): 64
+    [slot 117] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2 | leaves at depth (base policy continues): 64
+    [slot 118] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1 | leaves at depth (base policy continues): 64
+    [slot 119] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0 | leaves at depth (base policy continues): 4
+    [slot 122] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=0 | leaves at depth (base policy continues): 64
+    [slot 125] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=2 | leaves at depth (base policy continues): 256
+    [slot 126] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1 | leaves at depth (base policy continues): 64
+    [slot 127] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1 | leaves at depth (base policy continues): 16
+    [slot 128] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=3 | leaves at depth (base policy continues): 256
+    [slot 129] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=0 | leaves at depth (base policy continues): 64
+    [slot 133] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=3 | leaves at depth (base policy continues): 256
+    [slot 134] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=1 | leaves at depth (base policy continues): 256
+    [slot 135] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=3 | leaves at depth (base policy continues): 256
+    [slot 136] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=2 | leaves at depth (base policy continues): 1,024
+    [slot 137] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0 | leaves at depth (base policy continues): 16
+    [slot 141] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1 | leaves at depth (base policy continues): 64
+    [slot 142] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1 | leaves at depth (base policy continues): 16
+    [slot 143] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=3 | leaves at depth (base policy continues): 256
+    [slot 144] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=2 | leaves at depth (base policy continues): 1,024
+    [slot 145] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0 | leaves at depth (base policy continues): 16
+    [slot 147] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1 | leaves at depth (base policy continues): 16
+    [slot 148] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0 | leaves at depth (base policy continues): 4
+    [slot 150] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1 | leaves at depth (base policy continues): 16
+    [slot 151] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1 | leaves at depth (base policy continues): 16
+    [slot 152] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2 | leaves at depth (base policy continues): 64
+    [slot 153] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1 | leaves at depth (base policy continues): 64
+    [slot 154] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2 | leaves at depth (base policy continues): 64
+    [slot 155] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=3 | leaves at depth (base policy continues): 1,024
+    [slot 156] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=1 | leaves at depth (base policy continues): 256
+    [slot 157] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0 | leaves at depth (base policy continues): 4
+    [slot 159] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1 | leaves at depth (base policy continues): 16
+    [slot 160] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0 | leaves at depth (base policy continues): 4
+    [slot 162] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=0 | leaves at depth (base policy continues): 64
+    [slot 164] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1 | leaves at depth (base policy continues): 16
+    [slot 165] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1 | leaves at depth (base policy continues): 16
+    [slot 166] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2 | leaves at depth (base policy continues): 64
+    [slot 167] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1 | leaves at depth (base policy continues): 64
+    [slot 168] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=4 | leaves at depth (base policy continues): 1,024
+    [slot 169] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=4, L2=1 | leaves at depth (base policy continues): 1,024
+    [slot 170] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0 | leaves at depth (base policy continues): 4
+    [slot 172] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2 | leaves at depth (base policy continues): 64
+    [slot 173] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1 | leaves at depth (base policy continues): 64
+    [slot 174] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1 | leaves at depth (base policy continues): 16
+    [slot 175] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1 | leaves at depth (base policy continues): 16
+    [slot 176] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0 | leaves at depth (base policy continues): 4
+    [slot 179] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0 | leaves at depth (base policy continues): 16
+    [slot 181] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=2 | leaves at depth (base policy continues): 1,024
+    [slot 182] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0 | leaves at depth (base policy continues): 16
+    [slot 188] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=1 | leaves at depth (base policy continues): 256
+    [slot 189] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1 | leaves at depth (base policy continues): 16
+    [slot 190] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0 | leaves at depth (base policy continues): 4
+    [slot 193] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=2 | leaves at depth (base policy continues): 256
+    [slot 194] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0 | leaves at depth (base policy continues): 16
+    [slot 196] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=3 | leaves at depth (base policy continues): 4,096
+    [slot 197] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=1 | leaves at depth (base policy continues): 256
+    [slot 198] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0 | leaves at depth (base policy continues): 4
+[rollout-BFS d=2] slot 200/1200 ( 16.7%) | decisions=122 | leaves=19,256 | max_frontier=256 | elapsed=    6.6s | ETA=   33.0s
+[rollout-BFS d=2] slot 300/1200 ( 25.0%) | decisions=122 | leaves=19,256 | max_frontier=256 | elapsed=    6.6s | ETA=   19.8s
+[rollout-BFS d=2] slot 400/1200 ( 33.3%) | decisions=122 | leaves=19,256 | max_frontier=256 | elapsed=    6.6s | ETA=   13.2s
+[rollout-BFS d=2] slot 500/1200 ( 41.7%) | decisions=122 | leaves=19,256 | max_frontier=256 | elapsed=    6.6s | ETA=    9.2s
+[rollout-BFS d=2] slot 600/1200 ( 50.0%) | decisions=122 | leaves=19,256 | max_frontier=256 | elapsed=    6.6s | ETA=    6.6s
+[rollout-BFS d=2] slot 700/1200 ( 58.3%) | decisions=122 | leaves=19,256 | max_frontier=256 | elapsed=    6.6s | ETA=    4.7s
+[rollout-BFS d=2] slot 800/1200 ( 66.7%) | decisions=122 | leaves=19,256 | max_frontier=256 | elapsed=    6.6s | ETA=    3.3s
+[rollout-BFS d=2] slot 900/1200 ( 75.0%) | decisions=122 | leaves=19,256 | max_frontier=256 | elapsed=    6.6s | ETA=    2.2s
+[rollout-BFS d=2] slot 1000/1200 ( 83.3%) | decisions=122 | leaves=19,256 | max_frontier=256 | elapsed=    6.6s | ETA=    1.3s
+[rollout-BFS d=2] slot 1100/1200 ( 91.7%) | decisions=122 | leaves=19,256 | max_frontier=256 | elapsed=    6.6s | ETA=    0.6s
+[rollout-BFS d=2] slot 1200/1200 (100.0%) | decisions=122 | leaves=19,256 | max_frontier=256 | elapsed=    6.6s | ETA=    0.0s
+
+=======================================================
+Algorithm: exact slot-level rollout BFS (depth=2, then base policy greedy_context_schedule for k=None)
+Base policy: greedy_context_schedule
+Completed tasks: 195
+Average transmission+connection delay: 0.1058 s
+Average queue delay: 0.0902 s
+Average processing delay: 0.0997 s
+Average total delay: 0.2957 s
+Server changes: 85
+Scheduling time: 6.59 s
+Decisions (slots): 122 | avg nodes: 176 | avg leaves: 158
+Max estimated leaves: 4,096 | decisions with reduced depth: 0
+Max BFS frontier size: 256
+Avg time/decision: 54.0 ms
+
+BFS per-level summary (averaged over decisions):
+level |      generated | kept (frontier) |  time(ms)
+    0 |           18.0 |            18.0 |      0.14
+    1 |          157.8 |             0.0 |     53.65
+=======================================================
+
+>>> Starting exact slot-level rollout (BFS): depth=3, k=None, base_policy=greedy_context_schedule, adaptive_limit=None
+    [slot 1] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=2, L3=0 | leaves at depth (base policy continues): 256
+    [slot 2] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0, L3=3 | leaves at depth (base policy continues): 1,024
+    [slot 4] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=0, L3=0 | leaves at depth (base policy continues): 64
+    [slot 8] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0, L3=0 | leaves at depth (base policy continues): 16
+    [slot 11] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=0 | leaves at depth (base policy continues): 4
+    [slot 14] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=3 | leaves at depth (base policy continues): 256
+    [slot 16] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=1, L3=0 | leaves at depth (base policy continues): 256
+    [slot 17] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=0 | leaves at depth (base policy continues): 4
+    [slot 21] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=2, L3=0 | leaves at depth (base policy continues): 256
+    [slot 22] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0, L3=0 | leaves at depth (base policy continues): 16
+    [slot 25] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0, L3=0 | leaves at depth (base policy continues): 16
+    [slot 28] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=1 | leaves at depth (base policy continues): 64
+    [slot 29] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=1 | leaves at depth (base policy continues): 64
+    [slot 30] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=3 | leaves at depth (base policy continues): 1,024
+    [slot 31] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=3, L3=0 | leaves at depth (base policy continues): 256
+    [slot 32] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=0, L3=1 | leaves at depth (base policy continues): 256
+    [slot 34] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=1 | leaves at depth (base policy continues): 64
+    [slot 35] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=1 | leaves at depth (base policy continues): 64
+    [slot 36] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=2 | leaves at depth (base policy continues): 256
+    [slot 37] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2, L3=1 | leaves at depth (base policy continues): 256
+    [slot 38] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1, L3=2 | leaves at depth (base policy continues): 1,024
+    ... BFS level 3/3 | parents 63/64 (98.4%) | generated=1,012 | leaves=1,011 | best=52.3459 | level ETA=0s
+    [slot 39] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2, L3=0 | leaves at depth (base policy continues): 64
+    [slot 40] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0, L3=1 | leaves at depth (base policy continues): 64
+    [slot 42] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=1 | leaves at depth (base policy continues): 16
+    [slot 44] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2, L3=1 | leaves at depth (base policy continues): 256
+    [slot 45] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1, L3=0 | leaves at depth (base policy continues): 64
+    [slot 46] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=0 | leaves at depth (base policy continues): 4
+    [slot 50] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=3, L3=1 | leaves at depth (base policy continues): 4,096
+    [slot 51] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=1, L3=1 | leaves at depth (base policy continues): 1,024
+    [slot 52] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=1 | leaves at depth (base policy continues): 64
+    [slot 53] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=0 | leaves at depth (base policy continues): 16
+    [slot 54] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=1 | leaves at depth (base policy continues): 16
+    [slot 56] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2, L3=1 | leaves at depth (base policy continues): 256
+    [slot 57] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1, L3=1 | leaves at depth (base policy continues): 256
+    [slot 58] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=0 | leaves at depth (base policy continues): 16
+    [slot 59] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=0 | leaves at depth (base policy continues): 4
+    [slot 62] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=3, L3=1 | leaves at depth (base policy continues): 1,024
+    ... BFS level 3/3 | parents 106/256 (41.4%) | generated=425 | leaves=424 | best=45.0678 | level ETA=0s
+    [slot 63] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=1, L3=0 | leaves at depth (base policy continues): 256
+    [slot 64] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=1 | leaves at depth (base policy continues): 16
+    [slot 66] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=1 | leaves at depth (base policy continues): 16
+    [slot 68] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=0 | leaves at depth (base policy continues): 4
+    [slot 71] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=3, L3=0 | leaves at depth (base policy continues): 256
+    [slot 72] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=0, L3=1 | leaves at depth (base policy continues): 256
+    [slot 74] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=0 | leaves at depth (base policy continues): 4
+    [slot 78] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=2, L3=0 | leaves at depth (base policy continues): 256
+    [slot 79] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0, L3=2 | leaves at depth (base policy continues): 256
+    [slot 81] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1, L3=0 | leaves at depth (base policy continues): 64
+    [slot 82] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=0 | leaves at depth (base policy continues): 4
+    [slot 86] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=1 | leaves at depth (base policy continues): 64
+    [slot 87] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=0 | leaves at depth (base policy continues): 16
+    [slot 88] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=1 | leaves at depth (base policy continues): 16
+    [slot 90] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=1 | leaves at depth (base policy continues): 16
+    [slot 92] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=2 | leaves at depth (base policy continues): 64
+    [slot 94] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1, L3=0 | leaves at depth (base policy continues): 64
+    [slot 95] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=0 | leaves at depth (base policy continues): 4
+    [slot 98] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0, L3=1 | leaves at depth (base policy continues): 64
+[rollout-BFS d=3] slot 100/1200 (  8.3%) | decisions=56 | leaves=14,432 | max_frontier=1,024 | elapsed=   11.5s | ETA=  126.9s
+    [slot 100] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=0 | leaves at depth (base policy continues): 4
+    [slot 104] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=2 | leaves at depth (base policy continues): 64
+    [slot 106] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1, L3=2 | leaves at depth (base policy continues): 1,024
+    [slot 107] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2, L3=0 | leaves at depth (base policy continues): 64
+    [slot 108] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0, L3=2 | leaves at depth (base policy continues): 256
+    [slot 110] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0, L3=1 | leaves at depth (base policy continues): 64
+    [slot 112] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=2 | leaves at depth (base policy continues): 256
+    [slot 113] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2, L3=2 | leaves at depth (base policy continues): 1,024
+    [slot 114] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=2, L3=2 | leaves at depth (base policy continues): 4,096
+    [slot 115] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=2, L3=1 | leaves at depth (base policy continues): 1,024
+    [slot 116] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1, L3=2 | leaves at depth (base policy continues): 1,024
+    [slot 117] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2, L3=1 | leaves at depth (base policy continues): 256
+    [slot 118] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1, L3=0 | leaves at depth (base policy continues): 64
+    [slot 119] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=0 | leaves at depth (base policy continues): 4
+    [slot 122] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=0, L3=0 | leaves at depth (base policy continues): 64
+    [slot 125] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=2, L3=1 | leaves at depth (base policy continues): 1,024
+    [slot 126] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1, L3=1 | leaves at depth (base policy continues): 256
+    ... BFS level 3/3 | parents 47/64 (73.4%) | generated=190 | leaves=189 | best=30.6308 | level ETA=0s
+    [slot 127] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=3 | leaves at depth (base policy continues): 1,024
+    [slot 128] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=3, L3=0 | leaves at depth (base policy continues): 256
+    [slot 129] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=0, L3=0 | leaves at depth (base policy continues): 64
+    [slot 133] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=3, L3=1 | leaves at depth (base policy continues): 1,024
+    [slot 134] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=1, L3=3 | leaves at depth (base policy continues): 16,384
+    ... BFS level 3/3 | parents 170/256 (66.4%) | generated=10,889 | leaves=10,888 | best=26.2353 | level ETA=2s
+    [slot 135] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=3, L3=2 | leaves at depth (base policy continues): 4,096
+    [slot 136] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=2, L3=0 | leaves at depth (base policy continues): 1,024
+    [slot 137] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0, L3=0 | leaves at depth (base policy continues): 16
+    [slot 141] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1, L3=1 | leaves at depth (base policy continues): 256
+    [slot 142] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=3 | leaves at depth (base policy continues): 1,024
+    [slot 143] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=3, L3=2 | leaves at depth (base policy continues): 4,096
+    ... BFS level 3/3 | parents 121/256 (47.3%) | generated=1,937 | leaves=1,936 | best=22.3975 | level ETA=1s
+    [slot 144] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=2, L3=0 | leaves at depth (base policy continues): 1,024
+    [slot 145] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0, L3=1 | leaves at depth (base policy continues): 64
+    [slot 147] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=0 | leaves at depth (base policy continues): 16
+    [slot 148] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=1 | leaves at depth (base policy continues): 16
+    [slot 150] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=1 | leaves at depth (base policy continues): 64
+    [slot 151] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=2 | leaves at depth (base policy continues): 256
+    [slot 152] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2, L3=1 | leaves at depth (base policy continues): 256
+    [slot 153] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1, L3=2 | leaves at depth (base policy continues): 1,024
+    [slot 154] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2, L3=3 | leaves at depth (base policy continues): 4,096
+    [slot 155] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=3, L3=1 | leaves at depth (base policy continues): 4,096
+    [slot 156] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=1, L3=0 | leaves at depth (base policy continues): 256
+    [slot 157] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=1 | leaves at depth (base policy continues): 16
+    [slot 159] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=0 | leaves at depth (base policy continues): 16
+    [slot 160] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=3 | leaves at depth (base policy continues): 256
+    [slot 162] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=0, L3=1 | leaves at depth (base policy continues): 256
+    [slot 164] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=1 | leaves at depth (base policy continues): 64
+    [slot 165] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=2 | leaves at depth (base policy continues): 256
+    [slot 166] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2, L3=1 | leaves at depth (base policy continues): 256
+    [slot 167] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1, L3=4 | leaves at depth (base policy continues): 16,384
+    ... BFS level 3/3 | parents 29/64 (45.3%) | generated=7,450 | leaves=7,449 | best=13.3046 | level ETA=2s
+    [slot 168] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=4, L3=1 | leaves at depth (base policy continues): 4,096
+    [slot 169] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=4, L2=1, L3=0 | leaves at depth (base policy continues): 1,024
+    [slot 170] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=1 | leaves at depth (base policy continues): 16
+    [slot 172] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2, L3=1 | leaves at depth (base policy continues): 256
+    [slot 173] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1, L3=1 | leaves at depth (base policy continues): 256
+    [slot 174] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=1 | leaves at depth (base policy continues): 64
+    [slot 175] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=0 | leaves at depth (base policy continues): 16
+    [slot 176] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=0 | leaves at depth (base policy continues): 4
+    [slot 179] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0, L3=3 | leaves at depth (base policy continues): 1,024
+    [slot 181] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=2, L3=0 | leaves at depth (base policy continues): 1,024
+    [slot 182] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0, L3=0 | leaves at depth (base policy continues): 16
+    [slot 188] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=1, L3=1 | leaves at depth (base policy continues): 1,024
+    [slot 189] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=0 | leaves at depth (base policy continues): 16
+    [slot 190] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=0 | leaves at depth (base policy continues): 4
+    [slot 193] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=2, L3=0 | leaves at depth (base policy continues): 256
+    [slot 194] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0, L3=3 | leaves at depth (base policy continues): 1,024
+    [slot 196] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=3, L3=1 | leaves at depth (base policy continues): 16,384
+    [slot 197] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=1, L3=0 | leaves at depth (base policy continues): 256
+    [slot 198] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0 | leaves at depth (base policy continues): 4
+[rollout-BFS d=3] slot 200/1200 ( 16.7%) | decisions=122 | leaves=109,700 | max_frontier=4,096 | elapsed=   34.5s | ETA=  172.7s
+[rollout-BFS d=3] slot 300/1200 ( 25.0%) | decisions=122 | leaves=109,700 | max_frontier=4,096 | elapsed=   34.5s | ETA=  103.6s
+[rollout-BFS d=3] slot 400/1200 ( 33.3%) | decisions=122 | leaves=109,700 | max_frontier=4,096 | elapsed=   34.5s | ETA=   69.1s
+[rollout-BFS d=3] slot 500/1200 ( 41.7%) | decisions=122 | leaves=109,700 | max_frontier=4,096 | elapsed=   34.5s | ETA=   48.4s
+[rollout-BFS d=3] slot 600/1200 ( 50.0%) | decisions=122 | leaves=109,700 | max_frontier=4,096 | elapsed=   34.5s | ETA=   34.5s
+[rollout-BFS d=3] slot 700/1200 ( 58.3%) | decisions=122 | leaves=109,700 | max_frontier=4,096 | elapsed=   34.5s | ETA=   24.7s
+[rollout-BFS d=3] slot 800/1200 ( 66.7%) | decisions=122 | leaves=109,700 | max_frontier=4,096 | elapsed=   34.5s | ETA=   17.3s
+[rollout-BFS d=3] slot 900/1200 ( 75.0%) | decisions=122 | leaves=109,700 | max_frontier=4,096 | elapsed=   34.5s | ETA=   11.5s
+[rollout-BFS d=3] slot 1000/1200 ( 83.3%) | decisions=122 | leaves=109,700 | max_frontier=4,096 | elapsed=   34.5s | ETA=    6.9s
+[rollout-BFS d=3] slot 1100/1200 ( 91.7%) | decisions=122 | leaves=109,700 | max_frontier=4,096 | elapsed=   34.5s | ETA=    3.1s
+[rollout-BFS d=3] slot 1200/1200 (100.0%) | decisions=122 | leaves=109,700 | max_frontier=4,096 | elapsed=   34.5s | ETA=    0.0s
+
+=======================================================
+Algorithm: exact slot-level rollout BFS (depth=3, then base policy greedy_context_schedule for k=None)
+Base policy: greedy_context_schedule
+Completed tasks: 195
+Average transmission+connection delay: 0.1069 s
+Average queue delay: 0.0766 s
+Average processing delay: 0.0998 s
+Average total delay: 0.2833 s
+Server changes: 89
+Scheduling time: 34.53 s
+Decisions (slots): 122 | avg nodes: 1,075 | avg leaves: 899
+Max estimated leaves: 16,384 | decisions with reduced depth: 0
+Max BFS frontier size: 4,096
+Avg time/decision: 283.1 ms
+
+BFS per-level summary (averaged over decisions):
+level |      generated | kept (frontier) |  time(ms)
+    0 |           18.0 |            18.0 |      0.12
+    1 |          157.8 |           157.8 |      1.07
+    2 |          906.6 |             0.0 |    283.94
+=======================================================
+
+>>> Starting exact slot-level rollout (BFS): depth=4, k=None, base_policy=greedy_context_schedule, adaptive_limit=None
+    [slot 1] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=2, L3=0, L4=3 | leaves at depth (base policy continues): 16,384
+    ... BFS level 4/4 | parents 78/256 (30.5%) | generated=5,030 | leaves=5,029 | best=57.9737 | level ETA=11s
+    ... BFS level 4/4 | parents 156/256 (60.9%) | generated=10,038 | leaves=10,037 | best=57.9399 | level ETA=6s
+    ... BFS level 4/4 | parents 234/256 (91.4%) | generated=14,981 | leaves=14,980 | best=57.9399 | level ETA=1s
+    [slot 2] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0, L3=3, L4=0 | leaves at depth (base policy continues): 1,024
+    [slot 4] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=0, L3=0, L4=0 | leaves at depth (base policy continues): 64
+    [slot 8] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0, L3=0, L4=1 | leaves at depth (base policy continues): 64
+    [slot 11] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=0, L4=1 | leaves at depth (base policy continues): 16
+    [slot 14] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=3, L4=1 | leaves at depth (base policy continues): 1,024
+    [slot 16] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=1, L3=0, L4=0 | leaves at depth (base policy continues): 256
+    [slot 17] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=0, L4=0 | leaves at depth (base policy continues): 4
+    [slot 21] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=2, L3=0, L4=0 | leaves at depth (base policy continues): 256
+    [slot 22] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0, L3=0, L4=2 | leaves at depth (base policy continues): 256
+    ... BFS level 4/4 | parents 15/16 (93.8%) | generated=247 | leaves=246 | best=53.6545 | level ETA=0s
+    [slot 25] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0, L3=0, L4=1 | leaves at depth (base policy continues): 64
+    [slot 28] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=1, L4=1 | leaves at depth (base policy continues): 256
+    [slot 29] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=1, L4=3 | leaves at depth (base policy continues): 4,096
+    [slot 30] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=3, L4=0 | leaves at depth (base policy continues): 1,024
+    ... BFS level 4/4 | parents 379/1,024 (37.0%) | generated=380 | leaves=379 | best=52.4278 | level ETA=1s
+    [slot 31] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=3, L3=0, L4=1 | leaves at depth (base policy continues): 1,024
+    [slot 32] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=0, L3=1, L4=1 | leaves at depth (base policy continues): 1,024
+    [slot 34] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=1, L4=1 | leaves at depth (base policy continues): 256
+    [slot 35] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=1, L4=2 | leaves at depth (base policy continues): 1,024
+    ... BFS level 4/4 | parents 52/64 (81.2%) | generated=837 | leaves=836 | best=51.1072 | level ETA=0s
+    [slot 36] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=2, L4=1 | leaves at depth (base policy continues): 1,024
+    [slot 37] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2, L3=1, L4=2 | leaves at depth (base policy continues): 4,096
+    ... BFS level 4/4 | parents 182/256 (71.1%) | generated=2,915 | leaves=2,914 | best=50.8436 | level ETA=1s
+    [slot 38] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1, L3=2, L4=0 | leaves at depth (base policy continues): 1,024
+    [slot 39] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2, L3=0, L4=1 | leaves at depth (base policy continues): 256
+    [slot 40] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0, L3=1, L4=0 | leaves at depth (base policy continues): 64
+    [slot 42] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=1, L4=2 | leaves at depth (base policy continues): 256
+    ... BFS level 4/4 | parents 13/16 (81.2%) | generated=212 | leaves=211 | best=49.3920 | level ETA=0s
+    [slot 44] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2, L3=1, L4=0 | leaves at depth (base policy continues): 256
+    [slot 45] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1, L3=0, L4=0 | leaves at depth (base policy continues): 64
+    [slot 46] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=0, L4=0 | leaves at depth (base policy continues): 4
+    [slot 50] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=3, L3=1, L4=1 | leaves at depth (base policy continues): 16,384
+    ... BFS level 4/4 | parents 997/4,096 (24.3%) | generated=3,991 | leaves=3,990 | best=46.6721 | level ETA=14s
+    ... BFS level 4/4 | parents 2,368/4,096 (57.8%) | generated=9,476 | leaves=9,475 | best=46.6721 | level ETA=7s
+    ... BFS level 4/4 | parents 3,335/4,096 (81.4%) | generated=13,342 | leaves=13,341 | best=46.1028 | level ETA=3s
+    [slot 51] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=1, L3=1, L4=1 | leaves at depth (base policy continues): 4,096
+    ... BFS level 4/4 | parents 213/1,024 (20.8%) | generated=853 | leaves=852 | best=46.1028 | level ETA=3s
+    [slot 52] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=1, L4=0 | leaves at depth (base policy continues): 64
+    [slot 53] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=0, L4=1 | leaves at depth (base policy continues): 64
+    [slot 54] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=1, L4=2 | leaves at depth (base policy continues): 256
+    ... BFS level 4/4 | parents 10/16 (62.5%) | generated=169 | leaves=168 | best=45.7673 | level ETA=0s
+    [slot 56] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2, L3=1, L4=1 | leaves at depth (base policy continues): 1,024
+    [slot 57] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1, L3=1, L4=0 | leaves at depth (base policy continues): 256
+    [slot 58] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=0, L4=0 | leaves at depth (base policy continues): 16
+    [slot 59] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=0, L4=1 | leaves at depth (base policy continues): 16
+    [slot 62] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=3, L3=1, L4=0 | leaves at depth (base policy continues): 1,024
+    [slot 63] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=1, L3=0, L4=1 | leaves at depth (base policy continues): 1,024
+    [slot 64] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=1, L4=0 | leaves at depth (base policy continues): 16
+    [slot 66] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=1, L4=0 | leaves at depth (base policy continues): 16
+    [slot 68] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=0, L4=1 | leaves at depth (base policy continues): 16
+    [slot 71] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=3, L3=0, L4=1 | leaves at depth (base policy continues): 1,024
+    [slot 72] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=0, L3=1, L4=0 | leaves at depth (base policy continues): 256
+    [slot 74] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=0, L4=0 | leaves at depth (base policy continues): 4
+    [slot 78] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=2, L3=0, L4=2 | leaves at depth (base policy continues): 4,096
+    ... BFS level 4/4 | parents 81/256 (31.6%) | generated=1,304 | leaves=1,303 | best=39.3599 | level ETA=2s
+    [slot 79] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0, L3=2, L4=1 | leaves at depth (base policy continues): 1,024
+    [slot 81] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1, L3=0, L4=0 | leaves at depth (base policy continues): 64
+    [slot 82] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=0, L4=0 | leaves at depth (base policy continues): 4
+    [slot 86] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=1, L4=0 | leaves at depth (base policy continues): 64
+    [slot 87] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=0, L4=1 | leaves at depth (base policy continues): 64
+    [slot 88] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=1, L4=0 | leaves at depth (base policy continues): 16
+    [slot 90] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=1, L4=0 | leaves at depth (base policy continues): 16
+    [slot 92] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=2, L4=1 | leaves at depth (base policy continues): 256
+    [slot 94] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1, L3=0, L4=0 | leaves at depth (base policy continues): 64
+    [slot 95] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=0, L4=2 | leaves at depth (base policy continues): 64
+    [slot 98] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0, L3=1, L4=0 | leaves at depth (base policy continues): 64
+[rollout-BFS d=4] slot 100/1200 (  8.3%) | decisions=56 | leaves=66,512 | max_frontier=4,096 | elapsed=   73.4s | ETA=  807.5s
+    [slot 100] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=0, L4=0 | leaves at depth (base policy continues): 4
+    [slot 104] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=2, L4=1 | leaves at depth (base policy continues): 256
+    [slot 106] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1, L3=2, L4=0 | leaves at depth (base policy continues): 1,024
+    [slot 107] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2, L3=0, L4=2 | leaves at depth (base policy continues): 1,024
+    [slot 108] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0, L3=2, L4=0 | leaves at depth (base policy continues): 256
+    [slot 110] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0, L3=1, L4=1 | leaves at depth (base policy continues): 256
+    [slot 112] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=2, L4=2 | leaves at depth (base policy continues): 4,096
+    [slot 113] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2, L3=2, L4=2 | leaves at depth (base policy continues): 16,384
+    ... BFS level 4/4 | parents 57/1,024 (5.6%) | generated=920 | leaves=919 | best=34.4687 | level ETA=18s
+    ... BFS level 4/4 | parents 564/1,024 (55.1%) | generated=9,034 | leaves=9,033 | best=34.4687 | level ETA=5s
+    [slot 114] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=2, L3=2, L4=1 | leaves at depth (base policy continues): 16,384
+    ... BFS level 4/4 | parents 605/4,096 (14.8%) | generated=2,424 | leaves=2,423 | best=33.9328 | level ETA=7s
+    ... BFS level 4/4 | parents 3,084/4,096 (75.3%) | generated=12,338 | leaves=12,337 | best=33.9328 | level ETA=2s
+    [slot 115] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=2, L3=1, L4=2 | leaves at depth (base policy continues): 16,384
+    ... BFS level 4/4 | parents 359/1,024 (35.1%) | generated=5,756 | leaves=5,755 | best=33.6130 | level ETA=5s
+    ... BFS level 4/4 | parents 982/1,024 (95.9%) | generated=15,723 | leaves=15,722 | best=33.6130 | level ETA=0s
+    [slot 116] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1, L3=2, L4=1 | leaves at depth (base policy continues): 4,096
+    [slot 117] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2, L3=1, L4=0 | leaves at depth (base policy continues): 256
+    [slot 118] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1, L3=0, L4=0 | leaves at depth (base policy continues): 64
+    [slot 119] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=0, L4=3 | leaves at depth (base policy continues): 256
+    [slot 122] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=0, L3=0, L4=2 | leaves at depth (base policy continues): 1,024
+    [slot 125] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=2, L3=1, L4=1 | leaves at depth (base policy continues): 4,096
+    [slot 126] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1, L3=1, L4=3 | leaves at depth (base policy continues): 16,384
+    ... BFS level 4/4 | parents 8/256 (3.1%) | generated=566 | leaves=565 | best=29.1998 | level ETA=7s
+    ... BFS level 4/4 | parents 205/256 (80.1%) | generated=13,183 | leaves=13,182 | best=29.1998 | level ETA=1s
+    [slot 127] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=3, L4=0 | leaves at depth (base policy continues): 1,024
+    [slot 128] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=3, L3=0, L4=0 | leaves at depth (base policy continues): 256
+    [slot 129] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=0, L3=0, L4=0 | leaves at depth (base policy continues): 64
+    [slot 133] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=3, L3=1, L4=3 | leaves at depth (base policy continues): 65,536
+    ... BFS level 4/4 | parents 133/1,024 (13.0%) | generated=8,573 | leaves=8,572 | best=26.8074 | level ETA=21s
+    ... BFS level 4/4 | parents 349/1,024 (34.1%) | generated=22,398 | leaves=22,397 | best=26.7808 | level ETA=16s
+    ... BFS level 4/4 | parents 569/1,024 (55.6%) | generated=36,478 | leaves=36,477 | best=26.5461 | level ETA=11s
+    ... BFS level 4/4 | parents 787/1,024 (76.9%) | generated=50,423 | leaves=50,422 | best=26.5461 | level ETA=5s
+    ... BFS level 4/4 | parents 1,002/1,024 (97.9%) | generated=64,186 | leaves=64,185 | best=26.5461 | level ETA=1s
+    [slot 134] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=1, L3=3, L4=2 | leaves at depth (base policy continues): 262,144
+    ... BFS level 4/4 | parents 757/16,384 (4.6%) | generated=12,127 | leaves=12,126 | best=26.9443 | level ETA=90s
+    ... BFS level 4/4 | parents 1,610/16,384 (9.8%) | generated=25,770 | leaves=25,769 | best=26.4129 | level ETA=86s
+    ... BFS level 4/4 | parents 2,251/16,384 (13.7%) | generated=36,022 | leaves=36,021 | best=26.3766 | level ETA=90s
+    ... BFS level 4/4 | parents 3,094/16,384 (18.9%) | generated=49,516 | leaves=49,515 | best=26.3766 | level ETA=83s
+    ... BFS level 4/4 | parents 3,930/16,384 (24.0%) | generated=62,892 | leaves=62,891 | best=26.3766 | level ETA=77s
+    ... BFS level 4/4 | parents 4,784/16,384 (29.2%) | generated=76,559 | leaves=76,558 | best=26.3766 | level ETA=71s
+    ... BFS level 4/4 | parents 5,664/16,384 (34.6%) | generated=90,634 | leaves=90,633 | best=26.3766 | level ETA=65s
+    ... BFS level 4/4 | parents 6,534/16,384 (39.9%) | generated=104,552 | leaves=104,551 | best=26.1419 | level ETA=59s
+    ... BFS level 4/4 | parents 7,380/16,384 (45.0%) | generated=118,095 | leaves=118,094 | best=26.1419 | level ETA=54s
+    ... BFS level 4/4 | parents 8,211/16,384 (50.1%) | generated=131,386 | leaves=131,385 | best=26.1419 | level ETA=49s
+    ... BFS level 4/4 | parents 9,044/16,384 (55.2%) | generated=144,711 | leaves=144,710 | best=26.0563 | level ETA=44s
+    ... BFS level 4/4 | parents 9,872/16,384 (60.3%) | generated=157,966 | leaves=157,965 | best=26.0563 | level ETA=39s
+    ... BFS level 4/4 | parents 10,716/16,384 (65.4%) | generated=171,460 | leaves=171,459 | best=26.0563 | level ETA=34s
+    ... BFS level 4/4 | parents 11,577/16,384 (70.7%) | generated=185,235 | leaves=185,234 | best=26.0563 | level ETA=29s
+    ... BFS level 4/4 | parents 12,457/16,384 (76.0%) | generated=199,325 | leaves=199,324 | best=26.0335 | level ETA=23s
+    ... BFS level 4/4 | parents 13,315/16,384 (81.3%) | generated=213,043 | leaves=213,042 | best=26.0335 | level ETA=18s
+    ... BFS level 4/4 | parents 14,148/16,384 (86.4%) | generated=226,377 | leaves=226,376 | best=26.0335 | level ETA=13s
+    ... BFS level 4/4 | parents 15,019/16,384 (91.7%) | generated=240,310 | leaves=240,309 | best=26.0335 | level ETA=8s
+    ... BFS level 4/4 | parents 15,863/16,384 (96.8%) | generated=253,811 | leaves=253,810 | best=26.0335 | level ETA=3s
+    [slot 135] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=3, L3=2, L4=0 | leaves at depth (base policy continues): 4,096
+    [slot 136] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=2, L3=0, L4=0 | leaves at depth (base policy continues): 1,024
+    [slot 137] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0, L3=0, L4=0 | leaves at depth (base policy continues): 16
+    [slot 141] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1, L3=1, L4=3 | leaves at depth (base policy continues): 16,384
+    ... BFS level 4/4 | parents 3/256 (1.2%) | generated=218 | leaves=217 | best=23.4671 | level ETA=6s
+    ... BFS level 4/4 | parents 251/256 (98.0%) | generated=16,069 | leaves=16,068 | best=23.4671 | level ETA=0s
+    [slot 142] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=3, L4=2 | leaves at depth (base policy continues): 16,384
+    ... BFS level 4/4 | parents 980/1,024 (95.7%) | generated=15,695 | leaves=15,694 | best=22.9616 | level ETA=0s
+    [slot 143] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=3, L3=2, L4=0 | leaves at depth (base policy continues): 4,096
+    [slot 144] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=2, L3=0, L4=1 | leaves at depth (base policy continues): 4,096
+    [slot 145] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0, L3=1, L4=1 | leaves at depth (base policy continues): 256
+    [slot 147] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=0, L4=1 | leaves at depth (base policy continues): 64
+    [slot 148] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=1, L4=1 | leaves at depth (base policy continues): 64
+    [slot 150] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=1, L4=2 | leaves at depth (base policy continues): 1,024
+    [slot 151] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=2, L4=1 | leaves at depth (base policy continues): 1,024
+    [slot 152] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2, L3=1, L4=2 | leaves at depth (base policy continues): 4,096
+    [slot 153] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1, L3=2, L4=3 | leaves at depth (base policy continues): 65,536
+    ... BFS level 4/4 | parents 28/1,024 (2.7%) | generated=1,829 | leaves=1,828 | best=18.5110 | level ETA=17s
+    ... BFS level 4/4 | parents 325/1,024 (31.7%) | generated=20,818 | leaves=20,817 | best=18.4672 | level ETA=12s
+    ... BFS level 4/4 | parents 627/1,024 (61.2%) | generated=40,170 | leaves=40,169 | best=18.3556 | level ETA=7s
+    ... BFS level 4/4 | parents 927/1,024 (90.5%) | generated=59,373 | leaves=59,372 | best=18.3556 | level ETA=2s
+    [slot 154] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2, L3=3, L4=1 | leaves at depth (base policy continues): 16,384
+    ... BFS level 4/4 | parents 3,411/4,096 (83.3%) | generated=13,648 | leaves=13,647 | best=17.9305 | level ETA=1s
+    [slot 155] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=3, L3=1, L4=0 | leaves at depth (base policy continues): 4,096
+    [slot 156] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=1, L3=0, L4=1 | leaves at depth (base policy continues): 1,024
+    [slot 157] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=1, L4=1 | leaves at depth (base policy continues): 64
+    [slot 159] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=0, L4=3 | leaves at depth (base policy continues): 1,024
+    [slot 160] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=3, L4=0 | leaves at depth (base policy continues): 256
+    [slot 162] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=0, L3=1, L4=1 | leaves at depth (base policy continues): 1,024
+    [slot 164] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=1, L4=2 | leaves at depth (base policy continues): 1,024
+    [slot 165] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=2, L4=1 | leaves at depth (base policy continues): 1,024
+    [slot 166] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2, L3=1, L4=4 | leaves at depth (base policy continues): 65,536
+    ... BFS level 4/4 | parents 49/256 (19.1%) | generated=12,598 | leaves=12,597 | best=13.2014 | level ETA=9s
+    ... BFS level 4/4 | parents 161/256 (62.9%) | generated=41,225 | leaves=41,224 | best=13.1400 | level ETA=4s
+    [slot 167] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1, L3=4, L4=1 | leaves at depth (base policy continues): 65,536
+    ... BFS level 4/4 | parents 709/16,384 (4.3%) | generated=2,837 | leaves=2,836 | best=12.8963 | level ETA=11s
+    ... BFS level 4/4 | parents 7,783/16,384 (47.5%) | generated=31,134 | leaves=31,133 | best=12.6054 | level ETA=6s
+    ... BFS level 4/4 | parents 14,443/16,384 (88.2%) | generated=57,775 | leaves=57,774 | best=12.3916 | level ETA=1s
+    [slot 168] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=4, L3=1, L4=0 | leaves at depth (base policy continues): 4,096
+    [slot 169] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=4, L2=1, L3=0, L4=1 | leaves at depth (base policy continues): 4,096
+    [slot 170] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=1, L4=2 | leaves at depth (base policy continues): 256
+    [slot 172] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2, L3=1, L4=1 | leaves at depth (base policy continues): 1,024
+    [slot 173] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1, L3=1, L4=1 | leaves at depth (base policy continues): 1,024
+    [slot 174] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=1, L4=0 | leaves at depth (base policy continues): 64
+    [slot 175] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=0, L4=0 | leaves at depth (base policy continues): 16
+    [slot 176] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=0, L4=2 | leaves at depth (base policy continues): 64
+    [slot 179] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0, L3=3, L4=2 | leaves at depth (base policy continues): 16,384
+    [slot 181] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=2, L3=0, L4=0 | leaves at depth (base policy continues): 1,024
+    [slot 182] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0, L3=0, L4=0 | leaves at depth (base policy continues): 16
+    [slot 188] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=1, L3=1, L4=0 | leaves at depth (base policy continues): 1,024
+    [slot 189] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=0, L4=0 | leaves at depth (base policy continues): 16
+    [slot 190] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=0, L4=2 | leaves at depth (base policy continues): 64
+    [slot 193] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=2, L3=0, L4=3 | leaves at depth (base policy continues): 16,384
+    ... BFS level 4/4 | parents 127/256 (49.6%) | generated=8,152 | leaves=8,151 | best=3.4327 | level ETA=0s
+    [slot 194] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0, L3=3, L4=3 | leaves at depth (base policy continues): 65,536
+    [slot 196] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=3, L3=1, L4=0 | leaves at depth (base policy continues): 16,384
+    [slot 197] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=1, L3=0 | leaves at depth (base policy continues): 256
+    [slot 198] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0 | leaves at depth (base policy continues): 4
+[rollout-BFS d=4] slot 200/1200 ( 16.7%) | decisions=122 | leaves=880,664 | max_frontier=16,384 | elapsed=  305.4s | ETA= 1527.0s
+[rollout-BFS d=4] slot 300/1200 ( 25.0%) | decisions=122 | leaves=880,664 | max_frontier=16,384 | elapsed=  305.4s | ETA=  916.2s
+[rollout-BFS d=4] slot 400/1200 ( 33.3%) | decisions=122 | leaves=880,664 | max_frontier=16,384 | elapsed=  305.4s | ETA=  610.8s
+[rollout-BFS d=4] slot 500/1200 ( 41.7%) | decisions=122 | leaves=880,664 | max_frontier=16,384 | elapsed=  305.4s | ETA=  427.6s
+[rollout-BFS d=4] slot 600/1200 ( 50.0%) | decisions=122 | leaves=880,664 | max_frontier=16,384 | elapsed=  305.4s | ETA=  305.4s
+[rollout-BFS d=4] slot 700/1200 ( 58.3%) | decisions=122 | leaves=880,664 | max_frontier=16,384 | elapsed=  305.4s | ETA=  218.1s
+[rollout-BFS d=4] slot 800/1200 ( 66.7%) | decisions=122 | leaves=880,664 | max_frontier=16,384 | elapsed=  305.4s | ETA=  152.7s
+[rollout-BFS d=4] slot 900/1200 ( 75.0%) | decisions=122 | leaves=880,664 | max_frontier=16,384 | elapsed=  305.4s | ETA=  101.8s
+[rollout-BFS d=4] slot 1000/1200 ( 83.3%) | decisions=122 | leaves=880,664 | max_frontier=16,384 | elapsed=  305.4s | ETA=   61.1s
+[rollout-BFS d=4] slot 1100/1200 ( 91.7%) | decisions=122 | leaves=880,664 | max_frontier=16,384 | elapsed=  305.4s | ETA=   27.8s
+[rollout-BFS d=4] slot 1200/1200 (100.0%) | decisions=122 | leaves=880,664 | max_frontier=16,384 | elapsed=  305.4s | ETA=    0.0s
+
+=======================================================
+Algorithm: exact slot-level rollout BFS (depth=4, then base policy greedy_context_schedule for k=None)
+Base policy: greedy_context_schedule
+Completed tasks: 195
+Average transmission+connection delay: 0.0997 s
+Average queue delay: 0.0788 s
+Average processing delay: 0.1002 s
+Average total delay: 0.2787 s
+Server changes: 72
+Scheduling time: 305.39 s
+Decisions (slots): 122 | avg nodes: 8,291 | avg leaves: 7,219
+Max estimated leaves: 262,144 | decisions with reduced depth: 0
+Max BFS frontier size: 16,384
+Avg time/decision: 2503.2 ms
+
+BFS per-level summary (averaged over decisions):
+level |      generated | kept (frontier) |  time(ms)
+    0 |           18.0 |            18.0 |      0.14
+    1 |          157.8 |           157.8 |      1.08
+    2 |          906.6 |           904.5 |      7.13
+    3 |        7,336.7 |             0.0 |   2535.90
+=======================================================
+
+>>> Starting exact slot-level rollout (BFS): depth=5, k=None, base_policy=greedy_context_schedule, adaptive_limit=None
+    [slot 1] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=2, L3=0, L4=3, L5=0 | leaves at depth (base policy continues): 16,384
+    ... BFS level 5/5 | parents 4,637/16,384 (28.3%) | generated=4,638 | leaves=4,637 | best=57.9737 | level ETA=12s
+    ... BFS level 5/5 | parents 9,087/16,384 (55.5%) | generated=9,088 | leaves=9,087 | best=57.9399 | level ETA=8s
+    ... BFS level 5/5 | parents 13,885/16,384 (84.7%) | generated=13,886 | leaves=13,885 | best=57.9399 | level ETA=3s
+    [slot 2] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0, L3=3, L4=0, L5=0 | leaves at depth (base policy continues): 1,024
+    [slot 4] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=0, L3=0, L4=0, L5=2 | leaves at depth (base policy continues): 1,024
+    [slot 8] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0, L3=0, L4=1, L5=0 | leaves at depth (base policy continues): 64
+    [slot 11] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=0, L4=1, L5=0 | leaves at depth (base policy continues): 16
+    [slot 14] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=3, L4=1, L5=0 | leaves at depth (base policy continues): 1,024
+    ... BFS level 5/5 | parents 264/1,024 (25.8%) | generated=265 | leaves=264 | best=55.0656 | level ETA=1s
+    [slot 16] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=1, L3=0, L4=0, L5=0 | leaves at depth (base policy continues): 256
+    [slot 17] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=0, L4=0, L5=2 | leaves at depth (base policy continues): 64
+    [slot 21] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=2, L3=0, L4=0, L5=2 | leaves at depth (base policy continues): 4,096
+    [slot 22] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0, L3=0, L4=2, L5=0 | leaves at depth (base policy continues): 256
+    [slot 25] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0, L3=0, L4=1, L5=1 | leaves at depth (base policy continues): 256
+    ... BFS level 5/5 | parents 36/64 (56.2%) | generated=148 | leaves=147 | best=52.8948 | level ETA=0s
+    [slot 28] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=1, L4=1, L5=3 | leaves at depth (base policy continues): 16,384
+    ... BFS level 5/5 | parents 89/256 (34.8%) | generated=5,708 | leaves=5,707 | best=52.6867 | level ETA=9s
+    ... BFS level 5/5 | parents 174/256 (68.0%) | generated=11,174 | leaves=11,173 | best=52.6867 | level ETA=5s
+    [slot 29] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=1, L4=3, L5=0 | leaves at depth (base policy continues): 4,096
+    ... BFS level 5/5 | parents 476/4,096 (11.6%) | generated=477 | leaves=476 | best=52.4278 | level ETA=3s
+    [slot 30] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=3, L4=0, L5=1 | leaves at depth (base policy continues): 4,096
+    ... BFS level 5/5 | parents 525/1,024 (51.3%) | generated=2,104 | leaves=2,103 | best=52.4278 | level ETA=2s
+    [slot 31] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=3, L3=0, L4=1, L5=1 | leaves at depth (base policy continues): 4,096
+    ... BFS level 5/5 | parents 974/1,024 (95.1%) | generated=3,900 | leaves=3,899 | best=51.7727 | level ETA=0s
+    [slot 32] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=0, L3=1, L4=1, L5=1 | leaves at depth (base policy continues): 4,096
+    [slot 34] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=1, L4=1, L5=2 | leaves at depth (base policy continues): 4,096
+    ... BFS level 5/5 | parents 102/256 (39.8%) | generated=1,646 | leaves=1,645 | best=51.3034 | level ETA=2s
+    [slot 35] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=1, L4=2, L5=1 | leaves at depth (base policy continues): 4,096
+    ... BFS level 5/5 | parents 900/1,024 (87.9%) | generated=3,602 | leaves=3,601 | best=51.1072 | level ETA=0s
+    [slot 36] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=2, L4=1, L5=2 | leaves at depth (base policy continues): 16,384
+    ... BFS level 5/5 | parents 328/1,024 (32.0%) | generated=5,259 | leaves=5,258 | best=50.8436 | level ETA=10s
+    ... BFS level 5/5 | parents 708/1,024 (69.1%) | generated=11,330 | leaves=11,329 | best=50.8436 | level ETA=4s
+    [slot 37] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2, L3=1, L4=2, L5=0 | leaves at depth (base policy continues): 4,096
+    ... BFS level 5/5 | parents 760/4,096 (18.6%) | generated=761 | leaves=760 | best=50.8436 | level ETA=3s
+    [slot 38] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1, L3=2, L4=0, L5=1 | leaves at depth (base policy continues): 4,096
+    ... BFS level 5/5 | parents 608/1,024 (59.4%) | generated=2,435 | leaves=2,434 | best=50.3175 | level ETA=1s
+    [slot 39] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2, L3=0, L4=1, L5=0 | leaves at depth (base policy continues): 256
+    [slot 40] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0, L3=1, L4=0, L5=1 | leaves at depth (base policy continues): 256
+    [slot 42] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=1, L4=2, L5=1 | leaves at depth (base policy continues): 1,024
+    [slot 44] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2, L3=1, L4=0, L5=0 | leaves at depth (base policy continues): 256
+    [slot 45] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1, L3=0, L4=0, L5=0 | leaves at depth (base policy continues): 64
+    [slot 46] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=0, L4=0, L5=2 | leaves at depth (base policy continues): 64
+    [slot 50] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=3, L3=1, L4=1, L5=1 | leaves at depth (base policy continues): 65,536
+    ... BFS level 5/5 | parents 601/16,384 (3.7%) | generated=2,407 | leaves=2,406 | best=46.1093 | level ETA=50s
+    ... BFS level 5/5 | parents 2,189/16,384 (13.4%) | generated=8,760 | leaves=8,759 | best=46.1093 | level ETA=45s
+    ... BFS level 5/5 | parents 3,756/16,384 (22.9%) | generated=15,028 | leaves=15,027 | best=46.1093 | level ETA=40s
+    ... BFS level 5/5 | parents 5,444/16,384 (33.2%) | generated=21,778 | leaves=21,777 | best=46.1093 | level ETA=34s
+    ... BFS level 5/5 | parents 7,029/16,384 (42.9%) | generated=28,120 | leaves=28,119 | best=46.1093 | level ETA=29s
+    ... BFS level 5/5 | parents 8,562/16,384 (52.3%) | generated=34,249 | leaves=34,248 | best=46.1093 | level ETA=25s
+    ... BFS level 5/5 | parents 10,131/16,384 (61.8%) | generated=40,528 | leaves=40,527 | best=46.1093 | level ETA=20s
+    ... BFS level 5/5 | parents 11,638/16,384 (71.0%) | generated=46,554 | leaves=46,553 | best=46.1093 | level ETA=15s
+    ... BFS level 5/5 | parents 13,194/16,384 (80.5%) | generated=52,778 | leaves=52,777 | best=46.1093 | level ETA=10s
+    ... BFS level 5/5 | parents 14,714/16,384 (89.8%) | generated=58,860 | leaves=58,859 | best=46.1093 | level ETA=5s
+    ... BFS level 5/5 | parents 16,255/16,384 (99.2%) | generated=65,021 | leaves=65,020 | best=46.1093 | level ETA=0s
+    [slot 51] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=1, L3=1, L4=1, L5=0 | leaves at depth (base policy continues): 4,096
+    [slot 52] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=1, L4=0, L5=1 | leaves at depth (base policy continues): 256
+    [slot 53] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=0, L4=1, L5=2 | leaves at depth (base policy continues): 1,024
+    [slot 54] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=1, L4=2, L5=1 | leaves at depth (base policy continues): 1,024
+    ... BFS level 5/5 | parents 4/256 (1.6%) | generated=18 | leaves=17 | best=45.6317 | level ETA=1s
+    [slot 56] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2, L3=1, L4=1, L5=0 | leaves at depth (base policy continues): 1,024
+    [slot 57] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1, L3=1, L4=0, L5=0 | leaves at depth (base policy continues): 256
+    [slot 58] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=0, L4=0, L5=1 | leaves at depth (base policy continues): 64
+    [slot 59] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=0, L4=1, L5=3 | leaves at depth (base policy continues): 1,024
+    [slot 62] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=3, L3=1, L4=0, L5=1 | leaves at depth (base policy continues): 4,096
+    ... BFS level 5/5 | parents 639/1,024 (62.4%) | generated=2,560 | leaves=2,559 | best=43.0973 | level ETA=1s
+    [slot 63] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=1, L3=0, L4=1, L5=0 | leaves at depth (base policy continues): 1,024
+    [slot 64] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=1, L4=0, L5=1 | leaves at depth (base policy continues): 64
+    [slot 66] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=1, L4=0, L5=0 | leaves at depth (base policy continues): 16
+    [slot 68] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=0, L4=1, L5=3 | leaves at depth (base policy continues): 1,024
+    [slot 71] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=3, L3=0, L4=1, L5=0 | leaves at depth (base policy continues): 1,024
+    [slot 72] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=0, L3=1, L4=0, L5=0 | leaves at depth (base policy continues): 256
+    [slot 74] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=0, L4=0, L5=2 | leaves at depth (base policy continues): 64
+    [slot 78] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=2, L3=0, L4=2, L5=1 | leaves at depth (base policy continues): 16,384
+    ... BFS level 5/5 | parents 451/4,096 (11.0%) | generated=1,808 | leaves=1,807 | best=39.6252 | level ETA=10s
+    ... BFS level 5/5 | parents 2,258/4,096 (55.1%) | generated=9,035 | leaves=9,034 | best=39.6252 | level ETA=5s
+    ... BFS level 5/5 | parents 4,051/4,096 (98.9%) | generated=16,207 | leaves=16,206 | best=39.6252 | level ETA=0s
+    [slot 79] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0, L3=2, L4=1, L5=0 | leaves at depth (base policy continues): 1,024
+    [slot 81] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1, L3=0, L4=0, L5=0 | leaves at depth (base policy continues): 64
+    [slot 82] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=0, L4=0, L5=1 | leaves at depth (base policy continues): 16
+    [slot 86] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=1, L4=0, L5=1 | leaves at depth (base policy continues): 256
+    [slot 87] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=0, L4=1, L5=0 | leaves at depth (base policy continues): 64
+    [slot 88] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=1, L4=0, L5=1 | leaves at depth (base policy continues): 64
+    [slot 90] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=1, L4=0, L5=2 | leaves at depth (base policy continues): 256
+    [slot 92] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=2, L4=1, L5=0 | leaves at depth (base policy continues): 256
+    [slot 94] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1, L3=0, L4=0, L5=2 | leaves at depth (base policy continues): 1,024
+    [slot 95] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=0, L4=2, L5=0 | leaves at depth (base policy continues): 64
+    [slot 98] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0, L3=1, L4=0, L5=0 | leaves at depth (base policy continues): 64
+[rollout-BFS d=5] slot 100/1200 (  8.3%) | decisions=56 | leaves=193,328 | max_frontier=16,384 | elapsed=  162.3s | ETA= 1785.2s
+    [slot 100] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=0, L4=0, L5=1 | leaves at depth (base policy continues): 16
+    [slot 104] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=2, L4=1, L5=2 | leaves at depth (base policy continues): 4,096
+    [slot 106] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1, L3=2, L4=0, L5=2 | leaves at depth (base policy continues): 16,384
+    ... BFS level 5/5 | parents 253/1,024 (24.7%) | generated=4,059 | leaves=4,058 | best=35.6867 | level ETA=8s
+    ... BFS level 5/5 | parents 801/1,024 (78.2%) | generated=12,820 | leaves=12,819 | best=35.6867 | level ETA=2s
+    [slot 107] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2, L3=0, L4=2, L5=0 | leaves at depth (base policy continues): 1,024
+    [slot 108] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0, L3=2, L4=0, L5=1 | leaves at depth (base policy continues): 1,024
+    [slot 110] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0, L3=1, L4=1, L5=2 | leaves at depth (base policy continues): 4,096
+    ... BFS level 5/5 | parents 222/256 (86.7%) | generated=3,568 | leaves=3,567 | best=35.5348 | level ETA=0s
+    [slot 112] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=2, L4=2, L5=2 | leaves at depth (base policy continues): 65,536
+    ... BFS level 5/5 | parents 578/4,096 (14.1%) | generated=9,262 | leaves=9,261 | best=35.0131 | level ETA=29s
+    ... BFS level 5/5 | parents 1,174/4,096 (28.7%) | generated=18,789 | leaves=18,788 | best=35.0131 | level ETA=24s
+    ... BFS level 5/5 | parents 1,752/4,096 (42.8%) | generated=28,040 | leaves=28,039 | best=35.0131 | level ETA=20s
+    ... BFS level 5/5 | parents 2,375/4,096 (58.0%) | generated=38,013 | leaves=38,012 | best=35.0131 | level ETA=14s
+    ... BFS level 5/5 | parents 3,012/4,096 (73.5%) | generated=48,195 | leaves=48,194 | best=35.0131 | level ETA=9s
+    ... BFS level 5/5 | parents 3,663/4,096 (89.4%) | generated=58,623 | leaves=58,622 | best=35.0131 | level ETA=4s
+    [slot 113] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2, L3=2, L4=2, L5=1 | leaves at depth (base policy continues): 65,536
+    ... BFS level 5/5 | parents 773/16,384 (4.7%) | generated=3,095 | leaves=3,094 | best=34.4687 | level ETA=31s
+    ... BFS level 5/5 | parents 3,255/16,384 (19.9%) | generated=13,021 | leaves=13,020 | best=34.4687 | level ETA=26s
+    ... BFS level 5/5 | parents 5,755/16,384 (35.1%) | generated=23,024 | leaves=23,023 | best=34.4687 | level ETA=21s
+    ... BFS level 5/5 | parents 8,222/16,384 (50.2%) | generated=32,891 | leaves=32,890 | best=34.4687 | level ETA=16s
+    ... BFS level 5/5 | parents 10,694/16,384 (65.3%) | generated=42,777 | leaves=42,776 | best=34.4687 | level ETA=11s
+    ... BFS level 5/5 | parents 13,159/16,384 (80.3%) | generated=52,640 | leaves=52,639 | best=34.4687 | level ETA=7s
+    ... BFS level 5/5 | parents 15,672/16,384 (95.7%) | generated=62,691 | leaves=62,690 | best=34.4687 | level ETA=1s
+    [slot 114] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=2, L3=2, L4=1, L5=2 | leaves at depth (base policy continues): 262,144
+    ... BFS level 5/5 | parents 418/16,384 (2.6%) | generated=6,694 | leaves=6,693 | best=33.9328 | level ETA=128s
+    ... BFS level 5/5 | parents 1,045/16,384 (6.4%) | generated=16,736 | leaves=16,735 | best=33.9328 | level ETA=123s
+    ... BFS level 5/5 | parents 1,645/16,384 (10.0%) | generated=26,322 | leaves=26,321 | best=33.9328 | level ETA=120s
+    ... BFS level 5/5 | parents 2,291/16,384 (14.0%) | generated=36,665 | leaves=36,664 | best=33.9328 | level ETA=113s
+    ... BFS level 5/5 | parents 2,953/16,384 (18.0%) | generated=47,257 | leaves=47,256 | best=33.9328 | level ETA=106s
+    ... BFS level 5/5 | parents 3,526/16,384 (21.5%) | generated=56,424 | leaves=56,423 | best=33.9328 | level ETA=103s
+    ... BFS level 5/5 | parents 4,128/16,384 (25.2%) | generated=66,064 | leaves=66,063 | best=33.9328 | level ETA=99s
+    ... BFS level 5/5 | parents 4,736/16,384 (28.9%) | generated=75,777 | leaves=75,776 | best=33.9328 | level ETA=94s
+    ... BFS level 5/5 | parents 5,370/16,384 (32.8%) | generated=85,933 | leaves=85,932 | best=33.9328 | level ETA=89s
+    ... BFS level 5/5 | parents 6,028/16,384 (36.8%) | generated=96,452 | leaves=96,451 | best=33.9328 | level ETA=83s
+    ... BFS level 5/5 | parents 6,683/16,384 (40.8%) | generated=106,934 | leaves=106,933 | best=33.9328 | level ETA=77s
+    ... BFS level 5/5 | parents 7,321/16,384 (44.7%) | generated=117,152 | leaves=117,151 | best=33.9328 | level ETA=72s
+    ... BFS level 5/5 | parents 7,974/16,384 (48.7%) | generated=127,587 | leaves=127,586 | best=33.9328 | level ETA=67s
+    ... BFS level 5/5 | parents 8,587/16,384 (52.4%) | generated=137,399 | leaves=137,398 | best=33.9328 | level ETA=62s
+    ... BFS level 5/5 | parents 9,194/16,384 (56.1%) | generated=147,116 | leaves=147,115 | best=33.9328 | level ETA=57s
+    ... BFS level 5/5 | parents 9,788/16,384 (59.7%) | generated=156,622 | leaves=156,621 | best=33.9328 | level ETA=53s
+    ... BFS level 5/5 | parents 10,385/16,384 (63.4%) | generated=166,173 | leaves=166,172 | best=33.9328 | level ETA=48s
+    ... BFS level 5/5 | parents 10,997/16,384 (67.1%) | generated=175,956 | leaves=175,955 | best=33.9328 | level ETA=43s
+    ... BFS level 5/5 | parents 11,626/16,384 (71.0%) | generated=186,030 | leaves=186,029 | best=33.9328 | level ETA=38s
+    ... BFS level 5/5 | parents 12,242/16,384 (74.7%) | generated=195,880 | leaves=195,879 | best=33.9328 | level ETA=33s
+    ... BFS level 5/5 | parents 12,867/16,384 (78.5%) | generated=205,880 | leaves=205,879 | best=33.8172 | level ETA=28s
+    ... BFS level 5/5 | parents 13,496/16,384 (82.4%) | generated=215,940 | leaves=215,939 | best=33.8172 | level ETA=23s
+    ... BFS level 5/5 | parents 14,131/16,384 (86.2%) | generated=226,108 | leaves=226,107 | best=33.8172 | level ETA=18s
+    ... BFS level 5/5 | parents 14,792/16,384 (90.3%) | generated=236,673 | leaves=236,672 | best=33.8172 | level ETA=13s
+    ... BFS level 5/5 | parents 15,430/16,384 (94.2%) | generated=246,889 | leaves=246,888 | best=33.8172 | level ETA=8s
+    ... BFS level 5/5 | parents 16,092/16,384 (98.2%) | generated=257,483 | leaves=257,482 | best=33.8172 | level ETA=2s
+    [slot 115] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=2, L3=1, L4=2, L5=1 | leaves at depth (base policy continues): 65,536
+    ... BFS level 5/5 | parents 1,397/16,384 (8.5%) | generated=5,589 | leaves=5,588 | best=33.4975 | level ETA=28s
+    ... BFS level 5/5 | parents 3,985/16,384 (24.3%) | generated=15,943 | leaves=15,942 | best=33.4975 | level ETA=24s
+    ... BFS level 5/5 | parents 6,694/16,384 (40.9%) | generated=26,779 | leaves=26,778 | best=33.4975 | level ETA=18s
+    ... BFS level 5/5 | parents 9,465/16,384 (57.8%) | generated=37,862 | leaves=37,861 | best=33.4975 | level ETA=13s
+    ... BFS level 5/5 | parents 12,177/16,384 (74.3%) | generated=48,711 | leaves=48,710 | best=33.4975 | level ETA=8s
+    ... BFS level 5/5 | parents 14,910/16,384 (91.0%) | generated=59,644 | leaves=59,643 | best=33.4975 | level ETA=3s
+    [slot 116] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1, L3=2, L4=1, L5=0 | leaves at depth (base policy continues): 4,096
+    [slot 117] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2, L3=1, L4=0, L5=0 | leaves at depth (base policy continues): 256
+    ... BFS level 5/5 | parents 231/256 (90.2%) | generated=232 | leaves=231 | best=33.4975 | level ETA=0s
+    [slot 118] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1, L3=0, L4=0, L5=3 | leaves at depth (base policy continues): 4,096
+    [slot 119] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=0, L4=3, L5=0 | leaves at depth (base policy continues): 256
+    [slot 122] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=0, L3=0, L4=2, L5=2 | leaves at depth (base policy continues): 16,384
+    ... BFS level 5/5 | parents 413/1,024 (40.3%) | generated=6,622 | leaves=6,621 | best=31.5984 | level ETA=4s
+    [slot 125] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=2, L3=1, L4=1, L5=3 | leaves at depth (base policy continues): 262,144
+    ... BFS level 5/5 | parents 26/4,096 (0.6%) | generated=1,715 | leaves=1,714 | best=29.8416 | level ETA=107s
+    ... BFS level 5/5 | parents 216/4,096 (5.3%) | generated=13,855 | leaves=13,854 | best=29.8416 | level ETA=102s
+    ... BFS level 5/5 | parents 409/4,096 (10.0%) | generated=26,231 | leaves=26,230 | best=29.8416 | level ETA=96s
+    ... BFS level 5/5 | parents 595/4,096 (14.5%) | generated=38,135 | leaves=38,134 | best=29.8416 | level ETA=92s
+    ... BFS level 5/5 | parents 785/4,096 (19.2%) | generated=50,304 | leaves=50,303 | best=29.8416 | level ETA=87s
+    ... BFS level 5/5 | parents 972/4,096 (23.7%) | generated=62,232 | leaves=62,231 | best=29.8416 | level ETA=83s
+    ... BFS level 5/5 | parents 1,158/4,096 (28.3%) | generated=74,132 | leaves=74,131 | best=29.8416 | level ETA=78s
+    ... BFS level 5/5 | parents 1,335/4,096 (32.6%) | generated=85,498 | leaves=85,497 | best=29.8416 | level ETA=74s
+    ... BFS level 5/5 | parents 1,516/4,096 (37.0%) | generated=97,025 | leaves=97,024 | best=29.2971 | level ETA=69s
+    ... BFS level 5/5 | parents 1,705/4,096 (41.6%) | generated=109,159 | leaves=109,158 | best=29.2971 | level ETA=64s
+    ... BFS level 5/5 | parents 1,891/4,096 (46.2%) | generated=121,060 | leaves=121,059 | best=29.2971 | level ETA=59s
+    ... BFS level 5/5 | parents 2,089/4,096 (51.0%) | generated=133,714 | leaves=133,713 | best=29.2971 | level ETA=54s
+    ... BFS level 5/5 | parents 2,281/4,096 (55.7%) | generated=145,997 | leaves=145,996 | best=29.2971 | level ETA=48s
+    ... BFS level 5/5 | parents 2,470/4,096 (60.3%) | generated=158,100 | leaves=158,099 | best=29.2971 | level ETA=43s
+    ... BFS level 5/5 | parents 2,668/4,096 (65.1%) | generated=170,753 | leaves=170,752 | best=29.2971 | level ETA=38s
+    ... BFS level 5/5 | parents 2,858/4,096 (69.8%) | generated=182,936 | leaves=182,935 | best=29.2971 | level ETA=33s
+    ... BFS level 5/5 | parents 3,044/4,096 (74.3%) | generated=194,833 | leaves=194,832 | best=29.2971 | level ETA=28s
+    ... BFS level 5/5 | parents 3,237/4,096 (79.0%) | generated=207,183 | leaves=207,182 | best=29.2971 | level ETA=23s
+    ... BFS level 5/5 | parents 3,430/4,096 (83.7%) | generated=219,522 | leaves=219,521 | best=29.2971 | level ETA=18s
+    ... BFS level 5/5 | parents 3,623/4,096 (88.5%) | generated=231,913 | leaves=231,912 | best=29.2971 | level ETA=12s
+    ... BFS level 5/5 | parents 3,815/4,096 (93.1%) | generated=244,172 | leaves=244,171 | best=29.2971 | level ETA=7s
+    ... BFS level 5/5 | parents 4,008/4,096 (97.9%) | generated=256,555 | leaves=256,554 | best=29.2971 | level ETA=2s
+    [slot 126] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1, L3=1, L4=3, L5=0 | leaves at depth (base policy continues): 16,384
+    ... BFS level 5/5 | parents 6,817/16,384 (41.6%) | generated=6,818 | leaves=6,817 | best=29.9054 | level ETA=4s
+    [slot 127] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=3, L4=0, L5=0 | leaves at depth (base policy continues): 1,024
+    [slot 128] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=3, L3=0, L4=0, L5=0 | leaves at depth (base policy continues): 256
+    [slot 129] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=0, L3=0, L4=0, L5=1 | leaves at depth (base policy continues): 256
+    [slot 133] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=3, L3=1, L4=3, L5=2 | leaves at depth (base policy continues): 1,048,576
+    ... BFS level 4/5 | parents 792/1,024 (77.3%) | generated=50,722 | leaves=0 | best=inf | level ETA=0s
+    ... BFS level 5/5 | parents 837/65,536 (1.3%) | generated=13,399 | leaves=13,398 | best=26.7601 | level ETA=373s
+    ... BFS level 5/5 | parents 1,700/65,536 (2.6%) | generated=27,214 | leaves=27,213 | best=26.7601 | level ETA=369s
+    ... BFS level 5/5 | parents 2,582/65,536 (3.9%) | generated=41,328 | leaves=41,327 | best=26.4268 | level ETA=361s
+    ... BFS level 5/5 | parents 3,463/65,536 (5.3%) | generated=55,411 | leaves=55,410 | best=26.4268 | level ETA=355s
+    ... BFS level 5/5 | parents 4,318/65,536 (6.6%) | generated=69,099 | leaves=69,098 | best=26.4268 | level ETA=352s
+    ... BFS level 5/5 | parents 5,128/65,536 (7.8%) | generated=82,060 | leaves=82,059 | best=26.4268 | level ETA=351s
+    ... BFS level 5/5 | parents 6,005/65,536 (9.2%) | generated=96,091 | leaves=96,090 | best=26.3321 | level ETA=345s
+    ... BFS level 5/5 | parents 6,870/65,536 (10.5%) | generated=109,934 | leaves=109,933 | best=26.3321 | level ETA=340s
+    ... BFS level 5/5 | parents 7,728/65,536 (11.8%) | generated=123,650 | leaves=123,649 | best=26.3321 | level ETA=335s
+    ... BFS level 5/5 | parents 8,598/65,536 (13.1%) | generated=137,581 | leaves=137,580 | best=26.1051 | level ETA=330s
+    ... BFS level 5/5 | parents 9,447/65,536 (14.4%) | generated=151,158 | leaves=151,157 | best=26.1051 | level ETA=325s
+    ... BFS level 5/5 | parents 10,326/65,536 (15.8%) | generated=165,232 | leaves=165,231 | best=26.1051 | level ETA=320s
+    ... BFS level 5/5 | parents 11,183/65,536 (17.1%) | generated=178,931 | leaves=178,930 | best=26.1051 | level ETA=315s
+    ... BFS level 5/5 | parents 12,033/65,536 (18.4%) | generated=192,540 | leaves=192,539 | best=26.1051 | level ETA=310s
+    ... BFS level 5/5 | parents 12,882/65,536 (19.7%) | generated=206,123 | leaves=206,122 | best=26.1051 | level ETA=306s
+    ... BFS level 5/5 | parents 13,742/65,536 (21.0%) | generated=219,888 | leaves=219,887 | best=25.4655 | level ETA=301s
+    ... BFS level 5/5 | parents 14,619/65,536 (22.3%) | generated=233,915 | leaves=233,914 | best=25.4655 | level ETA=295s
+    ... BFS level 5/5 | parents 15,482/65,536 (23.6%) | generated=247,721 | leaves=247,720 | best=25.4655 | level ETA=290s
+    ... BFS level 5/5 | parents 16,377/65,536 (25.0%) | generated=262,046 | leaves=262,045 | best=25.4655 | level ETA=285s
+    ... BFS level 5/5 | parents 17,245/65,536 (26.3%) | generated=275,925 | leaves=275,924 | best=25.4655 | level ETA=280s
+    ... BFS level 5/5 | parents 18,120/65,536 (27.6%) | generated=289,924 | leaves=289,923 | best=25.4655 | level ETA=274s
+    ... BFS level 5/5 | parents 18,979/65,536 (29.0%) | generated=303,669 | leaves=303,668 | best=25.4655 | level ETA=269s
+    ... BFS level 5/5 | parents 19,825/65,536 (30.3%) | generated=317,210 | leaves=317,209 | best=25.4655 | level ETA=265s
+    ... BFS level 5/5 | parents 20,673/65,536 (31.5%) | generated=330,773 | leaves=330,772 | best=25.4655 | level ETA=260s
+    ... BFS level 5/5 | parents 21,570/65,536 (32.9%) | generated=345,134 | leaves=345,133 | best=25.4655 | level ETA=254s
+    ... BFS level 5/5 | parents 22,460/65,536 (34.3%) | generated=359,370 | leaves=359,369 | best=25.4655 | level ETA=249s
+    ... BFS level 5/5 | parents 23,326/65,536 (35.6%) | generated=373,225 | leaves=373,224 | best=25.4655 | level ETA=244s
+    ... BFS level 5/5 | parents 24,214/65,536 (36.9%) | generated=387,431 | leaves=387,430 | best=25.4655 | level ETA=239s
+    ... BFS level 5/5 | parents 25,103/65,536 (38.3%) | generated=401,662 | leaves=401,661 | best=25.4655 | level ETA=233s
+    ... BFS level 5/5 | parents 25,975/65,536 (39.6%) | generated=415,614 | leaves=415,613 | best=25.4655 | level ETA=228s
+    ... BFS level 5/5 | parents 26,860/65,536 (41.0%) | generated=429,762 | leaves=429,761 | best=25.4655 | level ETA=223s
+    ... BFS level 5/5 | parents 27,737/65,536 (42.3%) | generated=443,802 | leaves=443,801 | best=25.4655 | level ETA=218s
+    ... BFS level 5/5 | parents 28,616/65,536 (43.7%) | generated=457,860 | leaves=457,859 | best=25.4655 | level ETA=213s
+    ... BFS level 5/5 | parents 29,481/65,536 (45.0%) | generated=471,699 | leaves=471,698 | best=25.4655 | level ETA=208s
+    ... BFS level 5/5 | parents 30,356/65,536 (46.3%) | generated=485,710 | leaves=485,709 | best=25.4655 | level ETA=203s
+    ... BFS level 5/5 | parents 31,230/65,536 (47.7%) | generated=499,688 | leaves=499,687 | best=25.4655 | level ETA=198s
+    ... BFS level 5/5 | parents 32,081/65,536 (49.0%) | generated=513,311 | leaves=513,310 | best=25.4655 | level ETA=193s
+    ... BFS level 5/5 | parents 32,962/65,536 (50.3%) | generated=527,400 | leaves=527,399 | best=25.4655 | level ETA=188s
+    ... BFS level 5/5 | parents 33,835/65,536 (51.6%) | generated=541,369 | leaves=541,368 | best=25.4655 | level ETA=183s
+    ... BFS level 5/5 | parents 34,691/65,536 (52.9%) | generated=555,068 | leaves=555,067 | best=25.4655 | level ETA=178s
+    ... BFS level 5/5 | parents 35,571/65,536 (54.3%) | generated=569,137 | leaves=569,136 | best=25.4655 | level ETA=173s
+    ... BFS level 5/5 | parents 36,459/65,536 (55.6%) | generated=583,353 | leaves=583,352 | best=25.4655 | level ETA=167s
+    ... BFS level 5/5 | parents 37,344/65,536 (57.0%) | generated=597,515 | leaves=597,514 | best=25.4655 | level ETA=162s
+    ... BFS level 5/5 | parents 38,246/65,536 (58.4%) | generated=611,943 | leaves=611,942 | best=25.4655 | level ETA=157s
+    ... BFS level 5/5 | parents 39,140/65,536 (59.7%) | generated=626,254 | leaves=626,253 | best=25.4655 | level ETA=152s
+    ... BFS level 5/5 | parents 40,026/65,536 (61.1%) | generated=640,425 | leaves=640,424 | best=25.4655 | level ETA=146s
+    ... BFS level 5/5 | parents 40,898/65,536 (62.4%) | generated=654,376 | leaves=654,375 | best=25.4655 | level ETA=141s
+    ... BFS level 5/5 | parents 41,791/65,536 (63.8%) | generated=668,671 | leaves=668,670 | best=25.4655 | level ETA=136s
+    ... BFS level 5/5 | parents 42,658/65,536 (65.1%) | generated=682,534 | leaves=682,533 | best=25.4655 | level ETA=131s
+    ... BFS level 5/5 | parents 43,514/65,536 (66.4%) | generated=696,240 | leaves=696,239 | best=25.4655 | level ETA=126s
+    ... BFS level 5/5 | parents 44,388/65,536 (67.7%) | generated=710,223 | leaves=710,222 | best=25.4655 | level ETA=121s
+    ... BFS level 5/5 | parents 45,301/65,536 (69.1%) | generated=724,826 | leaves=724,825 | best=25.4655 | level ETA=116s
+    ... BFS level 5/5 | parents 46,173/65,536 (70.5%) | generated=738,777 | leaves=738,776 | best=25.4655 | level ETA=111s
+    ... BFS level 5/5 | parents 47,079/65,536 (71.8%) | generated=753,272 | leaves=753,271 | best=25.4655 | level ETA=106s
+    ... BFS level 5/5 | parents 47,949/65,536 (73.2%) | generated=767,186 | leaves=767,185 | best=25.4655 | level ETA=101s
+    ... BFS level 5/5 | parents 48,858/65,536 (74.6%) | generated=781,736 | leaves=781,735 | best=25.4655 | level ETA=96s
+    ... BFS level 5/5 | parents 49,753/65,536 (75.9%) | generated=796,056 | leaves=796,055 | best=25.4655 | level ETA=90s
+    ... BFS level 5/5 | parents 50,665/65,536 (77.3%) | generated=810,650 | leaves=810,649 | best=25.4655 | level ETA=85s
+    ... BFS level 5/5 | parents 51,567/65,536 (78.7%) | generated=825,087 | leaves=825,086 | best=25.4655 | level ETA=80s
+    ... BFS level 5/5 | parents 52,462/65,536 (80.1%) | generated=839,405 | leaves=839,404 | best=25.4655 | level ETA=75s
+    ... BFS level 5/5 | parents 53,330/65,536 (81.4%) | generated=853,284 | leaves=853,283 | best=25.4655 | level ETA=70s
+    ... BFS level 5/5 | parents 54,184/65,536 (82.7%) | generated=866,958 | leaves=866,957 | best=25.4655 | level ETA=65s
+    ... BFS level 5/5 | parents 55,087/65,536 (84.1%) | generated=881,404 | leaves=881,403 | best=25.4655 | level ETA=60s
+    ... BFS level 5/5 | parents 56,005/65,536 (85.5%) | generated=896,089 | leaves=896,088 | best=25.4655 | level ETA=54s
+    ... BFS level 5/5 | parents 56,910/65,536 (86.8%) | generated=910,575 | leaves=910,574 | best=25.4655 | level ETA=49s
+    ... BFS level 5/5 | parents 57,800/65,536 (88.2%) | generated=924,807 | leaves=924,806 | best=25.4655 | level ETA=44s
+    ... BFS level 5/5 | parents 58,710/65,536 (89.6%) | generated=939,372 | leaves=939,371 | best=25.4655 | level ETA=39s
+    ... BFS level 5/5 | parents 59,599/65,536 (90.9%) | generated=953,585 | leaves=953,584 | best=25.4655 | level ETA=34s
+    ... BFS level 5/5 | parents 60,512/65,536 (92.3%) | generated=968,205 | leaves=968,204 | best=25.4655 | level ETA=29s
+    ... BFS level 5/5 | parents 61,415/65,536 (93.7%) | generated=982,649 | leaves=982,648 | best=25.4655 | level ETA=23s
+    ... BFS level 5/5 | parents 62,293/65,536 (95.1%) | generated=996,691 | leaves=996,690 | best=25.4655 | level ETA=18s
+    ... BFS level 5/5 | parents 63,206/65,536 (96.4%) | generated=1,011,311 | leaves=1,011,310 | best=25.4655 | level ETA=13s
+    ... BFS level 5/5 | parents 64,094/65,536 (97.8%) | generated=1,025,505 | leaves=1,025,504 | best=25.4655 | level ETA=8s
+    ... BFS level 5/5 | parents 65,000/65,536 (99.2%) | generated=1,040,013 | leaves=1,040,012 | best=25.4655 | level ETA=3s
+    [slot 134] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=1, L3=3, L4=2, L5=0 | leaves at depth (base policy continues): 262,144
+    ... BFS level 4/5 | parents 10,287/16,384 (62.8%) | generated=164,597 | leaves=0 | best=inf | level ETA=1s
+    ... BFS level 5/5 | parents 12,116/262,144 (4.6%) | generated=12,117 | leaves=12,116 | best=26.7601 | level ETA=87s
+    ... BFS level 5/5 | parents 26,531/262,144 (10.1%) | generated=26,532 | leaves=26,531 | best=26.7601 | level ETA=82s
+    ... BFS level 5/5 | parents 40,571/262,144 (15.5%) | generated=40,572 | leaves=40,571 | best=26.4268 | level ETA=78s
+    ... BFS level 5/5 | parents 54,900/262,144 (20.9%) | generated=54,901 | leaves=54,900 | best=26.4268 | level ETA=73s
+    ... BFS level 5/5 | parents 69,364/262,144 (26.5%) | generated=69,365 | leaves=69,364 | best=26.4268 | level ETA=67s
+    ... BFS level 5/5 | parents 84,039/262,144 (32.1%) | generated=84,040 | leaves=84,039 | best=26.4268 | level ETA=62s
+    ... BFS level 5/5 | parents 98,359/262,144 (37.5%) | generated=98,360 | leaves=98,359 | best=26.3321 | level ETA=57s
+    ... BFS level 5/5 | parents 112,343/262,144 (42.9%) | generated=112,344 | leaves=112,343 | best=26.3321 | level ETA=52s
+    ... BFS level 5/5 | parents 126,784/262,144 (48.4%) | generated=126,785 | leaves=126,784 | best=26.3321 | level ETA=47s
+    ... BFS level 5/5 | parents 140,703/262,144 (53.7%) | generated=140,704 | leaves=140,703 | best=26.1051 | level ETA=42s
+    ... BFS level 5/5 | parents 155,317/262,144 (59.2%) | generated=155,318 | leaves=155,317 | best=26.1051 | level ETA=37s
+    ... BFS level 5/5 | parents 169,601/262,144 (64.7%) | generated=169,602 | leaves=169,601 | best=26.1051 | level ETA=32s
+    ... BFS level 5/5 | parents 184,128/262,144 (70.2%) | generated=184,129 | leaves=184,128 | best=26.1051 | level ETA=27s
+    ... BFS level 5/5 | parents 198,182/262,144 (75.6%) | generated=198,183 | leaves=198,182 | best=26.1051 | level ETA=22s
+    ... BFS level 5/5 | parents 212,578/262,144 (81.1%) | generated=212,579 | leaves=212,578 | best=26.1051 | level ETA=17s
+    ... BFS level 5/5 | parents 226,783/262,144 (86.5%) | generated=226,784 | leaves=226,783 | best=25.4655 | level ETA=12s
+    ... BFS level 5/5 | parents 240,606/262,144 (91.8%) | generated=240,607 | leaves=240,606 | best=25.4655 | level ETA=8s
+    ... BFS level 5/5 | parents 255,016/262,144 (97.3%) | generated=255,017 | leaves=255,016 | best=25.4655 | level ETA=2s
+    [slot 135] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=3, L3=2, L4=0, L5=0 | leaves at depth (base policy continues): 4,096
+    [slot 136] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=2, L3=0, L4=0, L5=0 | leaves at depth (base policy continues): 1,024
+    [slot 137] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0, L3=0, L4=0, L5=2 | leaves at depth (base policy continues): 256
+    [slot 141] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1, L3=1, L4=3, L5=2 | leaves at depth (base policy continues): 262,144
+    ... BFS level 5/5 | parents 56/16,384 (0.3%) | generated=912 | leaves=911 | best=22.6348 | level ETA=79s
+    ... BFS level 5/5 | parents 1,094/16,384 (6.7%) | generated=17,505 | leaves=17,504 | best=22.6348 | level ETA=74s
+    ... BFS level 5/5 | parents 2,129/16,384 (13.0%) | generated=34,071 | leaves=34,070 | best=22.6348 | level ETA=69s
+    ... BFS level 5/5 | parents 3,115/16,384 (19.0%) | generated=49,849 | leaves=49,848 | best=22.6348 | level ETA=65s
+    ... BFS level 5/5 | parents 4,153/16,384 (25.3%) | generated=66,450 | leaves=66,449 | best=22.6348 | level ETA=60s
+    ... BFS level 5/5 | parents 5,187/16,384 (31.7%) | generated=82,994 | leaves=82,993 | best=22.6348 | level ETA=55s
+    ... BFS level 5/5 | parents 6,182/16,384 (37.7%) | generated=98,914 | leaves=98,913 | best=22.6348 | level ETA=50s
+    ... BFS level 5/5 | parents 7,176/16,384 (43.8%) | generated=114,822 | leaves=114,821 | best=22.6348 | level ETA=45s
+    ... BFS level 5/5 | parents 8,143/16,384 (49.7%) | generated=130,289 | leaves=130,288 | best=22.6348 | level ETA=41s
+    ... BFS level 5/5 | parents 9,150/16,384 (55.8%) | generated=146,412 | leaves=146,411 | best=22.6348 | level ETA=36s
+    ... BFS level 5/5 | parents 10,166/16,384 (62.0%) | generated=162,661 | leaves=162,660 | best=22.6348 | level ETA=31s
+    ... BFS level 5/5 | parents 11,180/16,384 (68.2%) | generated=178,886 | leaves=178,885 | best=22.6348 | level ETA=26s
+    ... BFS level 5/5 | parents 12,145/16,384 (74.1%) | generated=194,323 | leaves=194,322 | best=22.6348 | level ETA=21s
+    ... BFS level 5/5 | parents 13,182/16,384 (80.5%) | generated=210,928 | leaves=210,927 | best=22.6348 | level ETA=16s
+    ... BFS level 5/5 | parents 14,173/16,384 (86.5%) | generated=226,777 | leaves=226,776 | best=22.6348 | level ETA=11s
+    ... BFS level 5/5 | parents 15,190/16,384 (92.7%) | generated=243,054 | leaves=243,053 | best=22.6348 | level ETA=6s
+    ... BFS level 5/5 | parents 16,218/16,384 (99.0%) | generated=259,495 | leaves=259,494 | best=22.6348 | level ETA=1s
+    [slot 142] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=3, L4=2, L5=0 | leaves at depth (base policy continues): 16,384
+    ... BFS level 5/5 | parents 13,216/16,384 (80.7%) | generated=13,217 | leaves=13,216 | best=21.0591 | level ETA=1s
+    [slot 143] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=3, L3=2, L4=0, L5=1 | leaves at depth (base policy continues): 16,384
+    ... BFS level 5/5 | parents 3,332/4,096 (81.3%) | generated=13,329 | leaves=13,328 | best=20.7691 | level ETA=1s
+    [slot 144] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=2, L3=0, L4=1, L5=1 | leaves at depth (base policy continues): 16,384
+    ... BFS level 5/5 | parents 3,372/4,096 (82.3%) | generated=13,490 | leaves=13,489 | best=20.5958 | level ETA=1s
+    [slot 145] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0, L3=1, L4=1, L5=0 | leaves at depth (base policy continues): 256
+    [slot 147] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=0, L4=1, L5=1 | leaves at depth (base policy continues): 256
+    [slot 148] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=1, L4=1, L5=1 | leaves at depth (base policy continues): 256
+    [slot 150] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=1, L4=2, L5=1 | leaves at depth (base policy continues): 4,096
+    [slot 151] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=2, L4=1, L5=2 | leaves at depth (base policy continues): 16,384
+    ... BFS level 5/5 | parents 676/1,024 (66.0%) | generated=10,831 | leaves=10,830 | best=18.6991 | level ETA=1s
+    [slot 152] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2, L3=1, L4=2, L5=3 | leaves at depth (base policy continues): 262,144
+    ... BFS level 5/5 | parents 209/4,096 (5.1%) | generated=13,408 | leaves=13,407 | best=18.0521 | level ETA=65s
+    ... BFS level 5/5 | parents 522/4,096 (12.7%) | generated=33,451 | leaves=33,450 | best=18.0521 | level ETA=58s
+    ... BFS level 5/5 | parents 838/4,096 (20.5%) | generated=53,645 | leaves=53,644 | best=18.0521 | level ETA=53s
+    ... BFS level 5/5 | parents 1,144/4,096 (27.9%) | generated=73,262 | leaves=73,261 | best=17.8092 | level ETA=48s
+    ... BFS level 5/5 | parents 1,444/4,096 (35.3%) | generated=92,444 | leaves=92,443 | best=17.8092 | level ETA=43s
+    ... BFS level 5/5 | parents 1,754/4,096 (42.8%) | generated=112,257 | leaves=112,256 | best=17.8092 | level ETA=38s
+    ... BFS level 5/5 | parents 2,067/4,096 (50.5%) | generated=132,306 | leaves=132,305 | best=17.8092 | level ETA=33s
+    ... BFS level 5/5 | parents 2,372/4,096 (57.9%) | generated=151,872 | leaves=151,871 | best=17.8092 | level ETA=28s
+    ... BFS level 5/5 | parents 2,677/4,096 (65.4%) | generated=171,359 | leaves=171,358 | best=17.8092 | level ETA=23s
+    ... BFS level 5/5 | parents 2,992/4,096 (73.0%) | generated=191,534 | leaves=191,533 | best=17.8092 | level ETA=18s
+    ... BFS level 5/5 | parents 3,303/4,096 (80.6%) | generated=211,414 | leaves=211,413 | best=17.8092 | level ETA=13s
+    ... BFS level 5/5 | parents 3,611/4,096 (88.2%) | generated=231,161 | leaves=231,160 | best=17.8092 | level ETA=8s
+    ... BFS level 5/5 | parents 3,915/4,096 (95.6%) | generated=250,566 | leaves=250,565 | best=17.8092 | level ETA=3s
+    [slot 153] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1, L3=2, L4=3, L5=1 | leaves at depth (base policy continues): 262,144
+    ... BFS level 5/5 | parents 1,421/65,536 (2.2%) | generated=5,687 | leaves=5,686 | best=17.4043 | level ETA=62s
+    ... BFS level 5/5 | parents 6,496/65,536 (9.9%) | generated=25,985 | leaves=25,984 | best=17.4043 | level ETA=58s
+    ... BFS level 5/5 | parents 11,449/65,536 (17.5%) | generated=45,799 | leaves=45,798 | best=17.4043 | level ETA=54s
+    ... BFS level 5/5 | parents 16,517/65,536 (25.2%) | generated=66,072 | leaves=66,071 | best=17.4043 | level ETA=49s
+    ... BFS level 5/5 | parents 21,408/65,536 (32.7%) | generated=85,635 | leaves=85,634 | best=17.4043 | level ETA=44s
+    ... BFS level 5/5 | parents 26,411/65,536 (40.3%) | generated=105,647 | leaves=105,646 | best=17.4043 | level ETA=39s
+    ... BFS level 5/5 | parents 31,349/65,536 (47.8%) | generated=125,399 | leaves=125,398 | best=17.4043 | level ETA=34s
+    ... BFS level 5/5 | parents 36,221/65,536 (55.3%) | generated=144,885 | leaves=144,884 | best=17.4043 | level ETA=29s
+    ... BFS level 5/5 | parents 41,106/65,536 (62.7%) | generated=164,428 | leaves=164,427 | best=17.4043 | level ETA=25s
+    ... BFS level 5/5 | parents 45,900/65,536 (70.0%) | generated=183,602 | leaves=183,601 | best=17.4043 | level ETA=20s
+    ... BFS level 5/5 | parents 50,939/65,536 (77.7%) | generated=203,757 | leaves=203,756 | best=17.3701 | level ETA=15s
+    ... BFS level 5/5 | parents 55,862/65,536 (85.2%) | generated=223,449 | leaves=223,448 | best=17.3613 | level ETA=10s
+    ... BFS level 5/5 | parents 60,771/65,536 (92.7%) | generated=243,088 | leaves=243,087 | best=16.9987 | level ETA=5s
+    [slot 154] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2, L3=3, L4=1, L5=0 | leaves at depth (base policy continues): 16,384
+    ... BFS level 5/5 | parents 554/16,384 (3.4%) | generated=555 | leaves=554 | best=17.6273 | level ETA=4s
+    [slot 155] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=3, L3=1, L4=0, L5=1 | leaves at depth (base policy continues): 16,384
+    ... BFS level 5/5 | parents 1,379/4,096 (33.7%) | generated=5,519 | leaves=5,518 | best=16.7839 | level ETA=3s
+    [slot 156] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=1, L3=0, L4=1, L5=1 | leaves at depth (base policy continues): 4,096
+    [slot 157] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=1, L4=1, L5=0 | leaves at depth (base policy continues): 64
+    [slot 159] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=0, L4=3, L5=0 | leaves at depth (base policy continues): 1,024
+    [slot 160] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=3, L4=0, L5=1 | leaves at depth (base policy continues): 1,024
+    [slot 162] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=0, L3=1, L4=1, L5=1 | leaves at depth (base policy continues): 4,096
+    [slot 164] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=1, L4=2, L5=1 | leaves at depth (base policy continues): 4,096
+    ... BFS level 5/5 | parents 360/1,024 (35.2%) | generated=1,441 | leaves=1,440 | best=13.4111 | level ETA=1s
+    [slot 165] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=2, L4=1, L5=4 | leaves at depth (base policy continues): 262,144
+    ... BFS level 5/5 | parents 99/1,024 (9.7%) | generated=25,494 | leaves=25,493 | best=13.0710 | level ETA=42s
+    ... BFS level 5/5 | parents 208/1,024 (20.3%) | generated=53,466 | leaves=53,465 | best=13.0710 | level ETA=37s
+    ... BFS level 5/5 | parents 322/1,024 (31.4%) | generated=82,672 | leaves=82,671 | best=12.8982 | level ETA=32s
+    ... BFS level 5/5 | parents 435/1,024 (42.5%) | generated=111,436 | leaves=111,435 | best=12.8982 | level ETA=26s
+    ... BFS level 5/5 | parents 548/1,024 (53.5%) | generated=140,289 | leaves=140,288 | best=12.8982 | level ETA=21s
+    ... BFS level 5/5 | parents 661/1,024 (64.6%) | generated=169,275 | leaves=169,274 | best=12.8982 | level ETA=16s
+    ... BFS level 5/5 | parents 773/1,024 (75.5%) | generated=197,958 | leaves=197,957 | best=12.8982 | level ETA=11s
+    ... BFS level 5/5 | parents 884/1,024 (86.3%) | generated=226,450 | leaves=226,449 | best=12.8982 | level ETA=6s
+    ... BFS level 5/5 | parents 994/1,024 (97.1%) | generated=254,586 | leaves=254,585 | best=12.8982 | level ETA=1s
+    [slot 166] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2, L3=1, L4=4, L5=1 | leaves at depth (base policy continues): 262,144
+    ... BFS level 5/5 | parents 3,996/65,536 (6.1%) | generated=15,985 | leaves=15,984 | best=13.2004 | level ETA=45s
+    ... BFS level 5/5 | parents 11,141/65,536 (17.0%) | generated=44,566 | leaves=44,565 | best=13.2004 | level ETA=39s
+    ... BFS level 5/5 | parents 17,997/65,536 (27.5%) | generated=71,989 | leaves=71,988 | best=12.8982 | level ETA=34s
+    ... BFS level 5/5 | parents 25,170/65,536 (38.4%) | generated=100,683 | leaves=100,682 | best=12.8982 | level ETA=29s
+    ... BFS level 5/5 | parents 32,228/65,536 (49.2%) | generated=128,915 | leaves=128,914 | best=12.8982 | level ETA=24s
+    ... BFS level 5/5 | parents 39,079/65,536 (59.6%) | generated=156,320 | leaves=156,319 | best=12.8982 | level ETA=19s
+    ... BFS level 5/5 | parents 46,091/65,536 (70.3%) | generated=184,367 | leaves=184,366 | best=12.8982 | level ETA=14s
+    ... BFS level 5/5 | parents 53,359/65,536 (81.4%) | generated=213,438 | leaves=213,437 | best=12.8763 | level ETA=9s
+    ... BFS level 5/5 | parents 60,342/65,536 (92.1%) | generated=241,371 | leaves=241,370 | best=12.8763 | level ETA=4s
+    [slot 167] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1, L3=4, L4=1, L5=0 | leaves at depth (base policy continues): 65,536
+    ... BFS level 5/5 | parents 3,487/65,536 (5.3%) | generated=3,488 | leaves=3,487 | best=12.8413 | level ETA=10s
+    ... BFS level 5/5 | parents 35,628/65,536 (54.4%) | generated=35,629 | leaves=35,628 | best=12.8413 | level ETA=5s
+    [slot 168] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=4, L3=1, L4=0, L5=1 | leaves at depth (base policy continues): 16,384
+    ... BFS level 5/5 | parents 383/4,096 (9.4%) | generated=1,536 | leaves=1,535 | best=12.7342 | level ETA=2s
+    [slot 169] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=4, L2=1, L3=0, L4=1, L5=2 | leaves at depth (base policy continues): 65,536
+    ... BFS level 5/5 | parents 1,029/4,096 (25.1%) | generated=16,477 | leaves=16,476 | best=12.1130 | level ETA=8s
+    ... BFS level 5/5 | parents 3,101/4,096 (75.7%) | generated=49,620 | leaves=49,619 | best=12.0524 | level ETA=2s
+    [slot 170] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=1, L4=2, L5=1 | leaves at depth (base policy continues): 1,024
+    [slot 172] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=2, L3=1, L4=1, L5=1 | leaves at depth (base policy continues): 4,096
+    [slot 173] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=1, L3=1, L4=1, L5=0 | leaves at depth (base policy continues): 1,024
+    [slot 174] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=1, L4=0, L5=0 | leaves at depth (base policy continues): 64
+    [slot 175] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=0, L4=0, L5=2 | leaves at depth (base policy continues): 256
+    [slot 176] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=0, L4=2, L5=0 | leaves at depth (base policy continues): 64
+    [slot 179] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0, L3=3, L4=2, L5=0 | leaves at depth (base policy continues): 16,384
+    ... BFS level 5/5 | parents 16,249/16,384 (99.2%) | generated=16,250 | leaves=16,249 | best=7.9337 | level ETA=0s
+    [slot 181] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=2, L3=0, L4=0, L5=0 | leaves at depth (base policy continues): 1,024
+    [slot 182] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0, L3=0, L4=0, L5=0 | leaves at depth (base policy continues): 16
+    [slot 188] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=1, L3=1, L4=0, L5=0 | leaves at depth (base policy continues): 1,024
+    [slot 189] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=1, L3=0, L4=0, L5=2 | leaves at depth (base policy continues): 256
+    [slot 190] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0, L3=0, L4=2, L5=2 | leaves at depth (base policy continues): 1,024
+    [slot 193] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=2, L3=0, L4=3, L5=3 | leaves at depth (base policy continues): 1,048,576
+    ... BFS level 5/5 | parents 3,455/16,384 (21.1%) | generated=221,184 | leaves=221,183 | best=3.3544 | level ETA=17s
+    ... BFS level 5/5 | parents 7,125/16,384 (43.5%) | generated=456,008 | leaves=456,007 | best=3.3305 | level ETA=12s
+    ... BFS level 5/5 | parents 10,830/16,384 (66.1%) | generated=693,158 | leaves=693,157 | best=3.3305 | level ETA=7s
+    ... BFS level 5/5 | parents 14,411/16,384 (88.0%) | generated=922,315 | leaves=922,314 | best=3.3305 | level ETA=3s
+    [slot 194] depth=5 | base policy: greedy_context_schedule | tasks per level: L1=2, L2=0, L3=3, L4=3, L5=1 | leaves at depth (base policy continues): 262,144
+    ... BFS level 5/5 | parents 23,310/65,536 (35.6%) | generated=93,242 | leaves=93,241 | best=3.3209 | level ETA=3s
+    [slot 196] depth=4 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=3, L3=1, L4=0 | leaves at depth (base policy continues): 16,384
+    [slot 197] depth=3 | base policy: greedy_context_schedule | tasks per level: L1=3, L2=1, L3=0 | leaves at depth (base policy continues): 256
+    [slot 198] depth=2 | base policy: greedy_context_schedule | tasks per level: L1=1, L2=0 | leaves at depth (base policy continues): 4
+[rollout-BFS d=5] slot 200/1200 ( 16.7%) | decisions=122 | leaves=5,229,332 | max_frontier=262,144 | elapsed= 1395.3s | ETA= 6976.5s
+[rollout-BFS d=5] slot 300/1200 ( 25.0%) | decisions=122 | leaves=5,229,332 | max_frontier=262,144 | elapsed= 1395.3s | ETA= 4185.9s
+[rollout-BFS d=5] slot 400/1200 ( 33.3%) | decisions=122 | leaves=5,229,332 | max_frontier=262,144 | elapsed= 1395.3s | ETA= 2790.6s
+[rollout-BFS d=5] slot 500/1200 ( 41.7%) | decisions=122 | leaves=5,229,332 | max_frontier=262,144 | elapsed= 1395.3s | ETA= 1953.4s
+[rollout-BFS d=5] slot 600/1200 ( 50.0%) | decisions=122 | leaves=5,229,332 | max_frontier=262,144 | elapsed= 1395.3s | ETA= 1395.3s
+[rollout-BFS d=5] slot 700/1200 ( 58.3%) | decisions=122 | leaves=5,229,332 | max_frontier=262,144 | elapsed= 1395.3s | ETA=  996.6s
+[rollout-BFS d=5] slot 800/1200 ( 66.7%) | decisions=122 | leaves=5,229,332 | max_frontier=262,144 | elapsed= 1395.3s | ETA=  697.6s
+[rollout-BFS d=5] slot 900/1200 ( 75.0%) | decisions=122 | leaves=5,229,332 | max_frontier=262,144 | elapsed= 1395.3s | ETA=  465.1s
+[rollout-BFS d=5] slot 1000/1200 ( 83.3%) | decisions=122 | leaves=5,229,332 | max_frontier=262,144 | elapsed= 1395.3s | ETA=  279.1s
+[rollout-BFS d=5] slot 1100/1200 ( 91.7%) | decisions=122 | leaves=5,229,332 | max_frontier=262,144 | elapsed= 1395.3s | ETA=  126.8s
+[rollout-BFS d=5] slot 1200/1200 (100.0%) | decisions=122 | leaves=5,229,332 | max_frontier=262,144 | elapsed= 1395.3s | ETA=    0.0s
+
+=======================================================
+Algorithm: exact slot-level rollout BFS (depth=5, then base policy greedy_context_schedule for k=None)
+Base policy: greedy_context_schedule
+Completed tasks: 195
+Average transmission+connection delay: 0.1078 s
+Average queue delay: 0.0646 s
+Average processing delay: 0.0998 s
+Average total delay: 0.2722 s
+Server changes: 90
+Scheduling time: 1395.29 s
+Decisions (slots): 122 | avg nodes: 51,018 | avg leaves: 42,863
+Max estimated leaves: 1,048,576 | decisions with reduced depth: 0
+Max BFS frontier size: 262,144
+Avg time/decision: 11436.8 ms
+
+BFS per-level summary (averaged over decisions):
+level |      generated | kept (frontier) |  time(ms)
+    0 |           18.0 |            18.0 |      0.14
+    1 |          157.8 |           157.8 |      0.95
+    2 |          906.6 |           904.5 |      6.56
+    3 |        7,336.7 |         7,200.2 |     68.87
+    4 |       43,804.1 |             0.0 |  11644.74
+=======================================================

@@ -814,12 +814,12 @@ if __name__ == "__main__":
         print(f", Elapsed time: {(end_time - start_time) * 1000:.3f} ms")
 
         for task in arrived_tasks:
-            calc_receive_time(
-                task,
-            )
             user = users[task.userIndex]
             if task.selected_edge_index != user.last_selected_edge:
                 server_changed += 1
+            calc_receive_time(
+                task,
+            )
 
             
         current_slot_queue = {}

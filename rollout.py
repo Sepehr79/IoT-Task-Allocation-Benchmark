@@ -17,11 +17,11 @@ ALGO_NAME = scheduling_algorithm.__name__
 # ============================================================
 # Parameters
 # ============================================================
-ROLLOUT_DEPTHS = (0, 1)      # depth = number of levels (one level per slot) whose leaves are fully enumerated
+ROLLOUT_DEPTHS = (0, 1, 2)      # depth = number of levels (one level per slot) whose leaves are fully enumerated
                              # 0 = plain base policy from the root (no branching)
                              # 1 = all assignments of the current slot, then base policy from every leaf
                              # 2 = all assignments of the current and the next slot, then base policy from every leaf
-ROLLOUT_K = 20               # after the depth: how many slots to continue with the base policy (None = to the horizon)
+ROLLOUT_K = None               # after the depth: how many slots to continue with the base policy (None = to the horizon)
 ADAPTIVE_LEAF_LIMIT = None   # if the estimated number of leaves exceeds this, the last levels are dropped (None = never)
 TERMINAL_WEIGHT = 0.0        # optional penalty on the queue left at the end of the horizon
 
@@ -426,10 +426,6 @@ if __name__ == "__main__":
     if TEST_SLOTS:
         slot_tasks = {s: v for s, v in slot_tasks.items() if s < TEST_SLOTS}
         print(f">>> TEST MODE: only the first {TEST_SLOTS} slots")
-
-    print(f">>> Running base policy ({ALGO_NAME})")
-    r_base = run_simulation(slot_tasks, base_schedule, label="base", quiet=True)
-    print_result(f"{ALGO_NAME} (base)", r_base)
 
     for d in ROLLOUT_DEPTHS:
         print(f"\n>>> Starting exact slot-level rollout (BFS): depth={d}, k={ROLLOUT_K}, "

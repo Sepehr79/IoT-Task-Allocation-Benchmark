@@ -8,6 +8,8 @@ from itertools import product
 import time
 import pickle
 
+NUM_EDGES = len(EDGE_CAPACITIES)
+
 def generate_datarate():
     sigma = np.sqrt(
         np.log(
@@ -678,16 +680,7 @@ users = [
     for _ in range(NUM_USERS)
 ]
 
-edges = [
-    Edge(1.5*10**9),
-    Edge(1.5*10**9),
-    Edge(2*10**9),
-    Edge(2*10**9),
-    Edge(2*10**9),
-    Edge(2*10**9),
-    Edge(2.5*10**9),
-    Edge(2.5*10**9),
-]
+edges = [ Edge(f) for f in EDGE_CAPACITIES ]
 
 
 def calc_receive_time(task):
@@ -1053,10 +1046,8 @@ if __name__ == "__main__":
     """
     # Print to console
     print(results)
-        
 
-if len(slot_tasks) > 0:
-    with open("slot_tasks.pkl", "wb") as file:
-            pickle.dump(slot_tasks, file)
-            print("slot_tasks saved successfully.")
-
+    if len(slot_tasks) > 0:
+        with open("slot_tasks.pkl", "wb") as file:
+                pickle.dump(slot_tasks, file)
+                print("slot_tasks saved successfully.")

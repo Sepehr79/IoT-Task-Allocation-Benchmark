@@ -3,11 +3,18 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+def get_list(name, cast=str, default=None, sep=","):
+    raw = os.getenv(name)
+    if raw is None or raw.strip() == "":
+        return default if default is not None else []
+    return [cast(item.strip()) for item in raw.split(sep) if item.strip()]
+
 # Environment variables
+
+EDGE_CAPACITIES = get_list("EDGE_CAPACITIES", float)
 
 NUM_SLOTS = int(os.getenv("NUM_SLOTS"))
 EXTRA_SLOTS = int(os.getenv("EXTRA_SLOTS"))
-NUM_EDGES = int(os.getenv("NUM_EDGES"))
 NUM_USERS = int(os.getenv("NUM_USERS"))
 SCHEDULE_ALGORITHM = str(os.getenv("SCHEDULE_ALGORITHM"))
 

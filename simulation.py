@@ -7,6 +7,9 @@ import copy
 from itertools import product
 import time
 import pickle
+from pathlib import Path
+import re
+import textwrap
 
 NUM_EDGES = len(EDGE_CAPACITIES)
 
@@ -717,6 +720,10 @@ def calc_receive_time(task):
                 )
         task.R = (task.S + communication_slots)
 
+# Save results to a file named after the algorithm and workload
+def _safe(name) -> str:
+    return re.sub(r"[^\w.-]+", "_", str(name)).strip("_")
+
 schedule = scheduling[SCHEDULE_ALGORITHM]
 
 tasks = []
@@ -1046,6 +1053,13 @@ if __name__ == "__main__":
     """
     # Print to console
     print(results)
+
+    output_dir = Path("results")
+    output_dir.mkdir(exist_ok=True)
+
+    result_path = output_dir / f"{_safe(schedule.__name__)}_{_safe(workload)}.txt"
+    result_path.write_text(textwrap.dedent(results).strip() + "\n", encoding="utf-8")
+    print(f"Results saved to {result_path}")
 
     if len(slot_tasks) > 0:
         with open("slot_tasks.pkl", "wb") as file:

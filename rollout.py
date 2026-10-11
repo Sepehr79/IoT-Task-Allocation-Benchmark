@@ -17,7 +17,7 @@ ALGO_NAME = scheduling_algorithm.__name__
 # ============================================================
 # Parameters
 # ============================================================
-ROLLOUT_DEPTHS = (0, 1, 2)      # depth = number of levels (one level per slot) whose leaves are fully enumerated
+ROLLOUT_DEPTHS = (0, 1, 2, 3)      # depth = number of levels (one level per slot) whose leaves are fully enumerated
                              # 0 = plain base policy from the root (no branching)
                              # 1 = all assignments of the current slot, then base policy from every leaf
                              # 2 = all assignments of the current and the next slot, then base policy from every leaf
@@ -25,7 +25,7 @@ ROLLOUT_K = None               # after the depth: how many slots to continue wit
 ADAPTIVE_LEAF_LIMIT = None   # if the estimated number of leaves exceeds this, the last levels are dropped (None = never)
 TERMINAL_WEIGHT = 0.0        # optional penalty on the queue left at the end of the horizon
 
-TEST_SLOTS = 200             # run only the first slots (None = whole simulation)
+TEST_SLOTS = 500             # run only the first slots (None = whole simulation)
 
 PROGRESS_EVERY_SLOTS = 100   # print a progress line every N slots (0 = disabled)
 PROGRESS_EVERY_SECONDS = 5   # if nothing was printed for this long, print an in-search progress line (0 = disabled)

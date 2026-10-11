@@ -34,8 +34,12 @@ DATA_SIZE_STD = float(os.getenv("DATA_SIZE_STD"))
 
 TASK_GENERATION = float(os.getenv("TASK_GENERATION"))
 
-DATA_RATE_MEAN = float(os.getenv("DATA_RATE_MEAN"))
+DATA_RATE_PEAK = float(os.getenv("DATA_RATE_PEAK"))
 DATA_RATE_STD = float(os.getenv("DATA_RATE_STD"))
+DATA_RATE_MIN = float(os.getenv("DATA_RATE_MIN"))
+DATA_RATE_MAX = float(os.getenv("DATA_RATE_MAX"))
+
+
 
 SLOT_LENGTH = float(os.getenv("SLOT_LENGTH"))
 USER_TASK_GENERATION_PROBABILITY = float(

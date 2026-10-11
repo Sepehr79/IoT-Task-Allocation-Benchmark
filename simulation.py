@@ -14,19 +14,10 @@ import textwrap
 NUM_EDGES = len(EDGE_CAPACITIES)
 
 def generate_datarate():
-    sigma = np.sqrt(
-        np.log(
-            1 + (DATA_RATE_STD / DATA_RATE_MEAN) ** 2
-        )
-    )
-    mu = (
-        np.log(DATA_RATE_MEAN)
-        - 0.5 * sigma**2
-    )
-    return np.random.lognormal(
-        mean=mu,
-        sigma=sigma
-    ) 
+    while True:
+        rate = np.random.normal(DATA_RATE_PEAK, DATA_RATE_STD)
+        if DATA_RATE_MIN <= rate <= DATA_RATE_MAX:
+            return rate
 
 
 class Task:

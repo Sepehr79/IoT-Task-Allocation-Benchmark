@@ -726,7 +726,7 @@ slot_tasks = {}
 if __name__ == "__main__":
 
     prev_tasks = []
-    with open("slot_tasks.pkl", "rb") as file:
+    with open(f"slot_tasks_{len(edges)}_{SELECTED_WORKLOAD}.pkl", "rb") as file:
         prev_tasks = pickle.load(file)
 
     # Main simulation
@@ -1053,6 +1053,6 @@ if __name__ == "__main__":
     print(f"Results saved to {result_path}")
 
     if len(slot_tasks) > 0:
-        with open("slot_tasks.pkl", "wb") as file:
+        with open(f"slot_tasks_{len(edges)}_{workload}.pkl", "wb") as file:
                 pickle.dump(slot_tasks, file)
                 print("slot_tasks saved successfully.")

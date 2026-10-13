@@ -17,7 +17,7 @@ ALGO_NAME = scheduling_algorithm.__name__
 # ============================================================
 # Parameters
 # ============================================================
-ROLLOUT_DEPTHS = (0, 1, 2, 3)      # depth = number of levels (one level per slot) whose leaves are fully enumerated
+ROLLOUT_DEPTHS = (0, 1)      # depth = number of levels (one level per slot) whose leaves are fully enumerated
                              # 0 = plain base policy from the root (no branching)
                              # 1 = all assignments of the current slot, then base policy from every leaf
                              # 2 = all assignments of the current and the next slot, then base policy from every leaf
@@ -401,7 +401,7 @@ def print_result(name, r):
                 c = max(a["count"], 1)
                 extra += (f"{li:>5} | {a['generated'] / c:>14,.1f} | {a['kept'] / c:>15,.1f} | "
                           f"{1000 * a['sec'] / c:>9.2f}\n")
-    print(f"""
+    results_text = f"""
 {'=' * 55}
 Algorithm: {name}
 Base policy: {ALGO_NAME}
@@ -412,11 +412,19 @@ Average processing delay: {r['avg_proc']:.4f} s
 Average total delay: {r['avg_total']:.4f} s
 Server changes: {r['server_changed']}
 Scheduling time: {r['sched_time_s']:.2f} s
-{extra}{'=' * 55}""")
+{extra}{'=' * 55}
+"""
+    print(results_text)
+
+    filename = f"./results/rollout_workload_{SELECTED_WORKLOAD}.txt"
+
+    with open(filename, "a", encoding="utf-8") as file:
+        file.write(results_text + "\n")
+
 
 
 if __name__ == "__main__":
-    with open("slot_tasks.pkl", "rb") as file:
+    with open(f"slot_tasks_{len(edges)}_{SELECTED_WORKLOAD}.pkl", "rb") as file:
         slot_tasks = pickle.load(file)
 
     print(f"NUM_SLOTS={NUM_SLOTS}, EXTRA_SLOTS={EXTRA_SLOTS}, TEST_SLOTS={TEST_SLOTS}")

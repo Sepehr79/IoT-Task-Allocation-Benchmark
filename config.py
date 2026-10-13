@@ -18,6 +18,8 @@ EXTRA_SLOTS = int(os.getenv("EXTRA_SLOTS"))
 NUM_USERS = int(os.getenv("NUM_USERS"))
 SCHEDULE_ALGORITHM = str(os.getenv("SCHEDULE_ALGORITHM"))
 
+SELECTED_WORKLOAD = str(os.getenv("SELECTED_WORKLOAD"))
+
 
 
 WEBSOCKET_CONNECTION = float(os.getenv("WEBSOCKET_CONNECTION"))

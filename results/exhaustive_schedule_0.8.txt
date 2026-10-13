@@ -3,15 +3,15 @@
 =======================================================
 Algorithm: exhaustive_schedule
 Workload: 0.8
-Completed tasks: 504
+Completed tasks: 4760
 -------------------------------------------------------
-Average data transmission delay: 0.0707 s
-Average context transmission delay: 0.0146 s
-Average transmission delay: 0.0854 s
-Average connection/setup delay: 0.0269 s
-Average queue delay: 0.1531 s
-Average processing delay: 0.0980 s
+Average data transmission delay: 0.0720 s
+Average context transmission delay: 0.0136 s
+Average transmission delay: 0.0857 s
+Average connection/setup delay: 0.0251 s
+Average queue delay: 0.1512 s
+Average processing delay: 0.0987 s
 -------------------------------------------------------
-Average total delay: 0.3633 s
-Server changes: 226
+Average total delay: 0.3607 s
+Server changes: 1991
 =======================================================

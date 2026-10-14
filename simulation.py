@@ -715,6 +715,25 @@ def calc_receive_time(task):
 def _safe(name) -> str:
     return re.sub(r"[^\w.-]+", "_", str(name)).strip("_")
 
+def calculate_task_generation_probability(
+    workload,
+    num_users,
+    expected_task_size,
+    slot_length,
+    edge_capacities,
+):
+    num_edges = len(edge_capacities)
+    total_edge_capacity = sum(edge_capacities)
+
+    p = (
+        workload
+        * slot_length
+        * total_edge_capacity
+        / (num_users * expected_task_size)
+    )
+
+    return p
+
 schedule = scheduling[SCHEDULE_ALGORITHM]
 
 tasks = []
@@ -724,11 +743,18 @@ server_changed = 0
 slot_tasks = {}
 
 if __name__ == "__main__":
-
+    
     prev_tasks = []
-    with open(f"slot_tasks_{len(edges)}_{SELECTED_WORKLOAD}.pkl", "rb") as file:
-        prev_tasks = pickle.load(file)
-
+    if not TASK_GENERATION:
+        with open(f"slot_tasks_{len(edges)}_{SELECTED_WORKLOAD}.pkl", "rb") as file:
+            prev_tasks = pickle.load(file)
+    p = calculate_task_generation_probability(
+        float(SELECTED_WORKLOAD),
+        len(users),
+        PROCESSING_CAPACITY_MEAN,
+        SLOT_LENGTH,
+        [e.F for e in edges]
+    )
     # Main simulation
     for slot in range(
         NUM_SLOTS + EXTRA_SLOTS
@@ -768,7 +794,7 @@ if __name__ == "__main__":
                     if (
                         random.random()
                         <
-                        USER_TASK_GENERATION_PROBABILITY
+                        p
                     ):
                         
                         task = generate_task(
@@ -929,7 +955,7 @@ if __name__ == "__main__":
 
     # Workload is independent of completed tasks
     workload = (
-        USER_TASK_GENERATION_PROBABILITY
+        p
         * NUM_USERS
         * PROCESSING_CAPACITY_MEAN
     ) / (
@@ -1048,11 +1074,11 @@ if __name__ == "__main__":
     output_dir = Path("results")
     output_dir.mkdir(exist_ok=True)
 
-    result_path = output_dir / f"{_safe(schedule.__name__)}_{_safe(workload)}.txt"
+    result_path = output_dir / f"{_safe(schedule.__name__)}_{len(edges)}_{_safe(SELECTED_WORKLOAD)}.txt"
     result_path.write_text(textwrap.dedent(results).strip() + "\n", encoding="utf-8")
     print(f"Results saved to {result_path}")
 
     if len(slot_tasks) > 0:
-        with open(f"slot_tasks_{len(edges)}_{workload}.pkl", "wb") as file:
+        with open(f"slot_tasks_{len(edges)}_{SELECTED_WORKLOAD}.pkl", "wb") as file:
                 pickle.dump(slot_tasks, file)
                 print("slot_tasks saved successfully.")

@@ -1,0 +1,43 @@
+
+=======================================================
+Algorithm: exact slot-level rollout BFS (depth=1, then base policy greedy_context_schedule for k=None)
+Base policy: greedy_context_schedule
+Completed tasks: 938
+Average transmission+connection delay: 0.1088 s
+Average queue delay: 0.1070 s
+Average processing delay: 0.0979 s
+Average total delay: 0.3138 s
+Server changes: 364
+Scheduling time: 90.02 s
+Decisions (slots): 613 | avg nodes: 18 | avg leaves: 18
+Max estimated leaves: 256 | decisions with reduced depth: 0
+Max BFS frontier size: 1
+Avg time/decision: 146.8 ms
+
+BFS per-level summary (averaged over decisions):
+level |      generated | kept (frontier) |  time(ms)
+    0 |           17.8 |             0.0 |    146.64
+=======================================================
+
+
+=======================================================
+Algorithm: exact slot-level rollout BFS (depth=2, then base policy greedy_context_schedule for k=None)
+Base policy: greedy_context_schedule
+Completed tasks: 938
+Average transmission+connection delay: 0.1076 s
+Average queue delay: 0.1063 s
+Average processing delay: 0.0979 s
+Average total delay: 0.3118 s
+Server changes: 352
+Scheduling time: 952.58 s
+Decisions (slots): 613 | avg nodes: 148 | avg leaves: 130
+Max estimated leaves: 4,096 | decisions with reduced depth: 0
+Max BFS frontier size: 256
+Avg time/decision: 1554.0 ms
+
+BFS per-level summary (averaged over decisions):
+level |      generated | kept (frontier) |  time(ms)
+    0 |           17.8 |            17.8 |      0.20
+    1 |          130.1 |             0.0 |   1553.53
+=======================================================
+

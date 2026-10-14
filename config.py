@@ -44,8 +44,5 @@ DATA_RATE_MAX = float(os.getenv("DATA_RATE_MAX"))
 
 
 SLOT_LENGTH = float(os.getenv("SLOT_LENGTH"))
-USER_TASK_GENERATION_PROBABILITY = float(
-    os.getenv("USER_TASK_GENERATION_PROBABILITY")
-)
 
 USER_CONTEXT_SIZE = float(os.getenv("USER_CONTEXT_SIZE"))

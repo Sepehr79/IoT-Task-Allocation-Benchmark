@@ -1,17 +1,17 @@
 =======================================================
                 DELAY STATISTICS
 =======================================================
-Algorithm: woa_schedule
-Workload: 0.8
-Completed tasks: 4760
+Algorithm: greedy_context_schedule
+Workload: 0.88
+Completed tasks: 5297
 -------------------------------------------------------
 Average data transmission delay: 0.0719 s
-Average context transmission delay: 0.0139 s
-Average transmission delay: 0.0858 s
-Average connection/setup delay: 0.0256 s
-Average queue delay: 0.1442 s
-Average processing delay: 0.0987 s
+Average context transmission delay: 0.0173 s
+Average transmission delay: 0.0892 s
+Average connection/setup delay: 0.0317 s
+Average queue delay: 0.2482 s
+Average processing delay: 0.0995 s
 -------------------------------------------------------
-Average total delay: 0.3543 s
-Server changes: 2033
+Average total delay: 0.4686 s
+Server changes: 2795
 =======================================================

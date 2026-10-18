@@ -25,7 +25,7 @@ ROLLOUT_K = None               # after the depth: how many slots to continue wit
 ADAPTIVE_LEAF_LIMIT = None   # if the estimated number of leaves exceeds this, the last levels are dropped (None = never)
 TERMINAL_WEIGHT = 0.0        # optional penalty on the queue left at the end of the horizon
 
-TEST_SLOTS = 1000           # run only the first slots (None = whole simulation)
+TEST_SLOTS = 2000           # run only the first slots (None = whole simulation)
 
 PROGRESS_EVERY_SLOTS = 100   # print a progress line every N slots (0 = disabled)
 PROGRESS_EVERY_SECONDS = 5   # if nothing was printed for this long, print an in-search progress line (0 = disabled)

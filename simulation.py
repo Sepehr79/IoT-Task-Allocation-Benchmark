@@ -125,24 +125,22 @@ def random_schedule(tasks, edges, users, slot):
 
         task.selected_edge_index = selected_edge
 
+round_robin_counter = 0
 # Round-robin scheduler
 def round_robin_schedule(tasks, edges, users, slot):
+    global round_robin_counter
 
-    edge_indices = list(range(NUM_EDGES))
+    for task in (tasks):
 
-    random.shuffle(edge_indices)
-
-    for idx, task in enumerate(tasks):
-
-        selected_edge = (
-            edge_indices[idx % NUM_EDGES]
-        )
+        selected_edge = round_robin_counter % NUM_EDGES
 
         task.A = [0] * NUM_EDGES
 
         task.A[selected_edge] = 1
 
         task.selected_edge_index = selected_edge
+
+        round_robin_counter += 1
 
 def exhaustive_schedule(
     tasks,

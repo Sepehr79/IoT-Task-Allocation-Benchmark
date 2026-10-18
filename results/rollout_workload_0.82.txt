@@ -2,42 +2,42 @@
 =======================================================
 Algorithm: exact slot-level rollout BFS (depth=1, then base policy greedy_context_schedule for k=None)
 Base policy: greedy_context_schedule
-Completed tasks: 993
-Average transmission+connection delay: 0.1104 s
-Average queue delay: 0.1349 s
-Average processing delay: 0.0992 s
-Average total delay: 0.3445 s
-Server changes: 415
-Scheduling time: 269.33 s
-Decisions (slots): 637 | avg nodes: 21 | avg leaves: 21
-Max estimated leaves: 1,024 | decisions with reduced depth: 0
+Completed tasks: 2005
+Average transmission+connection delay: 0.1141 s
+Average queue delay: 0.1566 s
+Average processing delay: 0.1003 s
+Average total delay: 0.3710 s
+Server changes: 915
+Scheduling time: 226.73 s
+Decisions (slots): 1,281 | avg nodes: 25 | avg leaves: 25
+Max estimated leaves: 4,096 | decisions with reduced depth: 0
 Max BFS frontier size: 1
-Avg time/decision: 422.8 ms
+Avg time/decision: 177.0 ms
 
 BFS per-level summary (averaged over decisions):
 level |      generated | kept (frontier) |  time(ms)
-    0 |           21.2 |             0.0 |    422.54
+    0 |           25.0 |             0.0 |    176.77
 =======================================================
 
 
 =======================================================
 Algorithm: exact slot-level rollout BFS (depth=2, then base policy greedy_context_schedule for k=None)
 Base policy: greedy_context_schedule
-Completed tasks: 993
-Average transmission+connection delay: 0.1119 s
-Average queue delay: 0.1215 s
-Average processing delay: 0.0990 s
-Average total delay: 0.3324 s
-Server changes: 428
-Scheduling time: 3031.24 s
-Decisions (slots): 637 | avg nodes: 258 | avg leaves: 237
+Completed tasks: 2005
+Average transmission+connection delay: 0.1130 s
+Average queue delay: 0.1533 s
+Average processing delay: 0.1002 s
+Average total delay: 0.3665 s
+Server changes: 893
+Scheduling time: 2144.07 s
+Decisions (slots): 1,281 | avg nodes: 253 | avg leaves: 228
 Max estimated leaves: 16,384 | decisions with reduced depth: 0
-Max BFS frontier size: 1,024
-Avg time/decision: 4758.6 ms
+Max BFS frontier size: 4,096
+Avg time/decision: 1673.7 ms
 
 BFS per-level summary (averaged over decisions):
 level |      generated | kept (frontier) |  time(ms)
-    0 |           21.2 |            21.2 |      1.00
-    1 |          236.9 |             0.0 |   4757.30
+    0 |           25.0 |            25.0 |      0.26
+    1 |          228.3 |             0.0 |   1673.26
 =======================================================
 

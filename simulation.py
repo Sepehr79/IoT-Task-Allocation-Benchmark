@@ -14,10 +14,7 @@ import textwrap
 NUM_EDGES = len(EDGE_CAPACITIES)
 
 def generate_datarate():
-    while True:
-        rate = np.random.normal(DATA_RATE_PEAK, DATA_RATE_STD)
-        if DATA_RATE_MIN <= rate <= DATA_RATE_MAX:
-            return rate
+    return np.random.uniform(DATA_RATE_MIN, DATA_RATE_MAX)
 
 
 class Task:
@@ -315,7 +312,7 @@ def delay_cost(tasks, edges, users, slot, solution=None):
 
         context = 0.0
 
-        if user.last_selected_edge != edge_index:
+        if user.last_selected_edge != edge_index and CONTEXT_COST:
 
             context_transmission = (
                 user.C /
@@ -1072,7 +1069,8 @@ if __name__ == "__main__":
     output_dir = Path("results")
     output_dir.mkdir(exist_ok=True)
 
-    result_path = output_dir / f"{_safe(schedule.__name__)}_{len(edges)}_{_safe(SELECTED_WORKLOAD)}.txt"
+    context_enabled = True if CONTEXT_COST == 1 else False
+    result_path = output_dir / f"{_safe(schedule.__name__)}_{len(edges)}_{_safe(SELECTED_WORKLOAD)}_Context({context_enabled}).txt"
     result_path.write_text(textwrap.dedent(results).strip() + "\n", encoding="utf-8")
     print(f"Results saved to {result_path}")
 

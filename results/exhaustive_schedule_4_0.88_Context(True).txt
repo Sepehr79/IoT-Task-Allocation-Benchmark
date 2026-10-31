@@ -1,0 +1,17 @@
+=======================================================
+                DELAY STATISTICS
+=======================================================
+Algorithm: exhaustive_schedule
+Workload: 0.88
+Completed tasks: 2062
+-------------------------------------------------------
+Average data transmission delay: 0.0657 s
+Average context transmission delay: 0.0137 s
+Average transmission delay: 0.0794 s
+Average connection/setup delay: 0.0288 s
+Average queue delay: 0.2025 s
+Average processing delay: 0.1011 s
+-------------------------------------------------------
+Average total delay: 0.4118 s
+Server changes: 989
+=======================================================
